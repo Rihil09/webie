@@ -5,12 +5,13 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/fireba
 import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
 const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_PROJECT.firebaseapp.com",
-    projectId: "YOUR_PROJECT",
-    storageBucket: "YOUR_PROJECT.appspot.com",
-    messagingSenderId: "YOUR_SENDER_ID",
-    appId: "YOUR_APP_ID",
+  apiKey: "AIzaSyAFe7fGknE_4RLLSqIXX7RafMftdfnhf8A",
+  authDomain: "ar-rice-system.firebaseapp.com",
+  projectId: "ar-rice-system",
+  storageBucket: "ar-rice-system.firebasestorage.app",
+  messagingSenderId: "315656193287",
+  appId: "1:315656193287:web:8719c39e19ac7a773731a2",
+  measurementId: "G-B87RFCV0N8"
 };
 
 const app = initializeApp(firebaseConfig);
