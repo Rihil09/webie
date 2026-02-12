@@ -1,39 +1,40 @@
-import { getAuth, onAuthStateChanged, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+// Import Firebase modules
+import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
-// Elements
-const wrapper = document.querySelector('.wrapper');
-const btnPopup = document.querySelector('.btnlogin-popup');
-const closeIcon = document.querySelector('.icon-close');
-const registerLink = document.querySelector('.register-link');
-const loginLink = document.querySelector('.login-link');
-const centerText = document.querySelector('.center-text');
-const bottomControls = document.querySelector('.bottom-controls');
-
+// Firebase auth instance
 const auth = getAuth();
 
-// ===== LOGIN POPUP =====
+// Elements
+const wrapper = document.querySelector('.wrapper');          // login/register popup
+const btnPopup = document.querySelector('.btnlogin-popup');   // top login button
+const closeIcon = document.querySelector('.icon-close');      // popup close button
+const registerLink = document.querySelector('.register-link');
+const loginLink = document.querySelector('.login-link');
+const centerText = document.querySelector('.center-text');   // main text
+const bottomControls = document.querySelector('.bottom-controls'); // bottom buttons
+
+// Hide main content by default
+centerText.style.display = 'none';
+bottomControls.style.display = 'none';
+
+// ===== LOGIN POPUP BUTTON =====
 btnPopup.addEventListener('click', () => {
     wrapper.classList.add('active-popup');
-    centerText.style.display = 'none';
-    bottomControls.style.display = 'none';
 });
 
-// Switch to register form
+// ===== SWITCH FORMS =====
 registerLink.addEventListener('click', () => {
-    wrapper.classList.add('active');
+    wrapper.classList.add('active'); // show register form
 });
 
-// Switch back to login form
 loginLink.addEventListener('click', () => {
-    wrapper.classList.remove('active');
+    wrapper.classList.remove('active'); // switch back to login form
 });
 
-// Close popup
+// ===== CLOSE POPUP =====
 closeIcon.addEventListener('click', () => {
     wrapper.classList.remove('active-popup');
     wrapper.classList.remove('active');
-    centerText.style.display = 'block';
-    bottomControls.style.display = 'flex';
 });
 
 // ===== LOGIN FORM SUBMIT =====
@@ -44,7 +45,7 @@ document.querySelector(".login form").addEventListener("submit", async (e) => {
 
     try {
         await signInWithEmailAndPassword(auth, email, password);
-        // Automatically close popup and show content
+        // Close popup and show main content
         wrapper.classList.remove('active-popup');
         wrapper.classList.remove('active');
         centerText.style.display = 'block';
@@ -54,16 +55,32 @@ document.querySelector(".login form").addEventListener("submit", async (e) => {
     }
 });
 
-// ===== AUTH STATE CHANGE (detect if already logged in) =====
+// ===== REGISTER FORM SUBMIT =====
+document.querySelector(".register form").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const email = e.target.querySelector('input[type="email"]').value;
+    const password = e.target.querySelector('input[type="password"]').value;
+
+    try {
+        await createUserWithEmailAndPassword(auth, email, password);
+        alert("Registration successful! Please login.");
+        wrapper.classList.remove('active'); // switch back to login form
+        e.target.reset();
+    } catch (error) {
+        alert(error.message);
+    }
+});
+
+// ===== DETECT IF USER IS ALREADY LOGGED IN =====
 onAuthStateChanged(auth, (user) => {
     if (user) {
-        // User is logged in
+        // Already logged in
         wrapper.classList.remove('active-popup');
-        wrapper.classList.remove('active');
         centerText.style.display = 'block';
         bottomControls.style.display = 'flex';
     } else {
         // Not logged in
+        wrapper.classList.add('active-popup');
         centerText.style.display = 'none';
         bottomControls.style.display = 'none';
     }
@@ -86,28 +103,4 @@ popupCloses.forEach(close => {
     close.addEventListener('click', () => {
         popups.forEach(popup => popup.classList.remove('active'));
     });
-});
-
-import { getAuth, onAuthstateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-
-const auth = getAuth(); 
-
-// Elements 
-const centerText = document.getElementById("center-text");
-const bottomButtons = document.getElementById("bottom-buttons");
-const wrapper = document.querySelector(".wrapper"); // login popup
-
-// Check if user is already logged in 
-onAuthstateChanged(auth, (user) => {
-    if (user) {
-        // User is signed in 
-        wrapper.classList.remove("active-popup"); // close login popup
-        centerText.style.display = "block"; 
-        bottomButtons.style.display = "flex"; // show buttons 
-    } else {
-        // No user logged in 
-        wrapper.classList.add("active-popup"); // show login popup 
-        centerText.style.display = "none";
-        bottomButtons.style.display = "none";
-    }
 });
