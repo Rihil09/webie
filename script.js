@@ -1,14 +1,21 @@
+import { getAuth, onAuthStateChanged, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+// Elements
 const wrapper = document.querySelector('.wrapper');
 const btnPopup = document.querySelector('.btnlogin-popup');
 const closeIcon = document.querySelector('.icon-close');
 const registerLink = document.querySelector('.register-link');
 const loginLink = document.querySelector('.login-link');
 const centerText = document.querySelector('.center-text');
+const bottomControls = document.querySelector('.bottom-controls');
 
-// Open login popup
+const auth = getAuth();
+
+// ===== LOGIN POPUP =====
 btnPopup.addEventListener('click', () => {
     wrapper.classList.add('active-popup');
     centerText.style.display = 'none';
+    bottomControls.style.display = 'none';
 });
 
 // Switch to register form
@@ -26,23 +33,55 @@ closeIcon.addEventListener('click', () => {
     wrapper.classList.remove('active-popup');
     wrapper.classList.remove('active');
     centerText.style.display = 'block';
+    bottomControls.style.display = 'flex';
 });
 
+// ===== LOGIN FORM SUBMIT =====
+document.querySelector(".login form").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const email = e.target.querySelector('input[type="email"]').value;
+    const password = e.target.querySelector('input[type="password"]').value;
+
+    try {
+        await signInWithEmailAndPassword(auth, email, password);
+        // Automatically close popup and show content
+        wrapper.classList.remove('active-popup');
+        wrapper.classList.remove('active');
+        centerText.style.display = 'block';
+        bottomControls.style.display = 'flex';
+    } catch (error) {
+        alert(error.message);
+    }
+});
+
+// ===== AUTH STATE CHANGE (detect if already logged in) =====
+onAuthStateChanged(auth, (user) => {
+    if (user) {
+        // User is logged in
+        wrapper.classList.remove('active-popup');
+        wrapper.classList.remove('active');
+        centerText.style.display = 'block';
+        bottomControls.style.display = 'flex';
+    } else {
+        // Not logged in
+        centerText.style.display = 'none';
+        bottomControls.style.display = 'none';
+    }
+});
+
+// ===== BOTTOM BUTTONS POPUPS =====
 const controlButtons = document.querySelectorAll('.control-btn');
 const popups = document.querySelectorAll('.popup-box');
 const popupCloses = document.querySelectorAll('.popup-close');
 
-// Open popup
 controlButtons.forEach(button => {
     button.addEventListener('click', () => {
         const target = button.dataset.popup;
-
         popups.forEach(popup => popup.classList.remove('active'));
         document.getElementById(target).classList.add('active');
     });
 });
 
-// Close popup
 popupCloses.forEach(close => {
     close.addEventListener('click', () => {
         popups.forEach(popup => popup.classList.remove('active'));
