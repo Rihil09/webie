@@ -36,20 +36,15 @@ const bottomControls = document.querySelector('.bottom-controls');
 // ======================
 // POPUP HANDLERS
 // ======================
-// Open login popup
 btnPopup.addEventListener('click', () => {
     wrapper.classList.add('active-popup');
     centerText.style.display = 'none';
     bottomControls.style.display = 'none';
 });
 
-// Switch to register form
 registerLink.addEventListener('click', () => wrapper.classList.add('active'));
-
-// Switch back to login form
 loginLink.addEventListener('click', () => wrapper.classList.remove('active'));
 
-// Close popup
 closeIcon.addEventListener('click', () => {
     wrapper.classList.remove('active-popup');
     wrapper.classList.remove('active');
@@ -58,56 +53,49 @@ closeIcon.addEventListener('click', () => {
 });
 
 // ======================
-// LOGIN FORM SUBMIT
+// LOGIN / REGISTER SUBMIT
 // ======================
 document.querySelector(".login form").addEventListener("submit", async (e) => {
     e.preventDefault();
     const email = e.target.querySelector('input[type="email"]').value;
     const password = e.target.querySelector('input[type="password"]').value;
-
     try {
         await signInWithEmailAndPassword(auth, email, password);
-        // Close popup and show content
         wrapper.classList.remove('active-popup');
         wrapper.classList.remove('active');
         centerText.style.display = 'block';
         bottomControls.style.display = 'flex';
-        e.target.reset(); // clear login form
+        e.target.reset();
     } catch (error) {
         alert(error.message);
     }
 });
 
-// ======================
-// REGISTER FORM SUBMIT
-// ======================
 document.querySelector(".register form").addEventListener("submit", async (e) => {
     e.preventDefault();
     const email = e.target.querySelector('input[type="email"]').value;
     const password = e.target.querySelector('input[type="password"]').value;
-
     try {
         await createUserWithEmailAndPassword(auth, email, password);
         alert("Registration Successful!");
-        e.target.reset(); // clear register form
-        wrapper.classList.remove('active'); // switch back to login form
+        e.target.reset();
+        wrapper.classList.remove('active');
     } catch (error) {
         alert(error.message);
     }
 });
 
 // ======================
-// AUTH STATE CHANGE
+// AUTH STATE
 // ======================
 onAuthStateChanged(auth, (user) => {
     if (user) {
-        // User is logged in
         wrapper.classList.remove('active-popup');
         wrapper.classList.remove('active');
         centerText.style.display = 'block';
         bottomControls.style.display = 'flex';
     } else {
-        // User is not logged in
+        wrapper.classList.add('active-popup');
         centerText.style.display = 'none';
         bottomControls.style.display = 'none';
     }
@@ -115,4 +103,21 @@ onAuthStateChanged(auth, (user) => {
 
 // ======================
 // BOTTOM CONTROL POPUPS
-// =====================
+// ======================
+const controlButtons = document.querySelectorAll('.control-btn');
+const popups = document.querySelectorAll('.popup-box');
+const popupCloses = document.querySelectorAll('.popup-close');
+
+controlButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        const target = button.dataset.popup;
+        popups.forEach(popup => popup.classList.remove('active'));
+        document.getElementById(target).classList.add('active');
+    });
+});
+
+popupCloses.forEach(close => {
+    close.addEventListener('click', () => {
+        popups.forEach(popup => popup.classList.remove('active'));
+    });
+});
