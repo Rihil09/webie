@@ -1,60 +1,65 @@
-// =========================
-// Firebase setup
-// =========================
+// ======================
+// FIREBASE IMPORTS
+// ======================
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } 
+from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
+// ======================
+// FIREBASE CONFIG
+// ======================
 const firebaseConfig = {
   apiKey: "AIzaSyAFe7fGknE_4RLLSqIXX7RafMftdfnhf8A",
   authDomain: "ar-rice-system.firebaseapp.com",
   projectId: "ar-rice-system",
-  storageBucket: "ar-rice-system.firebasestorage.app",
+  storageBucket: "ar-rice-system.appspot.com",
   messagingSenderId: "315656193287",
   appId: "1:315656193287:web:8719c39e19ac7a773731a2",
   measurementId: "G-B87RFCV0N8"
 };
 
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-// =========================
-// Elements
-// =========================
+// ======================
+// ELEMENTS
+// ======================
 const wrapper = document.querySelector('.wrapper');
 const btnPopup = document.querySelector('.btnlogin-popup');
 const closeIcon = document.querySelector('.icon-close');
 const registerLink = document.querySelector('.register-link');
 const loginLink = document.querySelector('.login-link');
-const centerText = document.querySelector('#center-text');
+const centerText = document.querySelector('.center-text');
 const bottomControls = document.querySelector('.bottom-controls');
 
-// Hide main content by default
-centerText.style.display = 'none';
-bottomControls.style.display = 'none';
-
-// =========================
-// Popup open / close
-// =========================
+// ======================
+// POPUP HANDLERS
+// ======================
+// Open login popup
 btnPopup.addEventListener('click', () => {
     wrapper.classList.add('active-popup');
+    centerText.style.display = 'none';
+    bottomControls.style.display = 'none';
 });
 
-registerLink.addEventListener('click', () => {
-    wrapper.classList.add('active'); // switch to register
-});
+// Switch to register form
+registerLink.addEventListener('click', () => wrapper.classList.add('active'));
 
-loginLink.addEventListener('click', () => {
-    wrapper.classList.remove('active'); // back to login
-});
+// Switch back to login form
+loginLink.addEventListener('click', () => wrapper.classList.remove('active'));
 
+// Close popup
 closeIcon.addEventListener('click', () => {
     wrapper.classList.remove('active-popup');
     wrapper.classList.remove('active');
+    centerText.style.display = 'block';
+    bottomControls.style.display = 'flex';
 });
 
-// =========================
-// Login form submit
-// =========================
+// ======================
+// LOGIN FORM SUBMIT
+// ======================
 document.querySelector(".login form").addEventListener("submit", async (e) => {
     e.preventDefault();
     const email = e.target.querySelector('input[type="email"]').value;
@@ -62,18 +67,20 @@ document.querySelector(".login form").addEventListener("submit", async (e) => {
 
     try {
         await signInWithEmailAndPassword(auth, email, password);
+        // Close popup and show content
         wrapper.classList.remove('active-popup');
         wrapper.classList.remove('active');
         centerText.style.display = 'block';
         bottomControls.style.display = 'flex';
+        e.target.reset(); // clear login form
     } catch (error) {
         alert(error.message);
     }
 });
 
-// =========================
-// Register form submit
-// =========================
+// ======================
+// REGISTER FORM SUBMIT
+// ======================
 document.querySelector(".register form").addEventListener("submit", async (e) => {
     e.preventDefault();
     const email = e.target.querySelector('input[type="email"]').value;
@@ -81,48 +88,31 @@ document.querySelector(".register form").addEventListener("submit", async (e) =>
 
     try {
         await createUserWithEmailAndPassword(auth, email, password);
-        alert("Registration successful! Please login.");
-        wrapper.classList.remove('active'); // switch to login form
-        e.target.reset();
+        alert("Registration Successful!");
+        e.target.reset(); // clear register form
+        wrapper.classList.remove('active'); // switch back to login form
     } catch (error) {
         alert(error.message);
     }
 });
 
-// =========================
-// Auth state listener
-// =========================
+// ======================
+// AUTH STATE CHANGE
+// ======================
 onAuthStateChanged(auth, (user) => {
     if (user) {
-        // Already logged in
+        // User is logged in
         wrapper.classList.remove('active-popup');
+        wrapper.classList.remove('active');
         centerText.style.display = 'block';
         bottomControls.style.display = 'flex';
     } else {
-        // Not logged in
-        wrapper.classList.add('active-popup');
+        // User is not logged in
         centerText.style.display = 'none';
         bottomControls.style.display = 'none';
     }
 });
 
-// =========================
-// Bottom buttons popups
-// =========================
-const controlButtons = document.querySelectorAll('.control-btn');
-const popups = document.querySelectorAll('.popup-box');
-const popupCloses = document.querySelectorAll('.popup-close');
-
-controlButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        const target = button.dataset.popup;
-        popups.forEach(popup => popup.classList.remove('active'));
-        document.getElementById(target).classList.add('active');
-    });
-});
-
-popupCloses.forEach(close => {
-    close.addEventListener('click', () => {
-        popups.forEach(popup => popup.classList.remove('active'));
-    });
-});
+// ======================
+// BOTTOM CONTROL POPUPS
+// =====================
