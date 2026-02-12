@@ -87,3 +87,27 @@ popupCloses.forEach(close => {
         popups.forEach(popup => popup.classList.remove('active'));
     });
 });
+
+import { getAuth, onAuthstateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+const auth = getAuth(); 
+
+// Elements 
+const centerText = document.getElementById("center-text");
+const bottomButtons = document.getElementById("bottom-buttons");
+const wrapper = document.querySelector(".wrapper"); // login popup
+
+// Check if user is already logged in 
+onAuthstateChanged(auth, (user) => {
+    if (user) {
+        // User is signed in 
+        wrapper.classList.remove("active-popup"); // close login popup
+        centerText.style.display = "block"; 
+        bottomButtons.style.display = "flex"; // show buttons 
+    } else {
+        // No user logged in 
+        wrapper.classList.add("active-popup"); // show login popup 
+        centerText.style.display = "none";
+        bottomButtons.style.display = "none";
+    }
+});

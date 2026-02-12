@@ -342,3 +342,7 @@ header {
     cursor: pointer;
     color: #06361e;
 }
+
+#center-text, #bottom-buttons {
+    display: none; /* hide initially */
+}
