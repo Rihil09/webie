@@ -2,235 +2,147 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AR-RICE WebSystem</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website With Login & Registration | Codehal</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <!-- HEADER -->
-  <header>
-    <h2 class="logo">AR-RICE</h2>
-    <nav class="navigation">
-      <a href="#">Home</a>
-      <a href="#">About</a>
-      <a href="#">Contact</a>
-      <a href="#">Setting</a>
-      <button class="btnlogin-popup">Login</button>
-    </nav>
-  </header>
+    <header>
+        <h2 class="logo">AR-RICE</h2>
+        <nav class="navigation">
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+            <a href="#">Setting</a>
+            <button class="btnlogin-popup">Login</button>
+        </nav>
+    </header>
 
-  <!-- LOGIN/REGISTER POPUP -->
-  <div class="wrapper">
-    <span class="icon-close"><ion-icon name="close"></ion-icon></span>
+    <div class="wrapper">
+        <span class="icon-close">
+            <ion-icon name="close"></ion-icon>
+        </span>
 
-    <!-- LOGIN FORM -->
-    <div class="form-box login">
-      <h2>Login</h2>
-      <form>
-        <div class="input-box">
-          <span class="icon"><ion-icon name="mail"></ion-icon></span>
-          <input type="email" placeholder=" " required>
-          <label>Email</label>
+        <!-- LOGIN FORM -->
+        <div class="form-box login">
+            <h2>Login</h2>
+            <form action="#">
+
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="mail"></ion-icon></span>
+                    <input type="email" placeholder=" " required>
+                    <label>Email</label>
+                </div>
+
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="lock"></ion-icon></span>
+                    <input type="password" placeholder=" " required>
+                    <label>Password</label>
+                </div>
+
+                <div class="remember-forgot">
+                    <label><input type="checkbox"> Remember me</label>
+                    <a href="#">Forgot Password?</a>
+                </div>
+
+                <button type="submit" class="btn">Login</button>
+
+                <div class="login-register">
+                    <p>Don't have an account?
+                        <a href="#" class="register-link">Register</a>
+                    </p>
+                </div>
+
+            </form>
         </div>
-        <div class="input-box">
-          <span class="icon"><ion-icon name="lock"></ion-icon></span>
-          <input type="password" placeholder=" " required>
-          <label>Password</label>
+
+        <!-- REGISTER FORM -->
+        <div class="form-box register">
+            <h2>Registration</h2>
+            <form action="#">
+
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
+                    <input type="text" placeholder=" " required>
+                    <label>Username</label>
+                </div>
+
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="mail"></ion-icon></span>
+                    <input type="email" placeholder=" " required>
+                    <label>Email</label>
+                </div>
+
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="lock"></ion-icon></span>
+                    <input type="password" placeholder=" " required>
+                    <label>Password</label>
+                </div>
+
+                <div class="remember-forgot">
+                    <label><input type="checkbox"> Agree to the terms & conditions</label>
+                </div>
+
+                <button type="submit" class="btn">Register</button>
+
+                <div class="login-register">
+                    <p>Already have an account?
+                        <a href="#" class="login-link">Login</a>
+                    </p>
+                </div>
+
+            </form>
         </div>
-        <div class="remember-forgot">
-          <label><input type="checkbox"> Remember me</label>
-          <a href="#">Forgot Password?</a>
-        </div>
-        <button type="submit" class="btn">Login</button>
-        <div class="login-register">
-          <p>Don't have an account? <a href="#" class="register-link">Register</a></p>
-        </div>
-      </form>
     </div>
 
-    <!-- REGISTER FORM -->
-    <div class="form-box register">
-      <h2>Registration</h2>
-      <form>
-        <div class="input-box">
-          <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
-          <input type="text" placeholder=" " required>
-          <label>Username</label>
-        </div>
-        <div class="input-box">
-          <span class="icon"><ion-icon name="mail"></ion-icon></span>
-          <input type="email" placeholder=" " required>
-          <label>Email</label>
-        </div>
-        <div class="input-box">
-          <span class="icon"><ion-icon name="lock"></ion-icon></span>
-          <input type="password" placeholder=" " required>
-          <label>Password</label>
-        </div>
-        <div class="remember-forgot">
-          <label><input type="checkbox"> Agree to the terms & conditions</label>
-        </div>
-        <button type="submit" class="btn">Register</button>
-        <div class="login-register">
-          <p>Already have an account? <a href="#" class="login-link">Login</a></p>
-        </div>
-      </form>
+    <div id="center-text" class="center-text">
+        <h1>WELCOME FARMER!</h1>
+        <p>
+            Rice farming plays a crucial role in the agricultural sector.
+            This study introduces a modular robot that detects Rice Black Bug in rice fields.
+        </p>
     </div>
-  </div>
 
-  <!-- MAIN CONTENT -->
-  <div id="center-text" class="center-text">
-    <h1>WELCOME FARMER!</h1>
-    <p>
-      Rice farming plays a crucial role in the agricultural sector.
-      This study introduces a modular robot that detects Rice Black Bug in rice fields.
-    </p>
-  </div>
-
-  <!-- BOTTOM CONTROLS -->
-  <div id="bottom-buttons" class="bottom-controls">
+    <!-- BOTTOM CONTROLS -->
+<div class="bottom-controls">
     <button class="control-btn" data-popup="camera">View Camera</button>
     <button class="control-btn" data-popup="pests">Number of Pests</button>
     <button class="control-btn" data-popup="location">Robot Location</button>
-  </div>
+</div>
 
-  <!-- POPUPS -->
-  <div class="popup-box" id="camera">
+<!-- CAMERA POPUP -->
+<div class="popup-box" id="camera">
     <span class="popup-close">&times;</span>
     <h2>Live Camera Feed</h2>
     <div class="popup-content">
-      <p>[ Camera stream goes here ]</p>
+        <p>[ Camera stream goes here ]</p>
     </div>
-  </div>
+</div>
 
-  <div class="popup-box" id="pests">
+<!-- PEST COUNT POPUP -->
+<div class="popup-box" id="pests">
     <span class="popup-close">&times;</span>
     <h2>Detected Pests</h2>
     <div class="popup-content">
-      <p>Number of pests detected: <strong>12</strong></p>
+        <p>Number of pests detected: <strong>12</strong></p>
     </div>
-  </div>
+</div>
 
-  <div class="popup-box" id="location">
+<!-- ROBOT LOCATION POPUP -->
+<div class="popup-box" id="location">
     <span class="popup-close">&times;</span>
     <h2>Robot Location</h2>
     <div class="popup-content">
-      <p>Current location: <strong>Field Zone A3</strong></p>
+        <p>Current location: <strong>Field Zone A3</strong></p>
     </div>
-  </div>
+</div>
 
-  <!-- FIREBASE + AUTH SCRIPT -->
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-
-    // 🔥 Firebase config
-    const firebaseConfig = {
-      apiKey: "AIzaSyAFe7fGknE_4RLLSqIXX7RafMftdfnhf8A",
-      authDomain: "ar-rice-system.firebaseapp.com",
-      projectId: "ar-rice-system",
-      storageBucket: "ar-rice-system.firebasestorage.app",
-      messagingSenderId: "315656193287",
-      appId: "1:315656193287:web:8719c39e19ac7a773731a2",
-      measurementId: "G-B87RFCV0N8"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-
-    // ELEMENTS
-    const wrapper = document.querySelector(".wrapper");
-    const loginForm = document.querySelector(".login form");
-    const registerForm = document.querySelector(".register form");
-    const centerText = document.getElementById("center-text");
-    const bottomButtons = document.getElementById("bottom-buttons");
-    const loginBtn = document.querySelector(".btnlogin-popup");
-    const closeIcon = document.querySelector(".icon-close");
-    const registerLink = document.querySelector(".register-link");
-    const loginLink = document.querySelector(".login-link");
-
-    // SHOW/HIDE LOGIN POPUP
-    loginBtn.addEventListener("click", () => wrapper.classList.add("active-popup"));
-    closeIcon.addEventListener("click", () => wrapper.classList.remove("active-popup"));
-    registerLink.addEventListener("click", () => {
-      wrapper.querySelector(".login").style.display = "none";
-      wrapper.querySelector(".register").style.display = "block";
-    });
-    loginLink.addEventListener("click", () => {
-      wrapper.querySelector(".register").style.display = "none";
-      wrapper.querySelector(".login").style.display = "block";
-    });
-
-    // SHOW/HIDE MAIN CONTENT BASED ON LOGIN
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        wrapper.classList.remove("active-popup");
-        centerText.style.display = "block";
-        bottomButtons.style.display = "flex";
-      } else {
-        wrapper.classList.add("active-popup");
-        centerText.style.display = "none";
-        bottomButtons.style.display = "none";
-      }
-    });
-
-    // REGISTER
-    registerForm.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const email = e.target.querySelector('input[type="email"]').value;
-      const password = e.target.querySelector('input[type="password"]').value;
-      try {
-        await createUserWithEmailAndPassword(auth, email, password);
-        alert("Registration Successful! You can now login.");
-        e.target.reset();
-        wrapper.querySelector(".register").style.display = "none";
-        wrapper.querySelector(".login").style.display = "block";
-      } catch (error) {
-        alert(error.message);
-      }
-    });
-
-    // LOGIN
-    loginForm.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const email = e.target.querySelector('input[type="email"]').value;
-      const password = e.target.querySelector('input[type="password"]').value;
-      try {
-        await signInWithEmailAndPassword(auth, email, password);
-        wrapper.classList.remove("active-popup");
-        centerText.style.display = "block";
-        bottomButtons.style.display = "flex";
-        e.target.reset();
-      } catch (error) {
-        alert(error.message);
-      }
-    });
-
-    // BOTTOM BUTTON POPUPS
-    const controlBtns = document.querySelectorAll(".control-btn");
-    const popups = document.querySelectorAll(".popup-box");
-    const popupClose = document.querySelectorAll(".popup-close");
-
-    controlBtns.forEach(btn => {
-      btn.addEventListener("click", () => {
-        const popupId = btn.getAttribute("data-popup");
-        document.getElementById(popupId).style.display = "block";
-      });
-    });
-
-    popupClose.forEach(btn => {
-      btn.addEventListener("click", () => {
-        btn.parentElement.style.display = "none";
-      });
-    });
-
-  </script>
-
-  <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+    <script src="script.js"></script>
+    <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
 </body>
 
 </html>
