@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="Viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Make Website using HTML ans CSS | Codehal</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+     <main>
+        <nav class="navbar">
+            <a href="a" class="logo">Logo</a>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Portfolio</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+
+        <div class="content">
+            <div class="info">
+                <h1>Web Design & Development</h1>
+                <P>WELCOME FARMERS!</P>
+                <a href="#" class="btn">Join Us</a
+            </div>> 
+
+            <div class="login-wrapper">
+                </div> class="login-box">
+                    <form action="">
+                        <h1>Login</h1>
+                        <div class="input-box">
+                            <input type="password" 
+                            placeholder="password" required>
+                        </div>
+                    </form>
