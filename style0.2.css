@@ -19,14 +19,14 @@ body {
 /* Remove default link styling */
 a {
     text-decoration: none;
-    color: #fff;
+    color: #06361e;
 }
 
 /* Login Box */
 .login-box {
     width: 420px;
     background: rgba(255, 255, 255, 0.1);
-    border: 2px solid rgba(255, 255, 255, 0.2);
+    border: 2px solid #06361e;
     backdrop-filter: blur(20px);
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
     border-radius: 15px;
@@ -69,7 +69,7 @@ a {
     border: none;
     border-radius: 40px;
     font-size: 16px;
-    color: #333;
+    color: #06361e;
     font-weight: 600;
     cursor: pointer;
     transition: 0.3s ease;
@@ -84,9 +84,11 @@ a {
     text-align: center;
     margin-top: 15px;
     font-size: 14px;
+    color: #06361e
 }
 
 .login-box .register-link a {
     font-weight: 600;
     margin-left: 5px;
+    color: #06361e
 }
