@@ -4,55 +4,63 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="Viewport" content="width=device-width, initial-scale=1.0">
-    <title>How to Make Website using HTML ans CSS | Codehal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AR-RICE System</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-     <main>
-        <nav class="navbar">
-            <a href="a" class="logo">Logo</a>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Portfolio</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-        </nav>
+<main>
+    <nav class="navbar">
+        <a href="#" class="logo">AR-RICE</a>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Portfolio</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
 
-        <div class="content">
-            <div class="info">
-                <h1>Web Design & Development</h1>
-                <P>WELCOME FARMERS!</P>
-                <a href="#" class="btn">Join Us</a
+    <div class="content">
+        <div class="info">
+            <h1>Web Design & Development</h1>
+            <p>WELCOME FARMERS!</p>
+            <a href="#" class="btn">Join Us</a>
+        </div>
+
+        <div class="login-wrapper">
+            <div class="login-box">
+                <form id="loginForm">
+                    <h1>Login</h1>
+
+                    <div class="input-box">
+                        <input type="email" placeholder="Email" required>
+                    </div>
+
+                    <div class="input-box">
+                        <input type="password" placeholder="Password" required>
+                    </div>
+
+                    <div class="remember-forgot">
+                        <label><input type="checkbox"> Remember me</label>
+                        <a href="#">Forgot password?</a>
+                    </div>
+
+                    <button type="submit" class="btn">Login</button>
+
+                    <div class="register-link">
+                        <p>Don't have an account? 
+                            <a href="#" id="registerBtn">Register</a>
+                        </p>
+                    </div>
+
+                </form>
             </div>
+        </div>
+    </div>
+</main>
 
-            <div class="login-wrapper">
-                <div class="login-box">
-                    <form action="">
-                        <hi>Login</hi>
-                        <div class="input-box">
-                            <input type="text" placeholder="username"
-                                required>
-                        </div>
-                        <div class="input-box">
-                            <input type="password" placeholder="password"
-                                required>
-                                <i class='bx bxs-lock-alt'></i>
-                        </div>
-                        <div class="remember-forgot">
-                            <label><input type="checkbox">Remember me</label>
-                            <a href="#">forgot password?</a>
-                        </div>
-                        <button type="submit" class="btn">Login</button>
-                        <div class="register-link">
-                            <p>Don't have an account?</p>
-                            <a href="#">Register</a>
-                            
-
-
-
-            </div>
-            </div>
+<script type="module" src="script.js"></script>
+</body>
+</html>

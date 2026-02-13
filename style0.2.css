@@ -10,7 +10,7 @@
 main {
     height: 100vh;
     background: url('gigity webie.png');
-    background-size: cover:
+    background-size: cover;
     background-position: center;
 }
 
@@ -29,152 +29,103 @@ a{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    z-index: 100;
- }
-
- .navbar .logo {
-    font-size: 30px;
-    font-weight: 700;
- }
-
- .navbar ul{
-    display: flex;
- }
-
- .navbar ul li {
-    position: relative;
-    list-style: none;
-    margin-left: 35px;
- }
-
- .navbar ul li::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -2px;
-    width: 100%;
-    height: 2px;
-    background: #fff;
-    transform: scaleX(0);
-    transform-origin: right;
-    transition: transform .5s;
- }
-
-.navbar ul li:hover::after {
-    transform: scaleX(1);
-    transform-origin: left;
 }
 
- .navbar ul li a {
-    font-size: 20px;
-    font-weight: 500;
- }
+.navbar .logo {
+    font-size: 30px;
+    font-weight: 700;
+}
 
- .content {
+.navbar ul{
+    display: flex;
+}
+
+.navbar ul li {
+    list-style: none;
+    margin-left: 35px;
+}
+
+.content {
     display: flex;
     align-items: center;
     gap: 80px;
     height: 100vh;
     padding: 50px 100px 0;
-    color: #ffff;
- }
+    color: #fff;
+}
 
- .info h1 {
+.info h1 {
     font-size: 50px;
- }
+}
 
- .info p {
-    margin: 10px 0 25px;
- }
-
- .btn {
+.btn {
     display: inline-block;
     padding: 12px 50px;
-    background: #fff
+    background: #fff;
     border-radius: 40px;
-    box-shadow 0 0 10px rgba(0, 0, 0, .1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
     font-size: 16px;
     color: #333;
     font-weight: 600;
- }
+}
 
- .login-box {
-     width: 450px;
-     border: 2px solid rgba(255, 255, 255, .2);
-     backdrop-filter: blur(30px);
-     box-shadow: 0 0 10px rgba(0, 0, 0, .2);
-     border-radius: 10px;
-     padding: 50px 40px;
- }
+.login-box {
+    width: 450px;
+    border: 2px solid rgba(255, 255, 255, .2);
+    backdrop-filter: blur(30px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+    border-radius: 10px;
+    padding: 50px 40px;
+}
 
- .login-box h1 {
-     font-size: 36px;
-     text-align: center;
-     line-height: 1;
- }
+.login-box h1 {
+    font-size: 36px;
+    text-align: center;
+}
 
- .login-box .input-box {
-     margin: 30px 0;
- }
+.login-box .input-box {
+    margin: 30px 0;
+}
 
- .login-box .input-box input {
+.login-box .input-box input {
    width: 100%;
    background: transparent;
    border: 2px solid rgba(255, 255, 255, .2);
    outline: none;
    border-radius: 40px;
-   padding: 13px 50px 13px 20px;
+   padding: 13px 20px;
    font-size: 16px;
-   color: #ffff;
- }
-
- .login-box .input-box input::placeholder {
    color: #fff;
- }
+}
 
- .login-box .input-box i {
-    position: absolute;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 20px;
- }
+.login-box .input-box input::placeholder {
+   color: #fff;
+}
 
- .login-box .remember-forgot {
+.login-box .remember-forgot {
    display: flex;
    justify-content: space-between;
    font-size: 14.5px;
    margin: -15px 0 15px;
- }
+}
 
- .login-box .remember-forgot label {
-   display: flex;
- }
-
- .login-box .remember-forgot label input {
-   accent-color: #fff
+.login-box .remember-forgot label input {
+   accent-color: #fff;
    margin-right: 6px;
- }
+}
 
- .login-box .remember-forgot a:hover,
- .login-box .register-link a:hover {
-   text-decoration: underline;
- }
-
- .login-box .btn {
+.login-box .btn {
    width: 100%;
    border: none;
    cursor: pointer;
- }
+}
 
- .login-box .register-link {
-   display: flex;
-   justify-content: center;
-   font-size: 14.5px;
+.login-box .register-link {
+   text-align: center;
    margin-top: 15px;
- }
+}
 
- .login-box .register-link a {
-   font weight: 600;
+.login-box .register-link a {
+   font-weight: 600;
    margin-left: 4px;
- }
+}
