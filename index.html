@@ -1,65 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AR-RICE System</title>
-    <link rel="stylesheet" href="style.css">
+    <title>AR-RICE Login</title>
+    <link rel="stylesheet" href="style0.2.css">
 </head>
-
 <body>
 
-<main>
-    <nav class="navbar">
-        <a href="#" class="logo">AR-RICE</a>
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Portfolio</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-    </nav>
+<div class="login-wrapper">
+    <div class="login-box">
+        <form id="loginForm">
+            <h1>Login</h1>
 
-    <div class="content">
-        <div class="info">
-            <h1>Web Design & Development</h1>
-            <p>WELCOME FARMERS!</p>
-            <a href="#" class="btn">Join Us</a>
-        </div>
-
-        <div class="login-wrapper">
-            <div class="login-box">
-                <form id="loginForm">
-                    <h1>Login</h1>
-
-                    <div class="input-box">
-                        <input type="email" placeholder="Email" required>
-                    </div>
-
-                    <div class="input-box">
-                        <input type="password" placeholder="Password" required>
-                    </div>
-
-                    <div class="remember-forgot">
-                        <label><input type="checkbox"> Remember me</label>
-                        <a href="#">Forgot password?</a>
-                    </div>
-
-                    <button type="submit" class="btn">Login</button>
-
-                    <div class="register-link">
-                        <p>Don't have an account? 
-                            <a href="#" id="registerBtn">Register</a>
-                        </p>
-                    </div>
-
-                </form>
+            <div class="input-box">
+                <input type="email" id="email" placeholder="Email" required>
             </div>
-        </div>
+
+            <div class="input-box">
+                <input type="password" id="password" placeholder="Password" required>
+            </div>
+
+            <button type="submit" class="btn">Login</button>
+
+            <div class="register-link">
+                <p>Don't have an account? 
+                    <a href="#" id="registerBtn">Register</a>
+                </p>
+            </div>
+        </form>
     </div>
-</main>
+</div>
 
 <script type="module" src="script.js"></script>
 </body>
