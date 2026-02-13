@@ -1,95 +1,72 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif;
 }
 
-/* Full screen background */
 body {
     height: 100vh;
-    background: url('gigity webie.png') no-repeat center center/cover;
+    background: url('gigity webie.png') no-repeat center/cover;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 
-/* Remove default link styling */
-a {
-    text-decoration: none;
-    color: #06361e;
+.center-text {
+    text-align: center;
+    color: #fff;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
-/* Login Box */
-.login-box {
-    width: 420px;
-    background: rgba(255, 255, 255, 0.1);
-    border: 2px solid #06361e;
+/* POPUP WRAPPER */
+.wrapper {
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    width: 400px;
+    background: rgba(255,255,255,0.15);
+    border: 2px solid rgba(255,255,255,.5);
+    border-radius: 20px;
     backdrop-filter: blur(20px);
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-    border-radius: 15px;
-    padding: 40px 35px;
-    color: #fff;
+    padding: 40px;
 }
 
-/* Login Title */
-.login-box h1 {
-    font-size: 32px;
-    text-align: center;
-    margin-bottom: 25px;
-    color: #06361e
+.wrapper .icon-close {
+    position: absolute; top: 0; right: 0;
+    font-size: 2em; color: #fff;
+    padding: 10px; cursor: pointer;
 }
 
-/* Input Fields */
-.login-box .input-box {
-    margin: 20px 0;
+.form-box {
+    display: none;
 }
 
-.login-box .input-box input {
-    width: 100%;
-    background: transparent;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    outline: none;
-    border-radius: 40px;
-    padding: 12px 20px;
-    font-size: 15px;
-    color: #fff;
+.form-box.active {
+    display: block;
 }
 
-.login-box .input-box input::placeholder {
-    color: #ddd;
+.form-box h2 {
+    text-align: center; color: #fff; margin-bottom: 20px;
 }
 
-/* Button */
+.input-box {
+    margin: 15px 0;
+}
+
+.input-box input {
+    width: 100%; padding: 12px 15px; border-radius: 10px;
+    border: none; outline: none;
+}
+
 .btn {
-    width: 100%;
-    padding: 12px;
-    background: #fff;
-    border: none;
-    border-radius: 40px;
-    font-size: 16px;
-    color: #06361e;
-    font-weight: 600;
-    cursor: pointer;
-    transition: 0.3s ease;
+    width: 100%; padding: 12px; border: none; border-radius: 10px;
+    background: #06361e; color: #fff; cursor: pointer;
 }
 
-.btn:hover {
-    background: #e6e6e6;
-}
-
-/* Register Link */
-.login-box .register-link {
-    text-align: center;
-    margin-top: 15px;
-    font-size: 14px;
-    color: #06361e
-}
-
-.login-box .register-link a {
-    font-weight: 600;
-    margin-left: 5px;
-    color: #06361e
+p a {
+    color: #fff; cursor: pointer;
+    text-decoration: underline;
 }

@@ -2,36 +2,57 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AR-RICE Login</title>
-    <link rel="stylesheet" href="style0.2.css">
+    <title>AR-RICE System</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="login-wrapper">
-    <div class="login-box">
-        <form id="loginForm">
-            <h1>Login</h1>
+    <!-- LOGIN / REGISTER POPUP -->
+    <div class="wrapper">
+        <span class="icon-close">&times;</span>
 
-            <div class="input-box">
-                <input type="email" id="email" placeholder="Email" required>
-            </div>
+        <!-- LOGIN FORM -->
+        <div class="form-box login">
+            <h2>Login</h2>
+            <form id="loginForm">
+                <div class="input-box">
+                    <input type="email" id="loginEmail" placeholder="Email" required>
+                </div>
+                <div class="input-box">
+                    <input type="password" id="loginPassword" placeholder="Password" required>
+                </div>
+                <button type="submit" class="btn">Login</button>
+                <p>Don't have an account? <a href="#" id="showRegister">Register</a></p>
+            </form>
+        </div>
 
-            <div class="input-box">
-                <input type="password" id="password" placeholder="Password" required>
-            </div>
-
-            <button type="submit" class="btn">Login</button>
-
-            <div class="register-link">
-                <p>Don't have an account? 
-                    <a href="#" id="registerBtn">Register</a>
-                </p>
-            </div>
-        </form>
+        <!-- REGISTER FORM -->
+        <div class="form-box register">
+            <h2>Register</h2>
+            <form id="registerForm">
+                <div class="input-box">
+                    <input type="text" id="registerUsername" placeholder="Username" required>
+                </div>
+                <div class="input-box">
+                    <input type="email" id="registerEmail" placeholder="Email" required>
+                </div>
+                <div class="input-box">
+                    <input type="password" id="registerPassword" placeholder="Password" required>
+                </div>
+                <button type="submit" class="btn">Register</button>
+                <p>Already have an account? <a href="#" id="showLogin">Login</a></p>
+            </form>
+        </div>
     </div>
-</div>
 
-<script type="module" src="script0.2.js"></script>
+    <!-- CENTER TEXT -->
+    <div class="center-text">
+        <h1>WELCOME FARMER!</h1>
+        <p>Rice farming plays a crucial role in the agricultural sector.</p>
+    </div>
+
+    <script type="module" src="script0.2.js"></script>
 </body>
 </html>
