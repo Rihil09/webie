@@ -1,31 +1,76 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword } 
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } 
 from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
-// Your Firebase config
+// ===== Firebase config =====
 const firebaseConfig = {
   apiKey: "AIzaSyAFe7fGknE_4RLLSqIXX7RafMftdfnhf8A",
   authDomain: "ar-rice-system.firebaseapp.com",
   projectId: "ar-rice-system",
-  appId: "1:315656193287:web:8719c39e19ac7a773731a2"
+  storageBucket: "ar-rice-system.appspot.com",
+  messagingSenderId: "315656193287",
+  appId: "1:315656193287:web:8719c39e19ac7a773731a2",
+  measurementId: "G-B87RFCV0N8"
 };
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-const loginForm = document.getElementById("loginForm");
+// ===== ELEMENTS =====
+const loginForm = document.getElementById('loginForm');
+const registerForm = document.getElementById('registerForm');
+const showRegister = document.getElementById('showRegister');
+const showLogin = document.getElementById('showLogin');
+const wrapper = document.querySelector('.wrapper');
+const closeIcon = document.querySelector('.icon-close');
 
-loginForm.addEventListener("submit", async (e) => {
+// Show Register Form
+showRegister.addEventListener('click', () => {
+    document.querySelector('.login').classList.remove('active');
+    document.querySelector('.register').classList.add('active');
+});
+
+// Show Login Form
+showLogin.addEventListener('click', () => {
+    document.querySelector('.register').classList.remove('active');
+    document.querySelector('.login').classList.add('active');
+});
+
+// Close popup
+closeIcon.addEventListener('click', () => {
+    wrapper.style.display = 'none';
+});
+
+// ===== REGISTER =====
+registerForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-
-    const email = loginForm.querySelector('input[type="email"]').value;
-    const password = loginForm.querySelector('input[type="password"]').value;
+    const email = document.getElementById('registerEmail').value;
+    const password = document.getElementById('registerPassword').value;
 
     try {
-        await signInWithEmailAndPassword(auth, email, password);
-        alert("Login Successful!");
-        window.location.href = "main.html"; // redirect after login
+        await createUserWithEmailAndPassword(auth, email, password);
+        alert("Registration successful! Please login.");
+        showLogin.click(); // switch to login
+        registerForm.reset();
     } catch (error) {
         alert(error.message);
     }
 });
+
+// ===== LOGIN =====
+loginForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = document.getElementById('loginEmail').value;
+    const password = document.getElementById('loginPassword').value;
+
+    try {
+        await signInWithEmailAndPassword(auth, email, password);
+        // redirect to main.html
+        window.location.href = "main.html";
+    } catch (error) {
+        alert(error.message);
+    }
+});
+
+// Show login form by default
+document.querySelector('.login').classList.add('active');
