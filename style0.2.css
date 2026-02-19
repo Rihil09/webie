@@ -1,39 +1,54 @@
+/* GOOGLE FONT FIX */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 
 * {
-    margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
 
 body {
     height: 100vh;
-    background: url('gigity webie.png') no-repeat center/cover;
+    background: url("gigity webie.png") no-repeat center center/cover;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    padding: 0 80px;
 }
 
+/* CENTER TEXT */
 .center-text {
     text-align: center;
     color: #fff;
     position: absolute;
     top: 50%;
-    transform: translateY(-50%);
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.center-text h1 {
+    font-size: 40px;
+}
+
+.center-text p {
+    font-size: 16px;
 }
 
 /* POPUP WRAPPER */
 .wrapper {
     position: fixed;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%) scale(1);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: 400px;
     background: rgba(255,255,255,0.15);
-    border: 2px solid rgba(255,255,255,.5);
+    border: 2px solid rgba(255,255,255,0.5);
     border-radius: 20px;
     backdrop-filter: blur(20px);
     padding: 40px;
 }
 
+/* FORMS */
 .form-box {
     display: none;
 }
@@ -43,24 +58,49 @@ body {
 }
 
 .form-box h2 {
-    text-align: center; color: #fff; margin-bottom: 20px;
+    text-align: center;
+    color: #fff;
+    margin-bottom: 20px;
 }
 
+/* INPUT */
 .input-box {
     margin: 15px 0;
 }
 
 .input-box input {
-    width: 100%; padding: 12px 15px; border-radius: 10px;
-    border: none; outline: none;
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
 }
 
+/* BUTTON */
 .btn {
-    width: 100%; padding: 12px; border: none; border-radius: 10px;
-    background: #06361e; color: #fff; cursor: pointer;
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    background: #06361e;
+    color: #fff;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: #0a5c34;
+}
+
+/* LINKS */
+p {
+    text-align: center;
+    margin-top: 10px;
+    color: #fff;
 }
 
 p a {
-    color: #fff; cursor: pointer;
+    color: #fff;
     text-decoration: underline;
+    cursor: pointer;
 }
