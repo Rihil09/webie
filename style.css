@@ -10,9 +10,11 @@
 body {
     min-height: 100vh;
     background: url('facka.jpeg') no-repeat center center/cover;
+    overflow: hidden;
 }
 
-/* HEADER */
+/* ================= HEADER ================= */
+
 header {
     position: fixed;
     top: 0;
@@ -21,9 +23,9 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: rgba(0,0,0,0.3);
-    backdrop-filter: blur(5px);
-    z-index: 100;
+    background: rgba(0,0,0,0.35);
+    backdrop-filter: blur(8px);
+    z-index: 1000;
 }
 
 .logo {
@@ -56,7 +58,8 @@ header {
     color: #201f57;
 }
 
-/* CENTER TEXT */
+/* ================= CENTER TEXT ================= */
+
 .center-text {
     position: absolute;
     top: 50%;
@@ -64,6 +67,7 @@ header {
     transform: translate(-50%, -50%);
     text-align: center;
     color: white;
+    transition: opacity 0.4s ease;
 }
 
 .center-text h1 {
@@ -75,7 +79,8 @@ header {
     margin-top: 10px;
 }
 
-/* BOTTOM BUTTONS */
+/* ================= BOTTOM BUTTONS ================= */
+
 .bottom-controls {
     position: fixed;
     bottom: 40px;
@@ -83,17 +88,19 @@ header {
     display: flex;
     justify-content: center;
     gap: 60px;
+    z-index: 500;
 }
 
 .control-btn {
     padding: 12px 30px;
-    background: transparent;
+    background: rgba(255,255,255,0.15);
     border: 2px solid #fff;
     color: #fff;
     font-size: 1em;
-    border-radius: 8px;
+    border-radius: 10px;
     cursor: pointer;
-    transition: 0.3s;
+    backdrop-filter: blur(10px);
+    transition: 0.3s ease;
 }
 
 .control-btn:hover {
@@ -101,47 +108,73 @@ header {
     color: #201f57;
 }
 
-/* POPUPS */
+/* ================= POPUPS ================= */
+
 .popup-box {
-    position: fixed;
+    position: absolute;   /* IMPORTANT for smooth drag */
     top: 150px;
     left: 150px;
-    width: 350px;
-    background: rgba(255,255,255,0.15);
-    backdrop-filter: blur(20px);
-    border-radius: 20px;
-    padding: 30px;
+    width: 360px;
+
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(25px);
+    border-radius: 16px;
+
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
     color: #201f57;
-    box-shadow: 0 0 30px rgba(0,0,0,0.5);
+
     opacity: 0;
-    transform: scale(0.7);
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    cursor: grab;
+    transform: scale(0.8);
+    pointer-events: none;
+
+    transition: 
+        opacity 0.25s ease,
+        transform 0.25s ease;
+
     z-index: 200;
 }
 
+/* ACTIVE STATE */
 .popup-box.active {
-    display: block;
     opacity: 1;
     transform: scale(1);
+    pointer-events: auto;
 }
 
+/* ================= POPUP HEADER ================= */
 
-.popup-box h2 {
-    margin-bottom: 20px;
+.popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background: rgba(255,255,255,0.4);
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    cursor: grab;
+}
+
+.popup-header h2 {
+    font-size: 18px;
 }
 
 .popup-close {
-    position: absolute;
-    top: 12px;
-    right: 15px;
-    font-size: 1.5em;
+    font-size: 22px;
     cursor: pointer;
+    font-weight: bold;
 }
 
-.popup-box {
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
+/* ================= POPUP CONTENT ================= */
+
+.popup-content {
+    padding: 20px;
+}
+
+/* ================= DRAG FIX ================= */
+
+.popup-box,
+.popup-header {
     user-select: none;
+    -webkit-user-select: none;
+    touch-action: none;
 }
