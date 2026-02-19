@@ -34,7 +34,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // ======================
   onAuthStateChanged(auth, (user) => {
       if (!user) {
-          // If not logged in → go back to login page
           window.location.href = "index.html";
       }
   });
@@ -42,31 +41,66 @@ document.addEventListener("DOMContentLoaded", () => {
   // ======================
   // LOGOUT FUNCTION
   // ======================
-  logoutBtn.addEventListener("click", async () => {
-      try {
-          await signOut(auth);
-          window.location.href = "index.html";
-      } catch (error) {
-          alert(error.message);
-      }
-  });
+  if (logoutBtn) {
+    logoutBtn.addEventListener("click", async () => {
+        try {
+            await signOut(auth);
+            window.location.href = "index.html";
+        } catch (error) {
+            alert(error.message);
+        }
+    });
+  }
 
   // ======================
-  // BOTTOM POPUP BUTTONS
+  // OPEN POPUPS (Multiple Allowed)
   // ======================
   controlButtons.forEach(button => {
       button.addEventListener('click', () => {
           const target = button.dataset.popup;
-
-          popups.forEach(popup => popup.classList.remove('active'));
-          document.getElementById(target).classList.add('active');
+          const popup = document.getElementById(target);
+          if (popup) popup.classList.add('active');
       });
   });
 
+  // ======================
+  // CLOSE INDIVIDUAL POPUP
+  // ======================
   popupCloses.forEach(close => {
-      close.addEventListener('click', () => {
-          popups.forEach(popup => popup.classList.remove('active'));
+      close.addEventListener('click', (e) => {
+          const box = e.target.closest('.popup-box');
+          if (box) box.classList.remove('active');
       });
+  });
+
+  // ======================
+  // DRAGGABLE POPUPS
+  // ======================
+  popups.forEach(popup => {
+
+      let isDragging = false;
+      let offsetX = 0;
+      let offsetY = 0;
+
+      popup.addEventListener('mousedown', (e) => {
+          isDragging = true;
+          offsetX = e.clientX - popup.offsetLeft;
+          offsetY = e.clientY - popup.offsetTop;
+          popup.style.cursor = "grabbing";
+      });
+
+      document.addEventListener('mousemove', (e) => {
+          if (isDragging) {
+              popup.style.left = (e.clientX - offsetX) + "px";
+              popup.style.top = (e.clientY - offsetY) + "px";
+          }
+      });
+
+      document.addEventListener('mouseup', () => {
+          isDragging = false;
+          popup.style.cursor = "grab";
+      });
+
   });
 
 });
