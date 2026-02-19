@@ -75,7 +75,7 @@ loginForm.addEventListener('submit', async (e) => {
         await signInWithEmailAndPassword(auth, email, password);
         
         // Redirect to main page
-        window.location.href = "/main.html";
+        window.location.href = "dashboard.html";
 
     } catch (error) {
         alert(error.message);
