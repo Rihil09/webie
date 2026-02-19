@@ -94,18 +94,23 @@ document.addEventListener("DOMContentLoaded", () => {
     let offsetX = 0;
     let offsetY = 0;
 
-    header.addEventListener("pointerdown", (e) => {
-      isDragging = true;
+header.addEventListener("pointerdown", (e) => {
 
-      offsetX = e.clientX - popup.offsetLeft;
-      offsetY = e.clientY - popup.offsetTop;
+  // ❌ Don't drag if clicking close button
+  if (e.target.classList.contains("popup-close")) return;
 
-      popup.style.transition = "none";
-      document.body.style.userSelect = "none";
-      header.style.cursor = "grabbing";
+  isDragging = true;
 
-      popup.setPointerCapture(e.pointerId);
-    });
+  offsetX = e.clientX - popup.offsetLeft;
+  offsetY = e.clientY - popup.offsetTop;
+
+  popup.style.transition = "none";
+  document.body.style.userSelect = "none";
+  header.style.cursor = "grabbing";
+
+  popup.setPointerCapture(e.pointerId);
+});
+
 
     popup.addEventListener("pointermove", (e) => {
       if (!isDragging) return;
