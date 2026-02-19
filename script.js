@@ -72,15 +72,17 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /* ================= CLOSE POPUPS ================= */
-  popupCloses.forEach(close => {
-    close.addEventListener("click", (e) => {
-      const box = e.target.closest(".popup-box");
-      if (!box) return;
+  document.addEventListener("click", (e) => {
+  const closeBtn = e.target.closest(".popup-close");
+  if (!closeBtn) return;
 
-      box.classList.remove("active");
-      checkPopups();
-    });
-  });
+  const popup = closeBtn.closest(".popup-box");
+  if (!popup) return;
+
+  popup.classList.remove("active");
+  checkPopups();
+});
+
 
   /* ================= DRAGGABLE POPUPS ================= */
   popups.forEach(popup => {
