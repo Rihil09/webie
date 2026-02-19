@@ -78,7 +78,7 @@ header {
 
 .navigation .btnlogin-popup:hover {
     background: #fff;
-    color: #06361e;
+    color: #201f57;
 }
 
 /* ===== LOGIN / REGISTER POPUP ===== */
@@ -141,7 +141,7 @@ header {
     right: 0;
     width: 45px;
     height: 45px;
-    background: #06361e;
+    background: #201f57;
     font-size: 2em;
     color: #fff;
     display: flex;
@@ -155,7 +155,7 @@ header {
 /* FORM CONTENT */
 .form-box h2 {
     font-size: 2em;
-    color: #06361e;
+    color: #201f57;
     text-align: center;
 }
 
@@ -163,7 +163,7 @@ header {
     position: relative;
     width: 100%;
     height: 50px;
-    border-bottom: 2px solid #06361e;
+    border-bottom: 2px solid #201f57;
     margin: 25px 0;
 }
 
@@ -174,7 +174,7 @@ header {
     border: none;
     outline: none;
     font-size: 1em;
-    color: #06361e;
+    color: #201f57;
     font-weight: 600;
     padding: 0 35px 0 5px;
 }
@@ -184,7 +184,7 @@ header {
     top: 50%;
     left: 5px;
     transform: translateY(-50%);
-    color: #06361e;
+    color: #201f57;
     font-weight: 500;
     pointer-events: none;
     transition: 0.3s;
@@ -194,7 +194,7 @@ header {
     position: absolute;
     right: 8px;
     font-size: 1.2em;
-    color: #06361e;
+    color: #201f57;
     line-height: 50px;
 }
 
@@ -208,7 +208,7 @@ header {
 /* REMEMBER / FORGOT */
 .remember-forgot {
     font-size: .9em;
-    color: #06361e;
+    color: #201f57;
     font-weight: 500;
     margin: -15px 0 15px;
     display: flex;
@@ -216,12 +216,12 @@ header {
 }
 
 .remember-forgot label input {
-    accent-color: #06361e;
+    accent-color: #201f57;
     margin-right: 3px;
 }
 
 .remember-forgot a {
-    color: #06361e;
+    color: #201f57;
     text-decoration: none;
 }
 
@@ -233,7 +233,7 @@ header {
 .btn {
     width: 100%;
     height: 45px;
-    background: #06361e;
+    background: #201f57;
     border: none;
     outline: none;
     border-radius: 6px;
@@ -246,14 +246,14 @@ header {
 /* LOGIN / REGISTER LINKS */
 .login-register {
     font-size: .9em;
-    color: #06361e;
+    color: #201f57;
     text-align: center;
     font-weight: 500;
     margin: 25px 0 10px;
 }
 
 .login-register p a {
-    color: #06361e;
+    color: #201f57;
     text-decoration: none;
     font-weight: 600;
 }
@@ -307,7 +307,7 @@ header {
 
 .control-btn:hover {
     background: #fff;
-    color: #06361e;
+    color: #201f57;
 }
 
 /* POPUPS */
@@ -321,7 +321,7 @@ header {
     backdrop-filter: blur(20px);
     border-radius: 20px;
     padding: 30px;
-    color: #06361e;
+    color: #201f57;
     box-shadow: 0 0 30px rgba(0,0,0,0.5);
     transition: 0.4s;
     z-index: 200;
@@ -347,7 +347,7 @@ header {
     right: 15px;
     font-size: 1.5em;
     cursor: pointer;
-    color: #06361e;
+    color: #201f57;
 }
 
 #logoutBtn {
@@ -366,5 +366,5 @@ header {
 
 #logoutBtn:hover {
     background: #fff;
-    color: #06361e;
+    color: #201f57;
 }
