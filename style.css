@@ -328,7 +328,26 @@ header {
 }
 
 .popup-box.active {
-    transform: translate(-50%, -50%) scale(1);
+    .popup-box {
+    position: fixed;
+    top: 150px;
+    left: 150px;
+    width: 350px;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    padding: 30px;
+    color: #201f57;
+    box-shadow: 0 0 30px rgba(0,0,0,0.5);
+    display: none;
+    cursor: grab;
+    z-index: 200;
+}
+
+.popup-box.active {
+    display: block;
+}
+
 }
 
 .popup-box h2 {
