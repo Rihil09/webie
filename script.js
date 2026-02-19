@@ -69,31 +69,33 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /* DRAGGABLE */
-  popups.forEach(popup => {
+popups.forEach(popup => {
 
-      let isDragging = false;
-      let offsetX = 0;
-      let offsetY = 0;
+    let isDragging = false;
+    let startX, startY;
 
-      popup.addEventListener('mousedown', (e) => {
-          isDragging = true;
-          offsetX = e.clientX - popup.offsetLeft;
-          offsetY = e.clientY - popup.offsetTop;
-          popup.style.cursor = "grabbing";
-      });
+    popup.addEventListener("pointerdown", (e) => {
+        isDragging = true;
+        startX = e.clientX - popup.offsetLeft;
+        startY = e.clientY - popup.offsetTop;
+        popup.setPointerCapture(e.pointerId);
 
-      document.addEventListener('mousemove', (e) => {
-          if (isDragging) {
-              popup.style.left = (e.clientX - offsetX) + "px";
-              popup.style.top = (e.clientY - offsetY) + "px";
-          }
-      });
+        popup.style.transition = "none"; // remove transition while dragging
+        popup.style.cursor = "grabbing";
+    });
 
-      document.addEventListener('mouseup', () => {
-          isDragging = false;
-          popup.style.cursor = "grab";
-      });
+    popup.addEventListener("pointermove", (e) => {
+        if (!isDragging) return;
+        popup.style.left = (e.clientX - startX) + "px";
+        popup.style.top = (e.clientY - startY) + "px";
+    });
 
-  });
+    popup.addEventListener("pointerup", (e) => {
+        isDragging = false;
+        popup.style.cursor = "grab";
+        popup.style.transition = "transform 0.3s ease"; // restore smooth animation
+        popup.releasePointerCapture(e.pointerId);
+    });
 
 });
+
