@@ -36,10 +36,6 @@ showLogin.addEventListener('click', () => {
     document.querySelector('.login').classList.add('active');
 });
 
-// Close popup
-closeIcon.addEventListener('click', () => {
-    wrapper.style.display = 'none';
-});
 
 // ===== REGISTER =====
 registerForm.addEventListener('submit', async (e) => {

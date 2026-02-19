@@ -8,9 +8,9 @@ body {
     height: 100vh;
     background: url('gigity webie.png') no-repeat center/cover;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    flex-direction: column;
+    padding: 0 80px;
 }
 
 .center-text {
@@ -32,12 +32,6 @@ body {
     border-radius: 20px;
     backdrop-filter: blur(20px);
     padding: 40px;
-}
-
-.wrapper .icon-close {
-    position: absolute; top: 0; right: 0;
-    font-size: 2em; color: #fff;
-    padding: 10px; cursor: pointer;
 }
 
 .form-box {
