@@ -1,4 +1,4 @@
-/* GOOGLE FONT FIX */
+/* GOOGLE FONT */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 
 * {
@@ -9,42 +9,47 @@
 }
 
 body {
-    height: 100vh;
+    min-height: 100vh;
     background: url("gigity webie.png") no-repeat center center/cover;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-/* CENTER TEXT */
-.center-text {
-    text-align: center;
+/* MAIN CONTAINER (IMPORTANT) */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px;
+    gap: 40px;
+}
+
+/* LEFT SIDE TEXT */
+.left-content {
     color: #fff;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    max-width: 500px;
 }
 
-.center-text h1 {
-    font-size: 40px;
+.left-content h1 {
+    font-size: 48px;
+    margin-bottom: 15px;
 }
 
-.center-text p {
-    font-size: 16px;
+.left-content p {
+    font-size: 18px;
+    opacity: 0.9;
 }
 
-/* POPUP WRAPPER */
+/* LOGIN / REGISTER BOX */
 .wrapper {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     width: 400px;
-    background: rgba(255,255,255,0.15);
-    border: 2px solid rgba(255,255,255,0.5);
+    background: rgba(255, 255, 255, 0.15);
+    border: 2px solid rgba(255, 255, 255, 0.4);
     border-radius: 20px;
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(15px);
     padding: 40px;
 }
 
@@ -85,7 +90,7 @@ body {
     background: #06361e;
     color: #fff;
     cursor: pointer;
-    transition: 0.3s;
+    transition: 0.3s ease;
 }
 
 .btn:hover {
@@ -93,14 +98,31 @@ body {
 }
 
 /* LINKS */
-p {
+.wrapper p {
     text-align: center;
     margin-top: 10px;
     color: #fff;
 }
 
-p a {
+.wrapper p a {
     color: #fff;
     text-decoration: underline;
     cursor: pointer;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+    .container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .wrapper {
+        width: 100%;
+        max-width: 400px;
+    }
+
+    .left-content h1 {
+        font-size: 36px;
+    }
 }

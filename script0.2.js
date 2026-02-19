@@ -2,15 +2,15 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/fireba
 import { 
     getAuth, 
     createUserWithEmailAndPassword, 
-    signInWithEmailAndPassword 
+    signInWithEmailAndPassword,
+    onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
-// ===== WAIT UNTIL DOM LOADS =====
 document.addEventListener("DOMContentLoaded", () => {
 
-    // ===== Firebase config =====
+    // 🔥 USE YOUR REAL FIREBASE CONFIG
     const firebaseConfig = {
-        apiKey: "YOUR_API_KEY",
+        apiKey: "PASTE_YOUR_REAL_API_KEY_HERE",
         authDomain: "ar-rice-system.firebaseapp.com",
         projectId: "ar-rice-system",
         storageBucket: "ar-rice-system.appspot.com",
@@ -22,42 +22,52 @@ document.addEventListener("DOMContentLoaded", () => {
     const auth = getAuth(app);
 
     // ===== ELEMENTS =====
-    const loginForm = document.getElementById('loginForm');
-    const registerForm = document.getElementById('registerForm');
-    const showRegister = document.getElementById('showRegister');
-    const showLogin = document.getElementById('showLogin');
+    const loginForm = document.getElementById("loginForm");
+    const registerForm = document.getElementById("registerForm");
+    const showRegister = document.getElementById("showRegister");
+    const showLogin = document.getElementById("showLogin");
 
-    const loginBox = document.querySelector('.login');
-    const registerBox = document.querySelector('.register');
+    const loginBox = document.querySelector(".login");
+    const registerBox = document.querySelector(".register");
 
-    // ===== SHOW REGISTER FORM =====
-    showRegister.addEventListener('click', (e) => {
-        e.preventDefault(); // stop page reload
-        loginBox.classList.remove('active');
-        registerBox.classList.add('active');
+    // Safety check
+    if (!loginForm || !registerForm) {
+        console.error("Forms not found in HTML.");
+        return;
+    }
+
+    // ===== SWITCH FORMS =====
+    showRegister?.addEventListener("click", (e) => {
+        e.preventDefault();
+        loginBox.classList.remove("active");
+        registerBox.classList.add("active");
     });
 
-    // ===== SHOW LOGIN FORM =====
-    showLogin.addEventListener('click', (e) => {
-        e.preventDefault(); // stop page reload
-        registerBox.classList.remove('active');
-        loginBox.classList.add('active');
+    showLogin?.addEventListener("click", (e) => {
+        e.preventDefault();
+        registerBox.classList.remove("active");
+        loginBox.classList.add("active");
     });
 
     // ===== REGISTER =====
-    registerForm.addEventListener('submit', async (e) => {
+    registerForm.addEventListener("submit", async (e) => {
         e.preventDefault();
 
-        const email = document.getElementById('registerEmail').value;
-        const password = document.getElementById('registerPassword').value;
+        const email = document.getElementById("registerEmail").value.trim();
+        const password = document.getElementById("registerPassword").value.trim();
+
+        if (password.length < 6) {
+            alert("Password must be at least 6 characters.");
+            return;
+        }
 
         try {
             await createUserWithEmailAndPassword(auth, email, password);
             alert("Registration successful! Please login.");
-            
+
             registerForm.reset();
-            registerBox.classList.remove('active');
-            loginBox.classList.add('active');
+            registerBox.classList.remove("active");
+            loginBox.classList.add("active");
 
         } catch (error) {
             alert(error.message);
@@ -65,11 +75,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // ===== LOGIN =====
-    loginForm.addEventListener('submit', async (e) => {
+    loginForm.addEventListener("submit", async (e) => {
         e.preventDefault();
 
-        const email = document.getElementById('loginEmail').value;
-        const password = document.getElementById('loginPassword').value;
+        const email = document.getElementById("loginEmail").value.trim();
+        const password = document.getElementById("loginPassword").value.trim();
 
         try {
             await signInWithEmailAndPassword(auth, email, password);
@@ -79,7 +89,11 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // ===== SHOW LOGIN BY DEFAULT =====
-    loginBox.classList.add('active');
+    // ===== AUTO REDIRECT IF LOGGED IN =====
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            window.location.href = "main.html";
+        }
+    });
 
 });
