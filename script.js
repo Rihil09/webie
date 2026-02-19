@@ -1,7 +1,11 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getAuth, onAuthStateChanged, signOut } 
-from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import { 
+  getAuth, 
+  onAuthStateChanged, 
+  signOut 
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
+/* ================= FIREBASE CONFIG ================= */
 const firebaseConfig = {
   apiKey: "AIzaSyAFe7fGknE_4RLLSqIXX7RafMftdfnhf8A",
   authDomain: "ar-rice-system.firebaseapp.com",
@@ -16,86 +20,108 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
+/* ================= MAIN ================= */
 document.addEventListener("DOMContentLoaded", () => {
 
   const logoutBtn = document.getElementById("logoutBtn");
-  const controlButtons = document.querySelectorAll('.control-btn');
-  const popups = document.querySelectorAll('.popup-box');
-  const popupCloses = document.querySelectorAll('.popup-close');
-  const centerText = document.querySelector('.center-text');
+  const controlButtons = document.querySelectorAll(".control-btn");
+  const popups = document.querySelectorAll(".popup-box");
+  const popupCloses = document.querySelectorAll(".popup-close");
+  const centerText = document.querySelector(".center-text");
 
-  /* AUTH CHECK */
+  /* ================= AUTH CHECK ================= */
   onAuthStateChanged(auth, (user) => {
-      if (!user) {
-          window.location.href = "index.html";
-      }
+    if (!user) {
+      window.location.replace("index.html");
+    }
   });
 
-  /* LOGOUT */
+  /* ================= LOGOUT ================= */
   if (logoutBtn) {
-      logoutBtn.addEventListener("click", async () => {
-          await signOut(auth);
-          window.location.href = "index.html";
-      });
+    logoutBtn.addEventListener("click", async () => {
+      try {
+        await signOut(auth);
+        window.location.replace("index.html");
+      } catch (error) {
+        alert(error.message);
+      }
+    });
   }
 
-  /* CHECK POPUPS */
+  /* ================= CHECK IF ANY POPUP OPEN ================= */
   function checkPopups() {
-      const anyOpen = document.querySelectorAll('.popup-box.active').length > 0;
-      centerText.style.display = anyOpen ? "none" : "block";
+    const anyOpen = document.querySelectorAll(".popup-box.active").length > 0;
+    centerText.style.opacity = anyOpen ? "0" : "1";
+    centerText.style.pointerEvents = anyOpen ? "none" : "auto";
   }
 
-  /* OPEN POPUPS */
+  /* ================= OPEN POPUPS ================= */
   controlButtons.forEach(button => {
-      button.addEventListener('click', () => {
-          const target = button.dataset.popup;
-          const popup = document.getElementById(target);
-          if (popup) {
-              popup.classList.add('active');
-              checkPopups();
-          }
-      });
+    button.addEventListener("click", () => {
+      const target = button.dataset.popup;
+      const popup = document.getElementById(target);
+      if (!popup) return;
+
+      popup.classList.add("active");
+
+      // bring clicked popup to front
+      popup.style.zIndex = Date.now();
+
+      checkPopups();
+    });
   });
 
-  /* CLOSE POPUPS */
+  /* ================= CLOSE POPUPS ================= */
   popupCloses.forEach(close => {
-      close.addEventListener('click', (e) => {
-          const box = e.target.closest('.popup-box');
-          if (box) {
-              box.classList.remove('active');
-              checkPopups();
-          }
-      });
+    close.addEventListener("click", (e) => {
+      const box = e.target.closest(".popup-box");
+      if (!box) return;
+
+      box.classList.remove("active");
+      checkPopups();
+    });
   });
 
-  /* DRAGGABLE */
-popups.forEach(popup => {
+  /* ================= DRAGGABLE POPUPS ================= */
+  popups.forEach(popup => {
+
+    const header = popup.querySelector(".popup-header");
+    if (!header) return;
 
     let isDragging = false;
-    let startX, startY;
+    let offsetX = 0;
+    let offsetY = 0;
 
-    popup.addEventListener("pointerdown", (e) => {
-        isDragging = true;
-        startX = e.clientX - popup.offsetLeft;
-        startY = e.clientY - popup.offsetTop;
-        popup.setPointerCapture(e.pointerId);
+    header.addEventListener("pointerdown", (e) => {
+      isDragging = true;
 
-        popup.style.transition = "none"; // remove transition while dragging
-        popup.style.cursor = "grabbing";
+      offsetX = e.clientX - popup.offsetLeft;
+      offsetY = e.clientY - popup.offsetTop;
+
+      popup.style.transition = "none";
+      document.body.style.userSelect = "none";
+      header.style.cursor = "grabbing";
+
+      popup.setPointerCapture(e.pointerId);
     });
 
     popup.addEventListener("pointermove", (e) => {
-        if (!isDragging) return;
-        popup.style.left = (e.clientX - startX) + "px";
-        popup.style.top = (e.clientY - startY) + "px";
+      if (!isDragging) return;
+
+      popup.style.left = `${e.clientX - offsetX}px`;
+      popup.style.top = `${e.clientY - offsetY}px`;
     });
 
     popup.addEventListener("pointerup", (e) => {
-        isDragging = false;
-        popup.style.cursor = "grab";
-        popup.style.transition = "transform 0.3s ease"; // restore smooth animation
-        popup.releasePointerCapture(e.pointerId);
+      isDragging = false;
+
+      document.body.style.userSelect = "auto";
+      header.style.cursor = "grab";
+      popup.style.transition = "all 0.3s ease";
+
+      popup.releasePointerCapture(e.pointerId);
     });
 
-});
+  });
 
+});
