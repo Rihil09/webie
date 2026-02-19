@@ -3,12 +3,14 @@ import { getAuth, onAuthStateChanged, signOut }
 from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_AUTH_DOMAIN",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_BUCKET",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyAFe7fGknE_4RLLSqIXX7RafMftdfnhf8A",
+  authDomain: "ar-rice-system.firebaseapp.com",
+  databaseURL: "https://ar-rice-system-default-rtdb.firebaseio.com",
+  projectId: "ar-rice-system",
+  storageBucket: "ar-rice-system.firebasestorage.app",
+  messagingSenderId: "315656193287",
+  appId: "1:315656193287:web:8719c39e19ac7a773731a2",
+  measurementId: "G-B87RFCV0N8"
 };
 
 const app = initializeApp(firebaseConfig);
