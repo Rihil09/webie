@@ -8,18 +8,14 @@
 </head>
 <body>
 
-  <!-- HEADER -->
+  <!-- ================= HEADER ================= -->
   <header>
-    <h2 class="logo">AR-RICE</h2>
-    <nav class="navigation">
-      <a href="#">Home</a>
-      <a href="#">About</a>
-      <a href="#">Contact</a>
-      <button id="logoutBtn">Logout</button>
+    <h2 class="logo">AR-RICE</h2> 
+    <button id="logoutBtn">Logout</button>
     </nav>
   </header>
 
-  <!-- CENTER TEXT -->
+  <!-- ================= CENTER TEXT ================= -->
   <div class="center-text">
     <h1>WELCOME FARMER!</h1>
     <p>
@@ -28,38 +24,50 @@
     </p>
   </div>
 
-  <!-- BOTTOM CONTROLS -->
+  <!-- ================= BOTTOM BUTTONS ================= -->
   <div class="bottom-controls">
     <button class="control-btn" data-popup="camera">View Camera</button>
     <button class="control-btn" data-popup="pests">Number of Pests</button>
     <button class="control-btn" data-popup="location">Robot Location</button>
   </div>
 
-  <!-- POPUPS -->
+  <!-- ================= POPUPS ================= -->
+
+  <!-- CAMERA -->
   <div class="popup-box" id="camera">
-    <span class="popup-close">&times;</span>
-    <h2>Live Camera Feed</h2>
+    <div class="popup-header">
+      <h2>Live Camera Feed</h2>
+      <span class="popup-close">&times;</span>
+    </div>
     <div class="popup-content">
       <p>[ Camera stream goes here ]</p>
     </div>
   </div>
 
+  <!-- PESTS -->
   <div class="popup-box" id="pests">
-    <span class="popup-close">&times;</span>
-    <h2>Detected Pests</h2>
+    <div class="popup-header">
+      <h2>Detected Pests</h2>
+      <span class="popup-close">&times;</span>
+    </div>
     <div class="popup-content">
       <p>Number of pests detected: <strong>12</strong></p>
     </div>
   </div>
 
+  <!-- LOCATION -->
   <div class="popup-box" id="location">
-    <span class="popup-close">&times;</span>
-    <h2>Robot Location</h2>
+    <div class="popup-header">
+      <h2>Robot Location</h2>
+      <span class="popup-close">&times;</span>
+    </div>
     <div class="popup-content">
       <p>Current location: <strong>Field Zone A3</strong></p>
     </div>
   </div>
 
+  <!-- SCRIPT -->
   <script type="module" src="script.js"></script>
+
 </body>
 </html>

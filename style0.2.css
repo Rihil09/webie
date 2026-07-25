@@ -10,7 +10,7 @@
 
 body {
     min-height: 100vh;
-    background: url("gigity webie.png") no-repeat center center/cover;
+    background: url("facka.jpeg") no-repeat center center/cover;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -87,25 +87,25 @@ body {
     padding: 12px;
     border: none;
     border-radius: 10px;
-    background: #06361e;
+    background: #201f57;
     color: #fff;
     cursor: pointer;
     transition: 0.3s ease;
 }
 
 .btn:hover {
-    background: #0a5c34;
+    background: #201f57;
 }
 
 /* LINKS */
 .wrapper p {
     text-align: center;
     margin-top: 10px;
-    color: #fff;
+    color: #ffffff;
 }
 
 .wrapper p a {
-    color: #fff;
+    color: #9da2ce;
     text-decoration: underline;
     cursor: pointer;
 }

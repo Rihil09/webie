@@ -1,123 +1,134 @@
-// ======================
-// FIREBASE IMPORTS
-// ======================
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } 
-from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import { 
+  getAuth, 
+  onAuthStateChanged, 
+  signOut 
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
-// ======================
-// FIREBASE CONFIG
-// ======================
+/* ================= FIREBASE CONFIG ================= */
 const firebaseConfig = {
   apiKey: "AIzaSyAFe7fGknE_4RLLSqIXX7RafMftdfnhf8A",
   authDomain: "ar-rice-system.firebaseapp.com",
+  databaseURL: "https://ar-rice-system-default-rtdb.firebaseio.com",
   projectId: "ar-rice-system",
-  storageBucket: "ar-rice-system.appspot.com",
+  storageBucket: "ar-rice-system.firebasestorage.app",
   messagingSenderId: "315656193287",
   appId: "1:315656193287:web:8719c39e19ac7a773731a2",
   measurementId: "G-B87RFCV0N8"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-// ======================
-// ELEMENTS
-// ======================
-const wrapper = document.querySelector('.wrapper');
-const btnPopup = document.querySelector('.btnlogin-popup');
-const closeIcon = document.querySelector('.icon-close');
-const registerLink = document.querySelector('.register-link');
-const loginLink = document.querySelector('.login-link');
-const centerText = document.querySelector('.center-text');
-const bottomControls = document.querySelector('.bottom-controls');
+/* ================= MAIN ================= */
+document.addEventListener("DOMContentLoaded", () => {
 
-// ======================
-// POPUP HANDLERS
-// ======================
-btnPopup.addEventListener('click', () => {
-    wrapper.classList.add('active-popup');
-    centerText.style.display = 'none';
-    bottomControls.style.display = 'none';
-});
+  const logoutBtn = document.getElementById("logoutBtn");
+  const controlButtons = document.querySelectorAll(".control-btn");
+  const popups = document.querySelectorAll(".popup-box");
+  const popupCloses = document.querySelectorAll(".popup-close");
+  const centerText = document.querySelector(".center-text");
 
-registerLink.addEventListener('click', () => wrapper.classList.add('active'));
-loginLink.addEventListener('click', () => wrapper.classList.remove('active'));
+  /* ================= AUTH CHECK ================= */
+  onAuthStateChanged(auth, (user) => {
+    if (!user) {
+      window.location.replace("index.html");
+    }
+  });
 
-closeIcon.addEventListener('click', () => {
-    wrapper.classList.remove('active-popup');
-    wrapper.classList.remove('active');
-    centerText.style.display = 'block';
-    bottomControls.style.display = 'flex';
-});
-
-// ======================
-// LOGIN / REGISTER SUBMIT
-// ======================
-document.querySelector(".login form").addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const email = e.target.querySelector('input[type="email"]').value;
-    const password = e.target.querySelector('input[type="password"]').value;
-    try {
-        await signInWithEmailAndPassword(auth, email, password);
-        wrapper.classList.remove('active-popup');
-        wrapper.classList.remove('active');
-        centerText.style.display = 'block';
-        bottomControls.style.display = 'flex';
-        e.target.reset();
-    } catch (error) {
+  /* ================= LOGOUT ================= */
+  if (logoutBtn) {
+    logoutBtn.addEventListener("click", async () => {
+      try {
+        await signOut(auth);
+        window.location.replace("index.html");
+      } catch (error) {
         alert(error.message);
-    }
-});
-
-document.querySelector(".register form").addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const email = e.target.querySelector('input[type="email"]').value;
-    const password = e.target.querySelector('input[type="password"]').value;
-    try {
-        await createUserWithEmailAndPassword(auth, email, password);
-        alert("Registration Successful!");
-        e.target.reset();
-        wrapper.classList.remove('active');
-    } catch (error) {
-        alert(error.message);
-    }
-});
-
-// ======================
-// AUTH STATE
-// ======================
-onAuthStateChanged(auth, (user) => {
-    if (user) {
-        wrapper.classList.remove('active-popup');
-        wrapper.classList.remove('active');
-        centerText.style.display = 'block';
-        bottomControls.style.display = 'flex';
-    } else {
-        wrapper.classList.add('active-popup');
-        centerText.style.display = 'none';
-        bottomControls.style.display = 'none';
-    }
-});
-
-// ======================
-// BOTTOM CONTROL POPUPS
-// ======================
-const controlButtons = document.querySelectorAll('.control-btn');
-const popups = document.querySelectorAll('.popup-box');
-const popupCloses = document.querySelectorAll('.popup-close');
-
-controlButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        const target = button.dataset.popup;
-        popups.forEach(popup => popup.classList.remove('active'));
-        document.getElementById(target).classList.add('active');
+      }
     });
+  }
+
+  /* ================= CHECK IF ANY POPUP OPEN ================= */
+  function checkPopups() {
+    const anyOpen = document.querySelectorAll(".popup-box.active").length > 0;
+    centerText.style.opacity = anyOpen ? "0" : "1";
+    centerText.style.pointerEvents = anyOpen ? "none" : "auto";
+  }
+
+  /* ================= OPEN POPUPS ================= */
+  controlButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      const target = button.dataset.popup;
+      const popup = document.getElementById(target);
+      if (!popup) return;
+
+      popup.classList.add("active");
+
+      // bring clicked popup to front
+      popup.style.zIndex = Date.now();
+
+      checkPopups();
+    });
+  });
+
+  /* ================= CLOSE POPUPS ================= */
+  document.addEventListener("click", (e) => {
+  const closeBtn = e.target.closest(".popup-close");
+  if (!closeBtn) return;
+
+  const popup = closeBtn.closest(".popup-box");
+  if (!popup) return;
+
+  popup.classList.remove("active");
+  checkPopups();
 });
 
-popupCloses.forEach(close => {
-    close.addEventListener('click', () => {
-        popups.forEach(popup => popup.classList.remove('active'));
+
+  /* ================= DRAGGABLE POPUPS ================= */
+  popups.forEach(popup => {
+
+    const header = popup.querySelector(".popup-header");
+    if (!header) return;
+
+    let isDragging = false;
+    let offsetX = 0;
+    let offsetY = 0;
+
+header.addEventListener("pointerdown", (e) => {
+
+  // ❌ Don't drag if clicking close button
+  if (e.target.classList.contains("popup-close")) return;
+
+  isDragging = true;
+
+  offsetX = e.clientX - popup.offsetLeft;
+  offsetY = e.clientY - popup.offsetTop;
+
+  popup.style.transition = "none";
+  document.body.style.userSelect = "none";
+  header.style.cursor = "grabbing";
+
+  popup.setPointerCapture(e.pointerId);
+});
+
+
+    popup.addEventListener("pointermove", (e) => {
+      if (!isDragging) return;
+
+      popup.style.left = `${e.clientX - offsetX}px`;
+      popup.style.top = `${e.clientY - offsetY}px`;
     });
+
+    popup.addEventListener("pointerup", (e) => {
+      isDragging = false;
+
+      document.body.style.userSelect = "auto";
+      header.style.cursor = "grab";
+      popup.style.transition = "all 0.3s ease";
+
+      popup.releasePointerCapture(e.pointerId);
+    });
+
+  });
+
 });
