@@ -1,73 +1,262 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AR-RICE System</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AR-RICE Dashboard</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- ================= HEADER ================= -->
-  <header>
-    <h2 class="logo">AR-RICE</h2> 
-    <button id="logoutBtn">Logout</button>
-    </nav>
-  </header>
+<!-- ================= TOP NAVBAR ================= -->
 
-  <!-- ================= CENTER TEXT ================= -->
-  <div class="center-text">
-    <h1>WELCOME FARMER!</h1>
-    <p>
-      Rice farming plays a crucial role in the agricultural sector.
-      This study introduces a modular robot that detects Rice Black Bug in rice fields.
-    </p>
-  </div>
+<header class="navbar">
 
-  <!-- ================= BOTTOM BUTTONS ================= -->
-  <div class="bottom-controls">
-    <button class="control-btn" data-popup="camera">View Camera</button>
-    <button class="control-btn" data-popup="pests">Number of Pests</button>
-    <button class="control-btn" data-popup="location">Robot Location</button>
-  </div>
-
-  <!-- ================= POPUPS ================= -->
-
-  <!-- CAMERA -->
-  <div class="popup-box" id="camera">
-    <div class="popup-header">
-      <h2>Live Camera Feed</h2>
-      <span class="popup-close">&times;</span>
+    <div class="logo">
+        <i class="fa-solid fa-seedling"></i>
+        <span>AR-RICE</span>
     </div>
-    <div class="popup-content">
-      <p>[ Camera stream goes here ]</p>
-    </div>
-  </div>
 
-  <!-- PESTS -->
-  <div class="popup-box" id="pests">
-    <div class="popup-header">
-      <h2>Detected Pests</h2>
-      <span class="popup-close">&times;</span>
+    <div class="navbar-right">
+        <button id="logoutBtn">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            Logout
+        </button>
     </div>
-    <div class="popup-content">
-      <p>Number of pests detected: <strong>12</strong></p>
-    </div>
-  </div>
 
-  <!-- LOCATION -->
-  <div class="popup-box" id="location">
-    <div class="popup-header">
-      <h2>Robot Location</h2>
-      <span class="popup-close">&times;</span>
-    </div>
-    <div class="popup-content">
-      <p>Current location: <strong>Field Zone A3</strong></p>
-    </div>
-  </div>
+</header>
 
-  <!-- SCRIPT -->
-  <script type="module" src="script.js"></script>
+
+<!-- ================= SIDEBAR ================= -->
+
+<aside class="sidebar">
+
+    <div class="menu-title">
+        MENU
+    </div>
+
+    <button class="menu-btn active">
+        <i class="fa-solid fa-chart-line"></i>
+        Dashboard
+    </button>
+
+    <button class="menu-btn">
+        <i class="fa-solid fa-video"></i>
+        Camera
+    </button>
+
+    <button class="menu-btn">
+        <i class="fa-solid fa-bug"></i>
+        Pest Detection
+    </button>
+
+    <button class="menu-btn">
+        <i class="fa-solid fa-location-dot"></i>
+        Robot Location
+    </button>
+
+</aside>
+
+
+
+<!-- ================= MAIN CONTENT ================= -->
+
+<main class="dashboard">
+
+    <!-- Welcome -->
+    <section class="welcome-card">
+
+        <h1>Welcome Farmer!</h1>
+
+        <p>
+            AR-RICE monitors the rice field in real-time using the
+            Raspberry Pi robot.
+        </p>
+
+    </section>
+
+
+
+    <!-- ================= TOP CARDS ================= -->
+
+    <section class="cards">
+
+        <!-- Camera -->
+
+        <div class="card large-card">
+
+            <div class="card-header">
+
+                <h3>
+                    <i class="fa-solid fa-video"></i>
+                    Live Camera
+                </h3>
+
+            </div>
+
+            <div class="camera-feed">
+
+                <img
+                    id="cameraFeed"
+                    src="images/camera-placeholder.png"
+                    alt="Camera Feed">
+
+            </div>
+
+        </div>
+
+
+
+        <!-- Right Side -->
+
+        <div class="right-column">
+
+            <!-- Pest Count -->
+
+            <div class="card small-card">
+
+                <div class="card-header">
+
+                    <h3>
+                        <i class="fa-solid fa-bug"></i>
+                        Detected Pests
+                    </h3>
+
+                </div>
+
+                <div class="big-number"
+                     id="pestCount">
+
+                    12
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Robot Location -->
+
+            <div class="card small-card">
+
+                <div class="card-header">
+
+                    <h3>
+                        <i class="fa-solid fa-location-dot"></i>
+                        Robot Location
+                    </h3>
+
+                </div>
+
+                <div class="location-text"
+                     id="robotLocation">
+
+                    Field Zone A3
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= SECOND ROW ================= -->
+
+    <section class="cards second-row">
+
+        <!-- Robot Status -->
+
+        <div class="card">
+
+            <h3>Robot Status</h3>
+
+            <div class="status">
+
+                <div>
+
+                    <span>Battery</span>
+
+                    <strong id="battery">95%</strong>
+
+                </div>
+
+                <div>
+
+                    <span>Temperature</span>
+
+                    <strong id="temperature">32°C</strong>
+
+                </div>
+
+                <div>
+
+                    <span>Connection</span>
+
+                    <strong class="online">
+
+                        Online
+
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- Detection History -->
+
+        <div class="card">
+
+            <h3>Latest Detection</h3>
+
+            <table>
+
+                <thead>
+
+                <tr>
+
+                    <th>Time</th>
+
+                    <th>Pests</th>
+
+                </tr>
+
+                </thead>
+
+                <tbody id="historyTable">
+
+                <tr>
+
+                    <td>10:15 AM</td>
+
+                    <td>12</td>
+
+                </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+</main>
+
+<script type="module" src="script.js"></script>
 
 </body>
 </html>

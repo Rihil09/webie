@@ -1,180 +1,432 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
 }
 
-body {
-    min-height: 100vh;
-    background: url('facka.jpeg') no-repeat center center/cover;
-    overflow: hidden;
+body{
+    background:url("facka.jpeg") center center/cover no-repeat;
+    background-attachment:fixed;
+    min-height:100vh;
+    color:#fff;
+    overflow-x:hidden;
 }
 
-/* ================= HEADER ================= */
+/* Dark overlay */
 
-header {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    padding: 20px 50px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: rgba(0,0,0,0.35);
-    backdrop-filter: blur(8px);
-    z-index: 1000;
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.45);
+    backdrop-filter:blur(3px);
+    z-index:-1;
 }
 
-.logo {
-    font-size: 2em;
-    color: #fff;
+/* ===========================
+            NAVBAR
+=========================== */
+
+.navbar{
+
+    position:fixed;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:75px;
+
+    background:rgba(15,25,20,.90);
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:0 35px;
+
+    z-index:999;
 }
 
-.navigation a {
-    color: #fff;
-    text-decoration: none;
-    margin-left: 30px;
-    font-weight: 500;
+.logo{
+
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    font-size:28px;
+    font-weight:700;
 }
 
-#logoutBtn {
-    padding: 8px 20px;
-    background: transparent;
-    border: 2px solid #fff;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 1em;
-    color: #fff;
-    font-weight: 500;
-    margin-left: 30px;
-    transition: 0.3s ease;
+.logo i{
+
+    color:#41d96d;
 }
 
-#logoutBtn:hover {
-    background: #fff;
-    color: #201f57;
+#logoutBtn{
+
+    border:none;
+    outline:none;
+
+    background:#3bbf62;
+
+    color:white;
+
+    padding:10px 24px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+    transition:.3s;
 }
 
-/* ================= CENTER TEXT ================= */
+#logoutBtn:hover{
 
-.center-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    color: white;
-    transition: opacity 0.4s ease;
+    background:#2c9950;
+    transform:translateY(-2px);
+
 }
 
-.center-text h1 {
-    font-size: 48px;
+/* ===========================
+            SIDEBAR
+=========================== */
+
+.sidebar{
+
+    position:fixed;
+
+    top:75px;
+    left:0;
+
+    width:230px;
+    height:calc(100vh - 75px);
+
+    background:rgba(20,30,25,.92);
+
+    padding:25px 18px;
 }
 
-.center-text p {
-    font-size: 20px;
-    margin-top: 10px;
+.menu-title{
+
+    color:#7fc68e;
+    font-size:13px;
+    letter-spacing:2px;
+    margin-bottom:25px;
 }
 
-/* ================= BOTTOM BUTTONS ================= */
+.menu-btn{
 
-.bottom-controls {
-    position: fixed;
-    bottom: 40px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    gap: 60px;
-    z-index: 500;
+    width:100%;
+
+    border:none;
+
+    background:none;
+
+    color:white;
+
+    text-align:left;
+
+    padding:15px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    margin-bottom:10px;
+
+    font-size:15px;
+
+    transition:.3s;
 }
 
-.control-btn {
-    padding: 12px 30px;
-    background: rgba(255,255,255,0.15);
-    border: 2px solid #fff;
-    color: #fff;
-    font-size: 1em;
-    border-radius: 10px;
-    cursor: pointer;
-    backdrop-filter: blur(10px);
-    transition: 0.3s ease;
+.menu-btn i{
+
+    width:30px;
 }
 
-.control-btn:hover {
-    background: #fff;
-    color: #201f57;
+.menu-btn:hover{
+
+    background:#2d5d3c;
+
 }
 
-/* ================= POPUPS ================= */
+.menu-btn.active{
 
-.popup-box {
-    position: absolute;   /* IMPORTANT for smooth drag */
-    top: 150px;
-    left: 150px;
-    width: 360px;
-
-    background: rgba(255, 255, 255, 0.65);
-    backdrop-filter: blur(25px);
-    border-radius: 16px;
-
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-    color: #201f57;
-
-    opacity: 0;
-    transform: scale(0.8);
-    pointer-events: none;
-
-    transition: 
-        opacity 0.25s ease,
-        transform 0.25s ease;
-
-    z-index: 200;
+    background:#3bbf62;
 }
 
-/* ACTIVE STATE */
-.popup-box.active {
-    opacity: 1;
-    transform: scale(1);
-    pointer-events: auto;
+/* ===========================
+        DASHBOARD
+=========================== */
+
+.dashboard{
+
+    margin-left:250px;
+    margin-top:95px;
+
+    padding:25px;
 }
 
-/* ================= POPUP HEADER ================= */
+/* ===========================
+        WELCOME CARD
+=========================== */
 
-.popup-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 20px;
-    background: rgba(255,255,255,0.4);
-    border-top-left-radius: 16px;
-    border-top-right-radius: 16px;
-    cursor: grab;
+.welcome-card{
+
+    background:rgba(255,255,255,.12);
+
+    backdrop-filter:blur(18px);
+
+    padding:25px;
+
+    border-radius:20px;
+
+    margin-bottom:25px;
 }
 
-.popup-header h2 {
-    font-size: 18px;
+.welcome-card h1{
+
+    font-size:34px;
 }
 
-.popup-close {
-    font-size: 22px;
-    cursor: pointer;
-    font-weight: bold;
+.welcome-card p{
+
+    margin-top:10px;
+    color:#ddd;
 }
 
-/* ================= POPUP CONTENT ================= */
+/* ===========================
+            GRID
+=========================== */
 
-.popup-content {
-    padding: 20px;
+.cards{
+
+    display:grid;
+
+    grid-template-columns:2fr 1fr;
+
+    gap:25px;
+
+    margin-bottom:25px;
 }
 
-/* ================= DRAG FIX ================= */
+.right-column{
 
-.popup-box,
-.popup-header {
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: none;
+    display:flex;
+    flex-direction:column;
+    gap:25px;
+}
+
+.card{
+
+    background:rgba(255,255,255,.12);
+
+    backdrop-filter:blur(20px);
+
+    border-radius:18px;
+
+    padding:20px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.25);
+
+    transition:.25s;
+}
+
+.card:hover{
+
+    transform:translateY(-4px);
+
+}
+
+.large-card{
+
+    min-height:420px;
+}
+
+.small-card{
+
+    min-height:195px;
+}
+
+.card-header{
+
+    margin-bottom:18px;
+}
+
+.card-header h3{
+
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    font-size:22px;
+}
+
+/* ===========================
+        CAMERA
+=========================== */
+
+.camera-feed{
+
+    height:320px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:rgba(255,255,255,.08);
+
+    border-radius:15px;
+
+    overflow:hidden;
+}
+
+.camera-feed img{
+
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+/* ===========================
+        BIG NUMBER
+=========================== */
+
+.big-number{
+
+    font-size:60px;
+
+    font-weight:bold;
+
+    color:#45ff80;
+
+    text-align:center;
+
+    margin-top:25px;
+}
+
+.location-text{
+
+    margin-top:35px;
+
+    font-size:28px;
+
+    text-align:center;
+
+    font-weight:600;
+}
+
+/* ===========================
+        ROBOT STATUS
+=========================== */
+
+.status{
+
+    display:flex;
+
+    justify-content:space-around;
+
+    margin-top:30px;
+
+    text-align:center;
+}
+
+.status span{
+
+    display:block;
+
+    color:#ddd;
+
+    margin-bottom:8px;
+}
+
+.status strong{
+
+    font-size:24px;
+}
+
+.online{
+
+    color:#49ff7c;
+}
+
+/* ===========================
+            TABLE
+=========================== */
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    margin-top:20px;
+}
+
+th{
+
+    text-align:left;
+
+    padding:12px;
+
+    color:#7ff5a3;
+}
+
+td{
+
+    padding:12px;
+
+    border-top:1px solid rgba(255,255,255,.12);
+}
+
+/* ===========================
+        SECOND ROW
+=========================== */
+
+.second-row{
+
+    grid-template-columns:1fr 1fr;
+}
+
+/* ===========================
+        RESPONSIVE
+=========================== */
+
+@media(max-width:1100px){
+
+.cards{
+
+    grid-template-columns:1fr;
+}
+
+.second-row{
+
+    grid-template-columns:1fr;
+}
+
+.right-column{
+
+    flex-direction:row;
+}
+
+}
+
+@media(max-width:900px){
+
+.sidebar{
+
+    display:none;
+}
+
+.dashboard{
+
+    margin-left:0;
+}
+
 }
