@@ -63,7 +63,7 @@ body::before{
 
 .logo i{
 
-    color:#41d96d;
+    color:#0066ff;
 }
 
 #logoutBtn{
@@ -71,7 +71,7 @@ body::before{
     border:none;
     outline:none;
 
-    background:#3bbf62;
+    background:#0066ff;
 
     color:white;
 
@@ -88,7 +88,7 @@ body::before{
 
 #logoutBtn:hover{
 
-    background:#2c9950;
+    background:#0066ff;
     transform:translateY(-2px);
 
 }
@@ -114,7 +114,7 @@ body::before{
 
 .menu-title{
 
-    color:#7fc68e;
+    color:#0066ff;
     font-size:13px;
     letter-spacing:2px;
     margin-bottom:25px;
@@ -152,13 +152,13 @@ body::before{
 
 .menu-btn:hover{
 
-    background:#2d5d3c;
+    background:#0011ff;
 
 }
 
 .menu-btn.active{
 
-    background:#3bbf62;
+    background:#0066ff;
 }
 
 /* ===========================
@@ -304,7 +304,7 @@ body::before{
 
     font-weight:bold;
 
-    color:#45ff80;
+    color:#0066ff;
 
     text-align:center;
 
@@ -353,7 +353,7 @@ body::before{
 
 .online{
 
-    color:#49ff7c;
+    color:#0066ff;
 }
 
 /* ===========================
@@ -375,7 +375,7 @@ th{
 
     padding:12px;
 
-    color:#7ff5a3;
+    color:#0066ff;
 }
 
 td{
