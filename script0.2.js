@@ -4,6 +4,7 @@ import {
     getAuth,
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
+    sendEmailVerification,
     updateProfile
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
@@ -91,8 +92,6 @@ if (registerForm) {
             document.getElementById("registerPassword").value;
 
 
-        /* Make sure username isn't empty */
-
         if (!username) {
 
             alert("Please enter a username.");
@@ -104,7 +103,7 @@ if (registerForm) {
 
         try {
 
-            /* Create Firebase account */
+            /* CREATE ACCOUNT */
 
             const userCredential =
                 await createUserWithEmailAndPassword(
@@ -114,35 +113,44 @@ if (registerForm) {
                 );
 
 
-            /* Get the newly created user */
-
             const user = userCredential.user;
 
 
-            /* Save username as Firebase displayName */
+            /* SAVE USERNAME */
 
             await updateProfile(user, {
-
                 displayName: username
-
             });
 
 
-            alert(
-                "Registration successful! You can now login."
-            );
+            /* SEND VERIFICATION EMAIL */
+
+            await sendEmailVerification(user);
 
 
-            /* Reset form */
+            /* SIGN OUT AFTER REGISTRATION */
+
+            await auth.signOut();
+
+
+            /* RESET FORM */
 
             registerForm.reset();
 
 
-            /* Switch back to login */
+            /* SWITCH TO LOGIN */
 
             registerBox.classList.remove("active");
-
             loginBox.classList.add("active");
+
+
+            alert(
+                "Registration successful!\n\n" +
+                "A verification email has been sent to " +
+                email +
+                ".\n\n" +
+                "Please open your email and click the verification link before logging in."
+            );
 
 
         } catch (error) {
@@ -176,16 +184,41 @@ if (loginForm) {
 
         try {
 
-            /* Login */
+            /* LOGIN */
 
-            await signInWithEmailAndPassword(
-                auth,
-                email,
-                password
-            );
+            const userCredential =
+                await signInWithEmailAndPassword(
+                    auth,
+                    email,
+                    password
+                );
 
 
-            /* Go to dashboard */
+            const user = userCredential.user;
+
+
+            /* REFRESH USER INFORMATION */
+
+            await user.reload();
+
+
+            /* CHECK EMAIL VERIFICATION */
+
+            if (!user.emailVerified) {
+
+                await auth.signOut();
+
+                alert(
+                    "Your email has not been verified yet.\n\n" +
+                    "Please check your email and click the verification link before logging in."
+                );
+
+                return;
+
+            }
+
+
+            /* VERIFIED → DASHBOARD */
 
             window.location.replace("dashboard.html");
 
