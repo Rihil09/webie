@@ -1,137 +1,190 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>AR-RICE Dashboard</title>
 
     <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
 
-    <!-- Icons -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        rel="stylesheet"
+    >
 
+    <!-- Main CSS -->
     <link rel="stylesheet" href="style.css">
+
 </head>
+
+
 <body>
 
-<!-- ================= TOP NAVBAR ================= -->
 
-<header class="navbar">
+    <!-- ================================================= -->
+    <!-- HEADER -->
+    <!-- ================================================= -->
 
-    <div class="logo">
-        <i class="fa-solid fa-seedling"></i>
-        <span>AR-RICE</span>
-    </div>
+    <header class="topbar">
 
-    <div class="navbar-right">
-        <button id="logoutBtn">
-            <i class="fa-solid fa-right-from-bracket"></i>
-            Logout
+        <!-- LOGO -->
+
+        <div class="logo">
+
+            <i class="fa-solid fa-seedling"></i>
+
+            <span>AR-RICE</span>
+
+        </div>
+
+
+        <!-- LOGOUT -->
+
+        <div class="navbar-right">
+
+            <button id="logoutBtn">
+
+                <i class="fa-solid fa-right-from-bracket"></i>
+
+                Logout
+
+            </button>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- ================================================= -->
+    <!-- SIDEBAR -->
+    <!-- ================================================= -->
+
+    <aside class="sidebar">
+
+        <div class="menu-title">
+            MENU
+        </div>
+
+
+        <!-- DASHBOARD -->
+
+        <button class="menu-btn active">
+
+            <i class="fa-solid fa-chart-line"></i>
+
+            <span>Dashboard</span>
+
         </button>
-    </div>
-
-</header>
 
 
-<!-- ================= SIDEBAR ================= -->
+        <!-- CAMERA -->
 
-<aside class="sidebar">
+        <button class="menu-btn">
 
-    <div class="menu-title">
-        MENU
-    </div>
+            <i class="fa-solid fa-video"></i>
 
-    <button class="menu-btn active">
-        <i class="fa-solid fa-chart-line"></i>
-        Dashboard
-    </button>
+            <span>Camera</span>
 
-    <button class="menu-btn">
-        <i class="fa-solid fa-video"></i>
-        Camera
-    </button>
-
-    <button class="menu-btn">
-        <i class="fa-solid fa-bug"></i>
-        Pest Detection
-    </button>
-
-    <button class="menu-btn">
-        <i class="fa-solid fa-location-dot"></i>
-        Robot Location
-    </button>
-
-</aside>
+        </button>
 
 
+        <!-- PEST DETECTION -->
 
-<!-- ================= MAIN CONTENT ================= -->
+        <button class="menu-btn">
 
-<section class="welcome-card">
+            <i class="fa-solid fa-bug"></i>
 
-    <h1>
-        Welcome, <span id="username">User</span>!
-    </h1>
+            <span>Pest Detection</span>
 
-    <p>
-        AR-RICE monitors the rice field in real-time using the
-        Raspberry Pi robot.
-    </p>
+        </button>
 
-</section>
 
-    <!-- ================= TOP CARDS ================= -->
+        <!-- ROBOT LOCATION -->
 
-    <section class="cards">
+        <button class="menu-btn">
 
-        <!-- Camera -->
+            <i class="fa-solid fa-location-dot"></i>
 
-        <div class="card large-card">
+            <span>Robot Location</span>
 
-            <div class="card-header">
+        </button>
 
-                <h3>
-                    <i class="fa-solid fa-video"></i>
-                    Live Camera
-                </h3>
+    </aside>
+
+
+
+    <!-- ================================================= -->
+    <!-- MAIN CONTENT -->
+    <!-- ================================================= -->
+
+    <main class="main-content">
+
+
+        <!-- ================================================= -->
+        <!-- WELCOME USER -->
+        <!-- ================================================= -->
+
+        <section class="welcome-card">
+
+            <div class="welcome-text">
+
+                <h1>
+                    Welcome, <span id="username">User</span>!
+                </h1>
+
+                <p>
+                    AR-RICE monitors the rice field in real-time
+                    using the Raspberry Pi robot.
+                </p>
 
             </div>
 
-            <div class="camera-feed">
-
-                <img
-                    id="cameraFeed"
-                    src="images/camera-placeholder.png"
-                    alt="Camera Feed">
-
-            </div>
-
-        </div>
+        </section>
 
 
 
-        <!-- Right Side -->
+        <!-- ================================================= -->
+        <!-- TOP CARDS -->
+        <!-- ================================================= -->
 
-        <div class="right-column">
+        <section class="cards">
 
-            <!-- Pest Count -->
 
-            <div class="card small-card">
+            <!-- ============================================= -->
+            <!-- LIVE CAMERA -->
+            <!-- ============================================= -->
+
+            <div class="card large-card">
 
                 <div class="card-header">
 
                     <h3>
-                        <i class="fa-solid fa-bug"></i>
-                        Detected Pests
+
+                        <i class="fa-solid fa-video"></i>
+
+                        Live Camera
+
                     </h3>
 
                 </div>
 
-                <div class="big-number"
-                     id="pestCount">
 
-                    12
+                <div class="camera-feed">
+
+                    <img
+                        id="cameraFeed"
+                        src="images/camera-placeholder.png"
+                        alt="Camera Feed"
+                    >
 
                 </div>
 
@@ -139,121 +192,223 @@
 
 
 
-            <!-- Robot Location -->
+            <!-- ============================================= -->
+            <!-- RIGHT COLUMN -->
+            <!-- ============================================= -->
 
-            <div class="card small-card">
+            <div class="right-column">
+
+
+                <!-- ========================================= -->
+                <!-- DETECTED PESTS -->
+                <!-- ========================================= -->
+
+                <div class="card small-card">
+
+                    <div class="card-header">
+
+                        <h3>
+
+                            <i class="fa-solid fa-bug"></i>
+
+                            Detected Pests
+
+                        </h3>
+
+                    </div>
+
+
+                    <div
+                        class="big-number"
+                        id="pestCount"
+                    >
+                        12
+                    </div>
+
+                </div>
+
+
+
+                <!-- ========================================= -->
+                <!-- ROBOT LOCATION -->
+                <!-- ========================================= -->
+
+                <div class="card small-card">
+
+                    <div class="card-header">
+
+                        <h3>
+
+                            <i class="fa-solid fa-location-dot"></i>
+
+                            Robot Location
+
+                        </h3>
+
+                    </div>
+
+
+                    <div
+                        class="location-text"
+                        id="robotLocation"
+                    >
+                        Field Zone A3
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================================================= -->
+        <!-- SECOND ROW -->
+        <!-- ================================================= -->
+
+        <section class="cards second-row">
+
+
+            <!-- ============================================= -->
+            <!-- ROBOT STATUS -->
+            <!-- ============================================= -->
+
+            <div class="card">
 
                 <div class="card-header">
 
                     <h3>
-                        <i class="fa-solid fa-location-dot"></i>
-                        Robot Location
+
+                        <i class="fa-solid fa-robot"></i>
+
+                        Robot Status
+
                     </h3>
 
                 </div>
 
-                <div class="location-text"
-                     id="robotLocation">
 
-                    Field Zone A3
+                <div class="status">
+
+
+                    <!-- BATTERY -->
+
+                    <div>
+
+                        <span>Battery</span>
+
+                        <strong id="battery">
+                            95%
+                        </strong>
+
+                    </div>
+
+
+                    <!-- TEMPERATURE -->
+
+                    <div>
+
+                        <span>Temperature</span>
+
+                        <strong id="temperature">
+                            32°C
+                        </strong>
+
+                    </div>
+
+
+                    <!-- CONNECTION -->
+
+                    <div>
+
+                        <span>Connection</span>
+
+                        <strong
+                            class="online"
+                            id="connectionStatus"
+                        >
+                            Online
+                        </strong>
+
+                    </div>
+
 
                 </div>
 
             </div>
 
-        </div>
-
-    </section>
 
 
+            <!-- ============================================= -->
+            <!-- LATEST DETECTION -->
+            <!-- ============================================= -->
 
-    <!-- ================= SECOND ROW ================= -->
+            <div class="card">
 
-    <section class="cards second-row">
+                <div class="card-header">
 
-        <!-- Robot Status -->
+                    <h3>
 
-        <div class="card">
+                        <i class="fa-solid fa-clock-rotate-left"></i>
 
-            <h3>Robot Status</h3>
+                        Latest Detection
 
-            <div class="status">
-
-                <div>
-
-                    <span>Battery</span>
-
-                    <strong id="battery">95%</strong>
+                    </h3>
 
                 </div>
 
-                <div>
 
-                    <span>Temperature</span>
+                <table>
 
-                    <strong id="temperature">32°C</strong>
+                    <thead>
 
-                </div>
+                        <tr>
 
-                <div>
+                            <th>Time</th>
 
-                    <span>Connection</span>
+                            <th>Pests</th>
 
-                    <strong class="online">
+                        </tr>
 
-                        Online
+                    </thead>
 
-                    </strong>
 
-                </div>
+                    <tbody id="historyTable">
+
+                        <tr>
+
+                            <td>10:15 AM</td>
+
+                            <td>12</td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
 
             </div>
 
-        </div>
+
+        </section>
+
+
+    </main>
 
 
 
-        <!-- Detection History -->
+    <!-- ================================================= -->
+    <!-- JAVASCRIPT -->
+    <!-- ================================================= -->
 
-        <div class="card">
+    <script
+        type="module"
+        src="dashboard.js"
+    ></script>
 
-            <h3>Latest Detection</h3>
-
-            <table>
-
-                <thead>
-
-                <tr>
-
-                    <th>Time</th>
-
-                    <th>Pests</th>
-
-                </tr>
-
-                </thead>
-
-                <tbody id="historyTable">
-
-                <tr>
-
-                    <td>10:15 AM</td>
-
-                    <td>12</td>
-
-                </tr>
-
-                </tbody>
-
-            </table>
-
-        </div>
-
-    </section>
-
-</main>
-
-<script type="module" src="script.js"></script>
 
 </body>
+
 </html>

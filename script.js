@@ -8,7 +8,7 @@ import {
 /* ================= FIREBASE CONFIG ================= */
 
 const firebaseConfig = {
-    apiKey: "AIzaSyAFe7fGknE_4RLLSqIXX7RafMftdfnhf8A",
+    apiKey: "AIzaSyAFe7fGknE_4RLLSqIXX7RafMftnhf8A",
     authDomain: "ar-rice-system.firebaseapp.com",
     databaseURL: "https://ar-rice-system-default-rtdb.firebaseio.com",
     projectId: "ar-rice-system",
@@ -18,7 +18,7 @@ const firebaseConfig = {
     measurementId: "G-B87RFCV0N8"
 };
 
-/* ================= INITIALIZE ================= */
+/* ================= INITIALIZE FIREBASE ================= */
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
@@ -28,34 +28,60 @@ const auth = getAuth(app);
 document.addEventListener("DOMContentLoaded", () => {
 
     const logoutBtn = document.getElementById("logoutBtn");
+    const usernameElement = document.getElementById("username");
 
-    /* ================= AUTH ================= */
+    const pestCountElement = document.getElementById("pestCount");
+    const robotLocationElement = document.getElementById("robotLocation");
+    const batteryElement = document.getElementById("battery");
+    const temperatureElement = document.getElementById("temperature");
+
+
+    /* ================= AUTH CHECK ================= */
 
     onAuthStateChanged(auth, (user) => {
 
-    if (!user) {
+        if (!user) {
 
-        window.location.replace("index.html");
-        return;
+            // User is not logged in
+            window.location.replace("index.html");
+            return;
 
-    }
+        }
 
-    console.log("Logged in as:", user.email);
+        console.log("Logged in as:", user.email);
 
-    // ==========================
-    // DISPLAY USERNAME
-    // ==========================
 
-    const usernameElement = document.getElementById("username");
+        /* ================= DISPLAY USERNAME ================= */
 
-    if (usernameElement) {
+        if (usernameElement) {
 
-        usernameElement.textContent =
-            user.displayName || "User";
+            // First try Firebase displayName
+            if (user.displayName) {
 
-    }
+                usernameElement.textContent = user.displayName;
 
-});
+            }
+
+            // If there is no displayName, use the part before @
+            else if (user.email) {
+
+                const emailUsername = user.email.split("@")[0];
+
+                usernameElement.textContent = emailUsername;
+
+            }
+
+            // Final fallback
+            else {
+
+                usernameElement.textContent = "User";
+
+            }
+
+        }
+
+    });
+
 
     /* ================= LOGOUT ================= */
 
@@ -73,6 +99,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
             catch (error) {
 
+                console.error("Logout error:", error);
+
                 alert(error.message);
 
             }
@@ -81,21 +109,37 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
+
+    /* =====================================================
+       DEMO DATA
+       Temporary until Raspberry Pi is connected
+       ===================================================== */
+
+    if (pestCountElement) {
+
+        pestCountElement.textContent = "12";
+
+    }
+
+
+    if (robotLocationElement) {
+
+        robotLocationElement.textContent = "Field Zone A3";
+
+    }
+
+
+    if (batteryElement) {
+
+        batteryElement.textContent = "95%";
+
+    }
+
+
+    if (temperatureElement) {
+
+        temperatureElement.textContent = "32°C";
+
+    }
+
 });
-
-
-/* =====================================================
-    DEMO DATA
-    (Temporary until Raspberry Pi is connected)
-===================================================== */
-
-document.getElementById("pestCount").textContent = "12";
-
-document.getElementById("robotLocation").textContent =
-"Field Zone A3";
-
-document.getElementById("battery").textContent =
-"95%";
-
-document.getElementById("temperature").textContent =
-"32°C";
