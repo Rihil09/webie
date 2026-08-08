@@ -4,201 +4,119 @@
 <head>
 
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <title>AR-RICE Login</title>
 
-    <title>AR-RICE | Login</title>
-
-    <!-- Google Font -->
     <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
         rel="stylesheet"
     >
 
-    <!-- Login CSS -->
-    <link
-        rel="stylesheet"
-        href="login.css"
-    >
+    <link rel="stylesheet" href="login.css">
 
 </head>
 
-
 <body>
-
-    <!-- ================================================= -->
-    <!-- LOGIN / REGISTER WRAPPER -->
-    <!-- ================================================= -->
 
     <div class="wrapper">
 
-
-        <!-- ============================================= -->
         <!-- LOGIN FORM -->
-        <!-- ============================================= -->
 
         <div class="form-box login active">
 
             <h2>Login</h2>
 
-
             <form id="loginForm">
 
-
-                <!-- EMAIL -->
-
                 <div class="input-box">
-
                     <input
                         type="email"
                         id="loginEmail"
                         placeholder="Email"
                         required
                     >
-
                 </div>
 
-
-                <!-- PASSWORD -->
-
                 <div class="input-box">
-
                     <input
                         type="password"
                         id="loginPassword"
                         placeholder="Password"
                         required
                     >
-
                 </div>
 
-
-                <!-- LOGIN BUTTON -->
-
-                <button
-                    type="submit"
-                    class="btn"
-                >
+                <button type="submit" class="btn">
                     Login
                 </button>
 
-
-                <!-- REGISTER LINK -->
-
-                <p class="login-register">
-
+                <p>
                     Don't have an account?
-
-                    <a
-                        href="#"
-                        id="showRegister"
-                    >
+                    <a href="#" id="showRegister">
                         Register
                     </a>
-
                 </p>
-
 
             </form>
 
         </div>
 
 
-
-        <!-- ============================================= -->
         <!-- REGISTER FORM -->
-        <!-- ============================================= -->
 
         <div class="form-box register">
 
             <h2>Register</h2>
 
-
             <form id="registerForm">
 
-
-                <!-- USERNAME -->
-
                 <div class="input-box">
-
                     <input
                         type="text"
                         id="registerUsername"
                         placeholder="Username"
                         required
                     >
-
                 </div>
 
-
-                <!-- EMAIL -->
-
                 <div class="input-box">
-
                     <input
                         type="email"
                         id="registerEmail"
                         placeholder="Email"
                         required
                     >
-
                 </div>
 
-
-                <!-- PASSWORD -->
-
                 <div class="input-box">
-
                     <input
                         type="password"
                         id="registerPassword"
                         placeholder="Password"
                         required
                     >
-
                 </div>
 
-
-                <!-- REGISTER BUTTON -->
-
-                <button
-                    type="submit"
-                    class="btn"
-                >
+                <button type="submit" class="btn">
                     Register
                 </button>
 
-
-                <!-- LOGIN LINK -->
-
-                <p class="login-register">
-
+                <p>
                     Already have an account?
-
-                    <a
-                        href="#"
-                        id="showLogin"
-                    >
+                    <a href="#" id="showLogin">
                         Login
                     </a>
-
                 </p>
-
 
             </form>
 
         </div>
 
-
     </div>
 
 
-    <!-- ================================================= -->
-    <!-- LOGIN JAVASCRIPT -->
-    <!-- ================================================= -->
+    <!-- Firebase / Login JavaScript -->
 
     <script
         type="module"

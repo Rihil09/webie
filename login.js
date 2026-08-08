@@ -5,8 +5,7 @@ import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
     sendEmailVerification,
-    updateProfile,
-    signOut
+    updateProfile
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
 
@@ -15,14 +14,26 @@ import {
    ===================================================== */
 
 const firebaseConfig = {
+
     apiKey: "AIzaSyAFe7fGknE_4RLLSqIXX7RafMftdfnhf8A",
+
     authDomain: "ar-rice-system.firebaseapp.com",
-    databaseURL: "https://ar-rice-system-default-rtdb.firebaseio.com",
+
+    databaseURL:
+        "https://ar-rice-system-default-rtdb.firebaseio.com",
+
     projectId: "ar-rice-system",
-    storageBucket: "ar-rice-system.firebasestorage.app",
+
+    storageBucket:
+        "ar-rice-system.firebasestorage.app",
+
     messagingSenderId: "315656193287",
-    appId: "1:315656193287:web:8719c39e19ac7a773731a2",
+
+    appId:
+        "1:315656193287:web:8719c39e19ac7a773731a2",
+
     measurementId: "G-B87RFCV0N8"
+
 };
 
 
@@ -31,21 +42,31 @@ const firebaseConfig = {
    ===================================================== */
 
 const app = initializeApp(firebaseConfig);
+
 const auth = getAuth(app);
 
 
 /* =====================================================
-   GET ELEMENTS
+   ELEMENTS
    ===================================================== */
 
-const loginForm = document.getElementById("loginForm");
-const registerForm = document.getElementById("registerForm");
+const loginForm =
+    document.getElementById("loginForm");
 
-const showRegister = document.getElementById("showRegister");
-const showLogin = document.getElementById("showLogin");
+const registerForm =
+    document.getElementById("registerForm");
 
-const loginBox = document.querySelector(".form-box.login");
-const registerBox = document.querySelector(".form-box.register");
+const showRegister =
+    document.getElementById("showRegister");
+
+const showLogin =
+    document.getElementById("showLogin");
+
+const loginBox =
+    document.querySelector(".form-box.login");
+
+const registerBox =
+    document.querySelector(".form-box.register");
 
 
 /* =====================================================
@@ -59,6 +80,7 @@ if (showRegister) {
         event.preventDefault();
 
         loginBox.classList.remove("active");
+
         registerBox.classList.add("active");
 
     });
@@ -77,6 +99,7 @@ if (showLogin) {
         event.preventDefault();
 
         registerBox.classList.remove("active");
+
         loginBox.classList.add("active");
 
     });
@@ -90,186 +113,125 @@ if (showLogin) {
 
 if (registerForm) {
 
-    registerForm.addEventListener("submit", async (event) => {
+    registerForm.addEventListener(
+        "submit",
+        async (event) => {
 
-        event.preventDefault();
-
-
-        /* ---------------------------------------------
-           GET FORM VALUES
-           --------------------------------------------- */
-
-        const username =
-            document
-                .getElementById("registerUsername")
-                .value
-                .trim();
-
-        const email =
-            document
-                .getElementById("registerEmail")
-                .value
-                .trim();
-
-        const password =
-            document
-                .getElementById("registerPassword")
-                .value;
+            event.preventDefault();
 
 
-        /* ---------------------------------------------
-           CHECK USERNAME
-           --------------------------------------------- */
+            const username =
+                document
+                    .getElementById("registerUsername")
+                    .value
+                    .trim();
 
-        if (!username) {
+            const email =
+                document
+                    .getElementById("registerEmail")
+                    .value
+                    .trim();
 
-            alert("Please enter a username.");
+            const password =
+                document
+                    .getElementById("registerPassword")
+                    .value;
 
-            return;
 
-        }
+            /* CHECK USERNAME */
+
+            if (!username) {
+
+                alert("Please enter a username.");
+
+                return;
+
+            }
 
 
-        try {
+            try {
 
-            /* -----------------------------------------
-               CREATE FIREBASE ACCOUNT
-               ----------------------------------------- */
+                /* CREATE FIREBASE ACCOUNT */
 
-            const userCredential =
-                await createUserWithEmailAndPassword(
-                    auth,
-                    email,
-                    password
+                const userCredential =
+                    await createUserWithEmailAndPassword(
+                        auth,
+                        email,
+                        password
+                    );
+
+
+                const user =
+                    userCredential.user;
+
+
+                console.log(
+                    "Account created:",
+                    user.email
                 );
 
 
-            const user = userCredential.user;
+                /* SAVE USERNAME TO FIREBASE AUTH */
+
+                await updateProfile(user, {
+
+                    displayName: username
+
+                });
 
 
-            console.log(
-                "Account created:",
-                user.email
-            );
+                console.log(
+                    "Username saved:",
+                    username
+                );
 
 
-            /* -----------------------------------------
-               SAVE USERNAME
-               ----------------------------------------- */
+                /* SEND EMAIL VERIFICATION */
 
-            await updateProfile(user, {
-
-                displayName: username
-
-            });
+                await sendEmailVerification(user);
 
 
-            console.log(
-                "Username saved:",
-                username
-            );
+                /* SIGN OUT */
+
+                await auth.signOut();
 
 
-            /* -----------------------------------------
-               SEND EMAIL VERIFICATION
-               ----------------------------------------- */
+                /* RESET FORM */
 
-            await sendEmailVerification(user);
+                registerForm.reset();
 
 
-            console.log(
-                "Verification email sent."
-            );
+                /* SWITCH BACK TO LOGIN */
+
+                registerBox.classList.remove("active");
+
+                loginBox.classList.add("active");
 
 
-            /* -----------------------------------------
-               SIGN OUT
-               ----------------------------------------- */
-
-            await signOut(auth);
-
-
-            /* -----------------------------------------
-               RESET REGISTER FORM
-               ----------------------------------------- */
-
-            registerForm.reset();
+                alert(
+                    "Registration successful!\n\n" +
+                    "A verification email has been sent to " +
+                    email +
+                    ".\n\n" +
+                    "Please verify your email before logging in."
+                );
 
 
-            /* -----------------------------------------
-               SWITCH BACK TO LOGIN
-               ----------------------------------------- */
+            }
 
-            registerBox.classList.remove("active");
+            catch (error) {
 
-            loginBox.classList.add("active");
+                console.error(
+                    "Registration error:",
+                    error
+                );
 
-
-            /* -----------------------------------------
-               SUCCESS MESSAGE
-               ----------------------------------------- */
-
-            alert(
-                "Registration successful!\n\n" +
-                "A verification email has been sent to:\n" +
-                email +
-                "\n\n" +
-                "Please open your email and click the " +
-                "verification link before logging in."
-            );
-
-
-        } catch (error) {
-
-            console.error(
-                "Registration error:",
-                error
-            );
-
-
-            /* -----------------------------------------
-               FRIENDLY ERROR MESSAGES
-               ----------------------------------------- */
-
-            switch (error.code) {
-
-                case "auth/email-already-in-use":
-
-                    alert(
-                        "This email is already registered."
-                    );
-
-                    break;
-
-
-                case "auth/invalid-email":
-
-                    alert(
-                        "Please enter a valid email address."
-                    );
-
-                    break;
-
-
-                case "auth/weak-password":
-
-                    alert(
-                        "Your password is too weak. " +
-                        "Please use a stronger password."
-                    );
-
-                    break;
-
-
-                default:
-
-                    alert(error.message);
+                alert(error.message);
 
             }
 
         }
-
-    });
+    );
 
 }
 
@@ -280,163 +242,103 @@ if (registerForm) {
 
 if (loginForm) {
 
-    loginForm.addEventListener("submit", async (event) => {
+    loginForm.addEventListener(
+        "submit",
+        async (event) => {
 
-        event.preventDefault();
-
-
-        /* ---------------------------------------------
-           GET FORM VALUES
-           --------------------------------------------- */
-
-        const email =
-            document
-                .getElementById("loginEmail")
-                .value
-                .trim();
-
-        const password =
-            document
-                .getElementById("loginPassword")
-                .value;
+            event.preventDefault();
 
 
-        try {
+            const email =
+                document
+                    .getElementById("loginEmail")
+                    .value
+                    .trim();
 
-            /* -----------------------------------------
-               SIGN IN
-               ----------------------------------------- */
+            const password =
+                document
+                    .getElementById("loginPassword")
+                    .value;
 
-            const userCredential =
-                await signInWithEmailAndPassword(
-                    auth,
-                    email,
-                    password
+
+            try {
+
+                /* SIGN IN */
+
+                const userCredential =
+                    await signInWithEmailAndPassword(
+                        auth,
+                        email,
+                        password
+                    );
+
+
+                const user =
+                    userCredential.user;
+
+
+                console.log(
+                    "Logged in:",
+                    user.email
                 );
 
 
-            const user = userCredential.user;
+                /* REFRESH USER */
+
+                await user.reload();
 
 
-            console.log(
-                "Login successful:",
-                user.email
-            );
+                /* CHECK EMAIL VERIFICATION */
+
+                if (!user.emailVerified) {
+
+                    await auth.signOut();
 
 
-            /* -----------------------------------------
-               REFRESH USER
-               ----------------------------------------- */
-
-            await user.reload();
-
-
-            const currentUser = auth.currentUser;
+                    alert(
+                        "Your email has not been verified yet.\n\n" +
+                        "Please check your email and click the verification link before logging in."
+                    );
 
 
-            /* -----------------------------------------
-               CHECK EMAIL VERIFICATION
-               ----------------------------------------- */
+                    return;
 
-            if (!currentUser.emailVerified) {
-
-                await signOut(auth);
+                }
 
 
-                alert(
-                    "Your email has not been verified yet.\n\n" +
-                    "Please check your email and click the " +
-                    "verification link before logging in."
+                /* SUCCESS */
+
+                console.log(
+                    "Verified user:",
+                    user.email
+                );
+
+                console.log(
+                    "Username:",
+                    user.displayName
                 );
 
 
-                return;
+                /* GO TO DASHBOARD */
+
+                window.location.replace(
+                    "dashboard.html"
+                );
 
             }
 
+            catch (error) {
 
-            /* -----------------------------------------
-               VERIFIED
-               ----------------------------------------- */
+                console.error(
+                    "Login error:",
+                    error
+                );
 
-            console.log(
-                "Email verified!"
-            );
-
-
-            console.log(
-                "Username:",
-                currentUser.displayName
-            );
-
-
-            /* -----------------------------------------
-               GO TO DASHBOARD
-               ----------------------------------------- */
-
-            window.location.replace(
-                "dashboard.html"
-            );
-
-
-        } catch (error) {
-
-            console.error(
-                "Login error:",
-                error
-            );
-
-
-            /* -----------------------------------------
-               FRIENDLY ERROR MESSAGES
-               ----------------------------------------- */
-
-            switch (error.code) {
-
-                case "auth/invalid-credential":
-
-                    alert(
-                        "Incorrect email or password."
-                    );
-
-                    break;
-
-
-                case "auth/user-not-found":
-
-                    alert(
-                        "No account was found with this email."
-                    );
-
-                    break;
-
-
-                case "auth/wrong-password":
-
-                    alert(
-                        "Incorrect password."
-                    );
-
-                    break;
-
-
-                case "auth/invalid-email":
-
-                    alert(
-                        "Please enter a valid email address."
-                    );
-
-                    break;
-
-
-                default:
-
-                    alert(error.message);
+                alert(error.message);
 
             }
 
         }
-
-    });
+    );
 
 }

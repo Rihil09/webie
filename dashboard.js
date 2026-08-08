@@ -12,14 +12,26 @@ import {
    ===================================================== */
 
 const firebaseConfig = {
+
     apiKey: "AIzaSyAFe7fGknE_4RLLSqIXX7RafMftdfnhf8A",
+
     authDomain: "ar-rice-system.firebaseapp.com",
-    databaseURL: "https://ar-rice-system-default-rtdb.firebaseio.com",
+
+    databaseURL:
+        "https://ar-rice-system-default-rtdb.firebaseio.com",
+
     projectId: "ar-rice-system",
-    storageBucket: "ar-rice-system.firebasestorage.app",
+
+    storageBucket:
+        "ar-rice-system.firebasestorage.app",
+
     messagingSenderId: "315656193287",
-    appId: "1:315656193287:web:8719c39e19ac7a773731a2",
+
+    appId:
+        "1:315656193287:web:8719c39e19ac7a773731a2",
+
     measurementId: "G-B87RFCV0N8"
+
 };
 
 
@@ -28,6 +40,7 @@ const firebaseConfig = {
    ===================================================== */
 
 const app = initializeApp(firebaseConfig);
+
 const auth = getAuth(app);
 
 
@@ -35,205 +48,228 @@ const auth = getAuth(app);
    PAGE LOAD
    ===================================================== */
 
-document.addEventListener("DOMContentLoaded", () => {
-
-    const logoutBtn = document.getElementById("logoutBtn");
-    const usernameElement = document.getElementById("username");
-
-    const pestCountElement =
-        document.getElementById("pestCount");
-
-    const robotLocationElement =
-        document.getElementById("robotLocation");
-
-    const batteryElement =
-        document.getElementById("battery");
-
-    const temperatureElement =
-        document.getElementById("temperature");
-
-    const connectionElement =
-        document.getElementById("connectionStatus");
-
-
-    /* =================================================
-       AUTHENTICATION
-       ================================================= */
-
-    onAuthStateChanged(auth, async (user) => {
-
-        console.log("Firebase auth state:", user);
-
-
-        /* ---------------------------------------------
-           NO USER
-           --------------------------------------------- */
-
-        if (!user) {
-
-            console.log("No logged-in user.");
-
-            window.location.replace("login.html");
-
-            return;
-        }
-
-
-        /* ---------------------------------------------
-           REFRESH USER INFORMATION
-           --------------------------------------------- */
-
-        try {
-
-            await user.reload();
-
-        } catch (error) {
-
-            console.error(
-                "Error refreshing user information:",
-                error
-            );
-
-        }
-
-
-        /* Get the newest user information */
-
-        const currentUser = auth.currentUser;
-
-
-        console.log(
-            "Logged in:",
-            currentUser?.email
-        );
-
-        console.log(
-            "Username:",
-            currentUser?.displayName
-        );
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
 
 
         /* =================================================
-           DISPLAY USERNAME
+           ELEMENTS
            ================================================= */
 
-        if (usernameElement) {
+        const logoutBtn =
+            document.getElementById("logoutBtn");
 
-            if (
-                currentUser &&
-                currentUser.displayName &&
-                currentUser.displayName.trim() !== ""
-            ) {
+        const usernameElement =
+            document.getElementById("username");
 
-                /*
-                 * Username saved during registration
-                 */
+        const pestCountElement =
+            document.getElementById("pestCount");
 
-                usernameElement.textContent =
-                    currentUser.displayName;
+        const robotLocationElement =
+            document.getElementById("robotLocation");
 
-            }
+        const batteryElement =
+            document.getElementById("battery");
 
-            else if (
-                currentUser &&
-                currentUser.email
-            ) {
+        const temperatureElement =
+            document.getElementById("temperature");
 
-                /*
-                 * Backup:
-                 * Use the part of the email before @
-                 */
-
-                usernameElement.textContent =
-                    currentUser.email.split("@")[0];
-
-            }
-
-            else {
-
-                usernameElement.textContent = "User";
-
-            }
-
-        }
+        const connectionElement =
+            document.getElementById("connectionStatus");
 
 
         /* =================================================
-           DEMO ROBOT DATA
+           AUTHENTICATION
            ================================================= */
 
-        if (pestCountElement) {
-
-            pestCountElement.textContent = "12";
-
-        }
+        onAuthStateChanged(
+            auth,
+            async (user) => {
 
 
-        if (robotLocationElement) {
-
-            robotLocationElement.textContent =
-                "Field Zone A3";
-
-        }
+                console.log(
+                    "Firebase auth state:",
+                    user
+                );
 
 
-        if (batteryElement) {
+                /* -----------------------------------------
+                   NO USER
+                   ----------------------------------------- */
 
-            batteryElement.textContent = "95%";
+                if (!user) {
 
-        }
+                    console.log(
+                        "No logged-in user."
+                    );
 
+                    window.location.replace(
+                        "index.html"
+                    );
 
-        if (temperatureElement) {
+                    return;
 
-            temperatureElement.textContent = "32°C";
-
-        }
-
-
-        if (connectionElement) {
-
-            connectionElement.textContent = "Online";
-
-        }
-
-    });
+                }
 
 
-    /* =================================================
-       LOGOUT
-       ================================================= */
-
-    if (logoutBtn) {
-
-        logoutBtn.addEventListener(
-            "click",
-            async () => {
+                /* -----------------------------------------
+                   REFRESH USER
+                   ----------------------------------------- */
 
                 try {
 
-                    await signOut(auth);
-
-                    window.location.replace(
-                        "login.html"
-                    );
+                    await user.reload();
 
                 }
 
                 catch (error) {
 
                     console.error(
-                        "Logout error:",
+                        "Could not reload user:",
                         error
                     );
 
-                    alert(error.message);
+                }
+
+
+                const currentUser =
+                    auth.currentUser;
+
+
+                console.log(
+                    "Logged in:",
+                    currentUser.email
+                );
+
+                console.log(
+                    "Username:",
+                    currentUser.displayName
+                );
+
+
+                /* =================================================
+                   DISPLAY USERNAME
+                   ================================================= */
+
+                if (usernameElement) {
+
+
+                    if (
+                        currentUser.displayName &&
+                        currentUser.displayName.trim() !== ""
+                    ) {
+
+                        usernameElement.textContent =
+                            currentUser.displayName;
+
+                    }
+
+
+                    else if (
+                        currentUser.email
+                    ) {
+
+                        usernameElement.textContent =
+                            currentUser.email.split("@")[0];
+
+                    }
+
+
+                    else {
+
+                        usernameElement.textContent =
+                            "User";
+
+                    }
+
+                }
+
+
+                /* =================================================
+                   DEMO ROBOT DATA
+                   ================================================= */
+
+                if (pestCountElement) {
+
+                    pestCountElement.textContent =
+                        "12";
+
+                }
+
+
+                if (robotLocationElement) {
+
+                    robotLocationElement.textContent =
+                        "Field Zone A3";
+
+                }
+
+
+                if (batteryElement) {
+
+                    batteryElement.textContent =
+                        "95%";
+
+                }
+
+
+                if (temperatureElement) {
+
+                    temperatureElement.textContent =
+                        "32°C";
+
+                }
+
+
+                if (connectionElement) {
+
+                    connectionElement.textContent =
+                        "Online";
 
                 }
 
             }
         );
 
-    }
 
-});
+        /* =================================================
+           LOGOUT
+           ================================================= */
+
+        if (logoutBtn) {
+
+            logoutBtn.addEventListener(
+                "click",
+                async () => {
+
+                    try {
+
+                        await signOut(auth);
+
+                        window.location.replace(
+                            "index.html"
+                        );
+
+                    }
+
+                    catch (error) {
+
+                        console.error(
+                            "Logout error:",
+                            error
+                        );
+
+                        alert(
+                            error.message
+                        );
+
+                    }
+
+                }
+            );
+
+        }
+
+    }
+);
