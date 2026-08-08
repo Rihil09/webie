@@ -2,14 +2,14 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/fireba
 
 import {
     getAuth,
-    createUserWithEmailAndPassword,
-    signInWithEmailAndPassword,
-    sendEmailVerification,
-    updateProfile
+    onAuthStateChanged,
+    signOut
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
 
-/* ================= FIREBASE CONFIG ================= */
+/* =====================================================
+   FIREBASE CONFIG
+   ===================================================== */
 
 const firebaseConfig = {
     apiKey: "AIzaSyAFe7fGknE_4RLLSqIXX7RafMftdfnhf8A",
@@ -23,214 +23,227 @@ const firebaseConfig = {
 };
 
 
-/* ================= INITIALIZE FIREBASE ================= */
+/* =====================================================
+   INITIALIZE FIREBASE
+   ===================================================== */
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
 
-/* ================= ELEMENTS ================= */
+/* =====================================================
+   PAGE LOAD
+   ===================================================== */
 
-const loginForm = document.getElementById("loginForm");
-const registerForm = document.getElementById("registerForm");
+document.addEventListener("DOMContentLoaded", () => {
 
-const showRegister = document.getElementById("showRegister");
-const showLogin = document.getElementById("showLogin");
+    /* ================= ELEMENTS ================= */
 
-const loginBox = document.querySelector(".login");
-const registerBox = document.querySelector(".register");
+    const logoutBtn = document.getElementById("logoutBtn");
 
+    const usernameElement =
+        document.getElementById("username");
 
-/* ================= SWITCH TO REGISTER ================= */
+    const pestCountElement =
+        document.getElementById("pestCount");
 
-if (showRegister) {
+    const robotLocationElement =
+        document.getElementById("robotLocation");
 
-    showRegister.addEventListener("click", (e) => {
+    const batteryElement =
+        document.getElementById("battery");
 
-        e.preventDefault();
+    const temperatureElement =
+        document.getElementById("temperature");
 
-        loginBox.classList.remove("active");
-        registerBox.classList.add("active");
-
-    });
-
-}
-
-
-/* ================= SWITCH TO LOGIN ================= */
-
-if (showLogin) {
-
-    showLogin.addEventListener("click", (e) => {
-
-        e.preventDefault();
-
-        registerBox.classList.remove("active");
-        loginBox.classList.add("active");
-
-    });
-
-}
+    const connectionElement =
+        document.getElementById("connectionStatus");
 
 
-/* ================= REGISTER ================= */
+    /* =====================================================
+       AUTHENTICATION CHECK
+       ===================================================== */
 
-if (registerForm) {
+    onAuthStateChanged(auth, async (user) => {
 
-    registerForm.addEventListener("submit", async (e) => {
+        /* ---------------------------------------------
+           NO USER
+           --------------------------------------------- */
 
-        e.preventDefault();
+        if (!user) {
 
-
-        const username =
-            document.getElementById("registerUsername").value.trim();
-
-        const email =
-            document.getElementById("registerEmail").value.trim();
-
-        const password =
-            document.getElementById("registerPassword").value;
-
-
-        if (!username) {
-
-            alert("Please enter a username.");
+            window.location.replace("index.html");
 
             return;
 
         }
 
 
-        try {
-
-            /* CREATE ACCOUNT */
-
-            const userCredential =
-                await createUserWithEmailAndPassword(
-                    auth,
-                    email,
-                    password
-                );
-
-
-            const user = userCredential.user;
-
-
-            /* SAVE USERNAME */
-
-            await updateProfile(user, {
-                displayName: username
-            });
-
-
-            /* SEND VERIFICATION EMAIL */
-
-            await sendEmailVerification(user);
-
-
-            /* SIGN OUT AFTER REGISTRATION */
-
-            await auth.signOut();
-
-
-            /* RESET FORM */
-
-            registerForm.reset();
-
-
-            /* SWITCH TO LOGIN */
-
-            registerBox.classList.remove("active");
-            loginBox.classList.add("active");
-
-
-            alert(
-                "Registration successful!\n\n" +
-                "A verification email has been sent to " +
-                email +
-                ".\n\n" +
-                "Please open your email and click the verification link before logging in."
-            );
-
-
-        } catch (error) {
-
-            console.error("Registration error:", error);
-
-            alert(error.message);
-
-        }
-
-    });
-
-}
-
-
-/* ================= LOGIN ================= */
-
-if (loginForm) {
-
-    loginForm.addEventListener("submit", async (e) => {
-
-        e.preventDefault();
-
-
-        const email =
-            document.getElementById("loginEmail").value.trim();
-
-        const password =
-            document.getElementById("loginPassword").value;
-
+        /* ---------------------------------------------
+           REFRESH USER DATA
+           --------------------------------------------- */
 
         try {
-
-            /* LOGIN */
-
-            const userCredential =
-                await signInWithEmailAndPassword(
-                    auth,
-                    email,
-                    password
-                );
-
-
-            const user = userCredential.user;
-
-
-            /* REFRESH USER INFORMATION */
 
             await user.reload();
 
+        } catch (error) {
 
-            /* CHECK EMAIL VERIFICATION */
+            console.error(
+                "Could not reload user:",
+                error
+            );
 
-            if (!user.emailVerified) {
+        }
 
-                await auth.signOut();
 
-                alert(
-                    "Your email has not been verified yet.\n\n" +
-                    "Please check your email and click the verification link before logging in."
-                );
+        /* ---------------------------------------------
+           GET UPDATED USER
+           --------------------------------------------- */
 
-                return;
+        const currentUser = auth.currentUser;
+
+
+        console.log(
+            "Logged in user:",
+            currentUser
+        );
+
+
+        console.log(
+            "Username:",
+            currentUser?.displayName
+        );
+
+        console.log(
+            "Email:",
+            currentUser?.email
+        );
+
+
+        /* =================================================
+           DISPLAY USERNAME
+           ================================================= */
+
+        if (usernameElement) {
+
+            if (
+                currentUser &&
+                currentUser.displayName &&
+                currentUser.displayName.trim() !== ""
+            ) {
+
+                /*
+                 * This is the username that was saved
+                 * during registration.
+                 */
+
+                usernameElement.textContent =
+                    currentUser.displayName;
 
             }
 
+            else if (
+                currentUser &&
+                currentUser.email
+            ) {
 
-            /* VERIFIED → DASHBOARD */
+                /*
+                 * Backup:
+                 * If there is no displayName,
+                 * use the part before @.
+                 */
 
-            window.location.replace("dashboard.html");
+                usernameElement.textContent =
+                    currentUser.email.split("@")[0];
+
+            }
+
+            else {
+
+                usernameElement.textContent = "User";
+
+            }
+
+        }
 
 
-        } catch (error) {
+        /* =================================================
+           DEMO ROBOT DATA
+           ================================================= */
 
-            console.error("Login error:", error);
+        if (pestCountElement) {
 
-            alert(error.message);
+            pestCountElement.textContent = "12";
+
+        }
+
+
+        if (robotLocationElement) {
+
+            robotLocationElement.textContent =
+                "Field Zone A3";
+
+        }
+
+
+        if (batteryElement) {
+
+            batteryElement.textContent = "95%";
+
+        }
+
+
+        if (temperatureElement) {
+
+            temperatureElement.textContent = "32°C";
+
+        }
+
+
+        if (connectionElement) {
+
+            connectionElement.textContent = "Online";
 
         }
 
     });
 
-}
+
+    /* =====================================================
+       LOGOUT
+       ===================================================== */
+
+    if (logoutBtn) {
+
+        logoutBtn.addEventListener(
+            "click",
+            async () => {
+
+                try {
+
+                    await signOut(auth);
+
+                    window.location.replace(
+                        "index.html"
+                    );
+
+                }
+
+                catch (error) {
+
+                    console.error(
+                        "Logout error:",
+                        error
+                    );
+
+                    alert(error.message);
+
+                }
+
+            }
+        );
+
+    }
+
+});

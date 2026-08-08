@@ -1,14 +1,16 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+
 import {
     getAuth,
     onAuthStateChanged,
     signOut
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
+
 /* ================= FIREBASE CONFIG ================= */
 
 const firebaseConfig = {
-    apiKey: "AIzaSyAFe7fGknE_4RLLSqIXX7RafMftnhf8A",
+    apiKey: "AIzaSyAFe7fGknE_4RLLSqIXX7RafMftdfnhf8A",
     authDomain: "ar-rice-system.firebaseapp.com",
     databaseURL: "https://ar-rice-system-default-rtdb.firebaseio.com",
     projectId: "ar-rice-system",
@@ -18,63 +20,105 @@ const firebaseConfig = {
     measurementId: "G-B87RFCV0N8"
 };
 
+
 /* ================= INITIALIZE FIREBASE ================= */
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
+
 /* ================= PAGE LOAD ================= */
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    const logoutBtn = document.getElementById("logoutBtn");
-    const usernameElement = document.getElementById("username");
+    /* ================= ELEMENTS ================= */
 
-    const pestCountElement = document.getElementById("pestCount");
-    const robotLocationElement = document.getElementById("robotLocation");
-    const batteryElement = document.getElementById("battery");
-    const temperatureElement = document.getElementById("temperature");
+    const logoutBtn =
+        document.getElementById("logoutBtn");
+
+    const usernameElement =
+        document.getElementById("username");
+
+    const pestCountElement =
+        document.getElementById("pestCount");
+
+    const robotLocationElement =
+        document.getElementById("robotLocation");
+
+    const batteryElement =
+        document.getElementById("battery");
+
+    const temperatureElement =
+        document.getElementById("temperature");
 
 
     /* ================= AUTH CHECK ================= */
 
     onAuthStateChanged(auth, (user) => {
 
+        /*
+         * If nobody is logged in,
+         * send them back to the login page.
+         */
+
         if (!user) {
 
-            // User is not logged in
             window.location.replace("index.html");
+
             return;
 
         }
 
+
         console.log("Logged in as:", user.email);
+        console.log("Firebase username:", user.displayName);
 
 
         /* ================= DISPLAY USERNAME ================= */
 
         if (usernameElement) {
 
-            // First try Firebase displayName
+            /*
+             * FIRST:
+             * Use the username saved in Firebase.
+             */
+
             if (user.displayName) {
 
-                usernameElement.textContent = user.displayName;
+                usernameElement.textContent =
+                    user.displayName;
 
             }
 
-            // If there is no displayName, use the part before @
+            /*
+             * SECOND:
+             * If the account doesn't have a displayName yet,
+             * use the part of the email before @.
+             *
+             * Example:
+             * lorraine@gmail.com
+             * becomes:
+             * lorraine
+             */
+
             else if (user.email) {
 
-                const emailUsername = user.email.split("@")[0];
+                const emailUsername =
+                    user.email.split("@")[0];
 
-                usernameElement.textContent = emailUsername;
+                usernameElement.textContent =
+                    emailUsername;
 
             }
 
-            // Final fallback
+            /*
+             * FINAL FALLBACK
+             */
+
             else {
 
-                usernameElement.textContent = "User";
+                usernameElement.textContent =
+                    "User";
 
             }
 
@@ -99,7 +143,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
             catch (error) {
 
-                console.error("Logout error:", error);
+                console.error(
+                    "Logout error:",
+                    error
+                );
 
                 alert(error.message);
 
@@ -115,6 +162,9 @@ document.addEventListener("DOMContentLoaded", () => {
        Temporary until Raspberry Pi is connected
        ===================================================== */
 
+
+    /* ================= PEST COUNT ================= */
+
     if (pestCountElement) {
 
         pestCountElement.textContent = "12";
@@ -122,23 +172,32 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
+    /* ================= ROBOT LOCATION ================= */
+
     if (robotLocationElement) {
 
-        robotLocationElement.textContent = "Field Zone A3";
+        robotLocationElement.textContent =
+            "Field Zone A3";
 
     }
 
+
+    /* ================= BATTERY ================= */
 
     if (batteryElement) {
 
-        batteryElement.textContent = "95%";
+        batteryElement.textContent =
+            "95%";
 
     }
 
 
+    /* ================= TEMPERATURE ================= */
+
     if (temperatureElement) {
 
-        temperatureElement.textContent = "32°C";
+        temperatureElement.textContent =
+            "32°C";
 
     }
 
