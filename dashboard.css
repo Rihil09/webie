@@ -1,13 +1,4 @@
 /* =========================================================
-   AR-RICE DASHBOARD
-   Night Rice Field / Smart Agriculture Theme
-   ========================================================= */
-
-/* GOOGLE FONT */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-
-
-/* =========================================================
    RESET
    ========================================================= */
 
@@ -15,106 +6,59 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
 }
-
-
-/* =========================================================
-   BODY
-   ========================================================= */
 
 body {
+    font-family: "Poppins", sans-serif;
     min-height: 100vh;
-
-    background:
-        linear-gradient(
-            rgba(5, 15, 13, 0.78),
-            rgba(5, 15, 13, 0.88)
-        ),
-        url("facka.jpeg") center center / cover no-repeat fixed;
-
-    color: #ffffff;
-
-    overflow-x: hidden;
 }
 
 
 /* =========================================================
-   TOP NAVIGATION
+   TOPBAR
    ========================================================= */
 
 .topbar {
-    position: fixed;
-
-    top: 0;
-    left: 0;
-
+    height: 70px;
     width: 100%;
-    height: 76px;
-
     display: flex;
     align-items: center;
     justify-content: space-between;
-
-    padding: 0 30px;
-
-    background: rgba(8, 20, 17, 0.92);
-
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-
-    backdrop-filter: blur(18px);
-
-    z-index: 1000;
+    padding: 0 28px;
 }
 
 
 /* =========================================================
-   BRAND
+   TOPBAR - BRAND
    ========================================================= */
 
 .brand {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
 }
 
-
 .brand-icon {
-    width: 42px;
-    height: 42px;
-
+    width: 38px;
+    height: 38px;
     display: flex;
     align-items: center;
     justify-content: center;
-
-    border-radius: 12px;
-
-    background: rgba(41, 190, 126, 0.14);
-
-    border: 1px solid rgba(41, 190, 126, 0.25);
-
-    color: #42d89b;
-
-    font-size: 20px;
 }
 
+.brand-text {
+    display: flex;
+    flex-direction: column;
+}
 
 .brand-name {
     font-size: 22px;
     font-weight: 700;
-
-    letter-spacing: 1px;
-}
-
-
-.brand-text {
-    display: flex;
-    align-items: center;
 }
 
 
 /* =========================================================
-   TOPBAR RIGHT
+   TOPBAR - RIGHT
    ========================================================= */
 
 .topbar-right {
@@ -123,131 +67,74 @@ body {
     gap: 22px;
 }
 
-
-/* SYSTEM STATUS */
-
 .system-status {
     display: flex;
     align-items: center;
     gap: 8px;
-
     font-size: 13px;
-
-    color: #b9cbc4;
 }
 
-
 .status-dot,
-.footer-dot {
+.footer-dot,
+.online-badge span {
     width: 8px;
     height: 8px;
-
-    display: inline-block;
-
     border-radius: 50%;
-
-    background: #42d89b;
-
-    box-shadow: 0 0 10px rgba(66, 216, 155, 0.8);
+    display: inline-block;
 }
 
 
 /* =========================================================
-   USER DISPLAY
+   USER
    ========================================================= */
 
 .user-display {
     display: flex;
     align-items: center;
     gap: 10px;
-
-    padding-right: 20px;
-
-    border-right: 1px solid rgba(255, 255, 255, 0.12);
 }
-
 
 .user-icon {
     width: 36px;
     height: 36px;
-
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-
-    border-radius: 50%;
-
-    background: rgba(70, 160, 255, 0.15);
-
-    color: #64b5ff;
-
-    font-size: 14px;
 }
-
 
 .user-info {
     display: flex;
     flex-direction: column;
-
     line-height: 1.2;
 }
 
-
 .user-label {
     font-size: 10px;
-
-    color: #82968e;
-
-    text-transform: uppercase;
-
-    letter-spacing: 1px;
 }
 
-
 .user-name {
-    margin-top: 3px;
-
-    font-size: 14px;
-
+    font-size: 13px;
     font-weight: 600;
-
-    color: #ffffff;
 }
 
 
 /* =========================================================
-   LOGOUT BUTTON
+   LOGOUT
    ========================================================= */
 
 .logout-btn {
+    border: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+
     display: flex;
     align-items: center;
     gap: 8px;
 
-    padding: 10px 17px;
-
-    border: 1px solid rgba(255, 255, 255, 0.1);
-
-    border-radius: 10px;
-
-    background: rgba(255, 255, 255, 0.06);
-
-    color: #dce7e2;
-
-    cursor: pointer;
-
-    transition: 0.25s ease;
-}
-
-
-.logout-btn:hover {
-    background: rgba(255, 70, 70, 0.15);
-
-    border-color: rgba(255, 90, 90, 0.3);
-
-    color: #ff8c8c;
-
-    transform: translateY(-2px);
+    font-family: inherit;
+    font-weight: 500;
 }
 
 
@@ -257,22 +144,16 @@ body {
 
 .sidebar {
     position: fixed;
-
-    top: 76px;
     left: 0;
+    top: 70px;
+    bottom: 0;
 
-    width: 240px;
-    height: calc(100vh - 76px);
+    width: 230px;
 
-    padding: 25px 18px;
+    padding: 24px 16px;
 
-    background: rgba(7, 19, 16, 0.93);
-
-    border-right: 1px solid rgba(255, 255, 255, 0.07);
-
-    backdrop-filter: blur(18px);
-
-    z-index: 900;
+    display: flex;
+    flex-direction: column;
 }
 
 
@@ -284,45 +165,27 @@ body {
     display: flex;
     align-items: center;
     gap: 12px;
-
     padding: 0 8px 25px;
-
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-
 .sidebar-logo {
-    width: 42px;
-    height: 42px;
+    width: 40px;
+    height: 40px;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    border-radius: 12px;
-
-    background: rgba(41, 190, 126, 0.13);
-
-    color: #42d89b;
-
-    font-size: 18px;
+    border-radius: 10px;
 }
-
 
 .sidebar-brand strong {
     display: block;
-
-    font-size: 15px;
+    font-size: 14px;
 }
-
 
 .sidebar-brand small {
     display: block;
-
-    margin-top: 3px;
-
-    color: #71857c;
-
     font-size: 10px;
 }
 
@@ -332,69 +195,38 @@ body {
    ========================================================= */
 
 .menu-title {
-    margin: 27px 10px 12px;
-
     font-size: 10px;
-
-    color: #71857c;
-
-    letter-spacing: 1.7px;
-
     font-weight: 600;
+    padding: 10px 12px;
+    margin-bottom: 8px;
 }
-
 
 .menu-btn {
     width: 100%;
 
-    display: flex;
-    align-items: center;
-    gap: 13px;
-
-    padding: 13px 14px;
-
-    margin-bottom: 6px;
-
     border: none;
-
-    border-radius: 11px;
-
     background: transparent;
 
-    color: #9aaca5;
+    padding: 12px 14px;
+    margin-bottom: 5px;
 
-    text-align: left;
+    border-radius: 9px;
 
-    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
 
     cursor: pointer;
 
-    transition: 0.25s ease;
-}
+    font-family: inherit;
+    font-size: 13px;
 
+    text-align: left;
+}
 
 .menu-btn i {
-    width: 22px;
-
+    width: 18px;
     text-align: center;
-
-    font-size: 15px;
-}
-
-
-.menu-btn:hover {
-    background: rgba(255, 255, 255, 0.05);
-
-    color: #ffffff;
-}
-
-
-.menu-btn.active {
-    background: rgba(55, 190, 135, 0.14);
-
-    color: #55dda4;
-
-    border-left: 3px solid #42d89b;
 }
 
 
@@ -404,15 +236,12 @@ body {
 
 .sidebar-divider {
     height: 1px;
-
-    margin: 25px 8px;
-
-    background: rgba(255, 255, 255, 0.08);
+    margin: 22px 8px;
 }
 
 
 /* =========================================================
-   SIDEBAR INFORMATION
+   SIDEBAR INFO
    ========================================================= */
 
 .sidebar-info {
@@ -421,14 +250,8 @@ body {
     gap: 10px;
 
     padding: 12px;
-
-    border-radius: 12px;
-
-    background: rgba(255, 255, 255, 0.035);
-
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 10px;
 }
-
 
 .info-icon {
     width: 32px;
@@ -438,30 +261,16 @@ body {
     align-items: center;
     justify-content: center;
 
-    border-radius: 9px;
-
-    background: rgba(100, 181, 255, 0.12);
-
-    color: #64b5ff;
-
-    font-size: 13px;
+    border-radius: 8px;
 }
-
 
 .sidebar-info strong {
     display: block;
-
     font-size: 10px;
 }
 
-
 .sidebar-info span {
     display: block;
-
-    margin-top: 2px;
-
-    color: #71857c;
-
     font-size: 9px;
 }
 
@@ -471,17 +280,13 @@ body {
    ========================================================= */
 
 .sidebar-footer {
-    position: absolute;
-
-    bottom: 25px;
-    left: 20px;
-    right: 20px;
+    margin-top: auto;
 
     display: flex;
     align-items: center;
     gap: 8px;
 
-    color: #789087;
+    padding: 12px;
 
     font-size: 10px;
 }
@@ -492,11 +297,11 @@ body {
    ========================================================= */
 
 .main-content {
-    margin-left: 240px;
+    margin-left: 230px;
 
-    padding: 110px 32px 30px;
+    padding: 28px 32px 30px;
 
-    max-width: 1700px;
+    min-height: calc(100vh - 70px);
 }
 
 
@@ -506,52 +311,30 @@ body {
 
 .page-header {
     display: flex;
-    align-items: flex-end;
     justify-content: space-between;
+    align-items: center;
 
-    gap: 30px;
-
-    margin-bottom: 28px;
+    margin-bottom: 22px;
 }
-
 
 .page-label {
     display: inline-flex;
     align-items: center;
     gap: 7px;
 
-    margin-bottom: 8px;
-
-    color: #4fd99d;
-
     font-size: 10px;
-
     font-weight: 600;
 
-    letter-spacing: 1.5px;
+    margin-bottom: 7px;
 }
-
 
 .page-header h1 {
-    font-size: 31px;
-
-    font-weight: 600;
-
-    line-height: 1.2;
+    font-size: 27px;
+    margin-bottom: 4px;
 }
-
-
-.page-header h1 span {
-    color: #5edca6;
-}
-
 
 .page-header p {
-    margin-top: 8px;
-
-    color: #879a92;
-
-    font-size: 13px;
+    font-size: 12px;
 }
 
 
@@ -564,133 +347,107 @@ body {
     align-items: center;
     gap: 10px;
 
-    padding: 12px 17px;
-
-    border-radius: 12px;
-
-    background: rgba(41, 190, 126, 0.08);
-
-    border: 1px solid rgba(66, 216, 155, 0.15);
+    padding: 10px 15px;
+    border-radius: 10px;
 }
 
+.monitoring-badge > div {
+    display: flex;
+    flex-direction: column;
+}
 
 .monitoring-badge strong {
-    display: block;
-
     font-size: 11px;
-
-    color: #55dda4;
 }
 
-
 .monitoring-badge small {
-    display: block;
-
-    margin-top: 2px;
-
-    color: #71857c;
-
     font-size: 9px;
 }
 
 
 /* =========================================================
-   MAIN MONITORING GRID
+   CARD BASE
+   ========================================================= */
+
+.card {
+    border-radius: 12px;
+    overflow: hidden;
+    min-width: 0;
+}
+
+
+/* =========================================================
+   ⭐ MAIN MONITORING GRID
    ========================================================= */
 
 /*
-   IMPORTANT:
-   This creates the different card sizes.
+    THIS IS THE IMPORTANT PART.
 
-   Camera = 2 columns + 2 rows
-   Pest = 1 column
-   Location = 1 column
+    Column 1 = BIG
+    Column 2 = SMALL
+
+    Live Camera occupies both rows.
+
+    ┌─────────────────────────────┬──────────────┐
+    │                             │              │
+    │                             │    PESTS     │
+    │        LIVE CAMERA          │              │
+    │                             ├──────────────┤
+    │                             │              │
+    │                             │    LOCATION  │
+    │                             │              │
+    └─────────────────────────────┴──────────────┘
 */
 
 .monitoring-grid {
     display: grid;
 
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: minmax(0, 2fr) minmax(280px, 1fr);
 
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: minmax(190px, 1fr) minmax(190px, 1fr);
 
-    gap: 20px;
+    gap: 16px;
 
-    margin-bottom: 20px;
-}
-
-
-/* CAMERA */
-
-.camera-card {
-    grid-column: 1;
-
-    grid-row: 1 / span 2;
-
-    min-height: 460px;
-}
-
-
-/* PEST */
-
-.pest-card {
-    grid-column: 2;
-
-    grid-row: 1;
-
-    min-height: 220px;
-}
-
-
-/* LOCATION */
-
-.location-card {
-    grid-column: 2;
-
-    grid-row: 2;
-
-    min-height: 220px;
+    margin-bottom: 16px;
 }
 
 
 /* =========================================================
-   GENERAL CARD
+   CAMERA CARD = LARGE
    ========================================================= */
 
-.card {
-    position: relative;
+.camera-card {
+    grid-column: 1;
+    grid-row: 1 / span 2;
 
-    overflow: hidden;
+    display: flex;
+    flex-direction: column;
 
-    padding: 20px;
-
-    border-radius: 17px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255, 255, 255, 0.085),
-            rgba(255, 255, 255, 0.035)
-        );
-
-    border: 1px solid rgba(255, 255, 255, 0.08);
-
-    box-shadow:
-        0 15px 40px rgba(0, 0, 0, 0.18);
-
-    backdrop-filter: blur(18px);
-
-    transition: 0.25s ease;
+    min-height: 400px;
 }
 
 
-.card:hover {
-    transform: translateY(-3px);
+/* =========================================================
+   PEST CARD = SMALL
+   ========================================================= */
 
-    border-color: rgba(91, 218, 166, 0.18);
+.pest-card {
+    grid-column: 2;
+    grid-row: 1;
 
-    box-shadow:
-        0 18px 45px rgba(0, 0, 0, 0.25);
+    min-height: 190px;
+}
+
+
+/* =========================================================
+   LOCATION CARD = SMALL
+   ========================================================= */
+
+.location-card {
+    grid-column: 2;
+    grid-row: 2;
+
+    min-height: 190px;
 }
 
 
@@ -703,9 +460,8 @@ body {
     align-items: center;
     justify-content: space-between;
 
-    margin-bottom: 17px;
+    padding: 16px 18px;
 }
-
 
 .card-title {
     display: flex;
@@ -713,75 +469,109 @@ body {
     gap: 11px;
 }
 
-
 .title-icon {
-    width: 38px;
-    height: 38px;
+    width: 36px;
+    height: 36px;
+
+    border-radius: 9px;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    border-radius: 10px;
-
-    font-size: 15px;
+    flex-shrink: 0;
 }
-
-
-.title-icon.blue {
-    background: rgba(70, 160, 255, 0.12);
-
-    color: #64b5ff;
-}
-
-
-.title-icon.orange {
-    background: rgba(255, 166, 75, 0.12);
-
-    color: #ffad5c;
-}
-
-
-.title-icon.cyan {
-    background: rgba(50, 207, 219, 0.12);
-
-    color: #45d6df;
-}
-
-
-.title-icon.green {
-    background: rgba(66, 216, 155, 0.12);
-
-    color: #55dda4;
-}
-
-
-.title-icon.purple {
-    background: rgba(174, 117, 255, 0.12);
-
-    color: #b786ff;
-}
-
 
 .card-label {
     display: block;
-
-    margin-bottom: 2px;
-
-    color: #71857c;
-
     font-size: 8px;
-
     font-weight: 600;
 
-    letter-spacing: 1.2px;
+    letter-spacing: 0.5px;
+}
+
+.card-title h2 {
+    font-size: 15px;
+    font-weight: 600;
 }
 
 
-.card h2 {
-    font-size: 16px;
+/* =========================================================
+   CAMERA
+   ========================================================= */
 
-    font-weight: 600;
+.camera-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.camera-feed {
+    position: relative;
+
+    flex: 1;
+
+    min-height: 300px;
+
+    margin: 0 16px;
+
+    border-radius: 9px;
+
+    overflow: hidden;
+}
+
+.camera-feed img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+}
+
+.camera-overlay {
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    padding: 12px 14px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.camera-status {
+    font-size: 10px;
+
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.camera-status i {
+    font-size: 7px;
+}
+
+.camera-label {
+    font-size: 9px;
+}
+
+.camera-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 12px 18px;
+
+    font-size: 10px;
+}
+
+.camera-footer div {
+    display: flex;
+    align-items: center;
+    gap: 7px;
 }
 
 
@@ -794,155 +584,15 @@ body {
     align-items: center;
     gap: 6px;
 
-    padding: 5px 9px;
-
-    border-radius: 7px;
-
-    background: rgba(255, 70, 70, 0.08);
-
-    color: #ff8585;
-
     font-size: 9px;
-
     font-weight: 600;
 }
 
-
 .live-indicator span {
-    width: 6px;
-    height: 6px;
+    width: 7px;
+    height: 7px;
 
     border-radius: 50%;
-
-    background: #ff6565;
-
-    box-shadow: 0 0 7px rgba(255, 70, 70, 0.8);
-}
-
-
-/* =========================================================
-   CAMERA
-   ========================================================= */
-
-.camera-feed {
-    position: relative;
-
-    width: 100%;
-
-    height: calc(100% - 115px);
-
-    min-height: 340px;
-
-    overflow: hidden;
-
-    border-radius: 13px;
-
-    background: #07110f;
-}
-
-
-.camera-feed img {
-    width: 100%;
-    height: 100%;
-
-    object-fit: cover;
-
-    display: block;
-}
-
-
-/* CAMERA OVERLAY */
-
-.camera-overlay {
-    position: absolute;
-
-    inset: 0;
-
-    display: flex;
-    flex-direction: column;
-
-    justify-content: space-between;
-
-    padding: 14px;
-
-    pointer-events: none;
-}
-
-
-.camera-status {
-    align-self: flex-start;
-
-    display: flex;
-    align-items: center;
-    gap: 7px;
-
-    padding: 6px 10px;
-
-    border-radius: 7px;
-
-    background: rgba(0, 0, 0, 0.5);
-
-    color: #a8d7c2;
-
-    font-size: 9px;
-}
-
-
-.camera-status i {
-    color: #42d89b;
-
-    font-size: 6px;
-}
-
-
-.camera-label {
-    align-self: flex-end;
-
-    padding: 5px 8px;
-
-    border-radius: 5px;
-
-    background: rgba(0, 0, 0, 0.45);
-
-    color: #a3b6af;
-
-    font-size: 8px;
-
-    letter-spacing: 1px;
-}
-
-
-/* CAMERA FOOTER */
-
-.camera-footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    margin-top: 12px;
-
-    color: #91a39d;
-
-    font-size: 10px;
-}
-
-
-.camera-footer div {
-    display: flex;
-    align-items: center;
-    gap: 7px;
-
-    color: #a9bbb4;
-}
-
-
-.camera-footer i {
-    color: #58b8ff;
-}
-
-
-.camera-footer span {
-    color: #61746c;
 }
 
 
@@ -950,164 +600,108 @@ body {
    PEST DISPLAY
    ========================================================= */
 
-.pest-display {
+.pest-card {
     display: flex;
     flex-direction: column;
-    align-items: center;
-
-    margin-top: 5px;
 }
 
+.pest-display {
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    padding: 10px;
+}
 
 .pest-number {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    font-size: 48px;
+    font-weight: 700;
 
-    width: 100px;
-    height: 100px;
-
-    border-radius: 50%;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(255, 170, 80, 0.14),
-            rgba(255, 170, 80, 0.025)
-        );
-
-    border: 1px solid rgba(255, 170, 80, 0.18);
-
-    box-shadow:
-        0 0 35px rgba(255, 170, 80, 0.07);
+    line-height: 1;
 }
-
-
-.pest-number span {
-    color: #ffb15f;
-
-    font-size: 40px;
-
-    font-weight: 600;
-}
-
 
 .pest-label {
     margin-top: 8px;
 
-    color: #788b83;
-
     font-size: 10px;
 }
-
-
-/* =========================================================
-   DETECTION STATUS
-   ========================================================= */
 
 .detection-status {
     display: flex;
     align-items: center;
+
     gap: 10px;
 
-    margin-top: 16px;
+    margin: 0 16px 16px;
+    padding: 10px 12px;
 
-    padding: 10px;
-
-    border-radius: 10px;
-
-    background: rgba(255, 255, 255, 0.035);
+    border-radius: 9px;
 }
 
-
 .detection-icon {
-    width: 31px;
-    height: 31px;
+    width: 30px;
+    height: 30px;
 
     display: flex;
     align-items: center;
     justify-content: center;
-
-    border-radius: 8px;
-
-    background: rgba(255, 166, 75, 0.09);
-
-    color: #ffad5c;
-
-    font-size: 13px;
 }
-
 
 .detection-status strong {
     display: block;
-
     font-size: 10px;
 }
 
-
 .detection-status span {
     display: block;
-
-    margin-top: 2px;
-
-    color: #71857c;
-
     font-size: 8px;
 }
 
 
 /* =========================================================
-   LOCATION
+   ROVER LOCATION
    ========================================================= */
+
+.location-card {
+    display: flex;
+    flex-direction: column;
+}
 
 .location-display {
     display: flex;
     align-items: center;
-    gap: 12px;
 
-    padding: 12px;
+    gap: 11px;
 
-    border-radius: 11px;
-
-    background: rgba(255, 255, 255, 0.035);
-
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 4px 18px 12px;
 }
 
-
 .location-icon {
-    width: 40px;
-    height: 40px;
+    width: 38px;
+    height: 38px;
+
+    border-radius: 9px;
 
     display: flex;
     align-items: center;
     justify-content: center;
-
-    border-radius: 10px;
-
-    background: rgba(50, 207, 219, 0.1);
-
-    color: #45d6df;
 }
-
 
 .location-display span {
     display: block;
-
-    color: #71857c;
-
     font-size: 8px;
 }
-
 
 .location-display strong {
     display: block;
 
-    margin-top: 3px;
+    font-size: 14px;
 
-    color: #dce8e3;
-
-    font-size: 13px;
+    margin-top: 2px;
 }
 
 
@@ -1118,44 +712,39 @@ body {
 .mini-map {
     position: relative;
 
-    height: 90px;
+    flex: 1;
 
-    margin-top: 12px;
+    min-height: 75px;
+
+    margin: 0 16px 16px;
+
+    border-radius: 9px;
 
     overflow: hidden;
-
-    border-radius: 10px;
-
-    background: rgba(22, 48, 40, 0.55);
-
-    border: 1px solid rgba(70, 180, 150, 0.08);
 }
-
 
 .map-grid {
     position: absolute;
-
     inset: 0;
 
     background-image:
         linear-gradient(
-            rgba(80, 200, 170, 0.08) 1px,
+            rgba(255,255,255,0.08) 1px,
             transparent 1px
         ),
         linear-gradient(
             90deg,
-            rgba(80, 200, 170, 0.08) 1px,
+            rgba(255,255,255,0.08) 1px,
             transparent 1px
         );
 
     background-size: 25px 25px;
 }
 
-
 .map-point {
     position: absolute;
 
-    left: 52%;
+    left: 55%;
     top: 50%;
 
     transform: translate(-50%, -50%);
@@ -1163,64 +752,30 @@ body {
     width: 35px;
     height: 35px;
 
+    border-radius: 50%;
+
     display: flex;
     align-items: center;
     justify-content: center;
-
-    border-radius: 50%;
-
-    background: rgba(66, 216, 155, 0.13);
-
-    border: 1px solid rgba(66, 216, 155, 0.4);
-
-    color: #55dda4;
 }
-
 
 .map-point span {
     position: absolute;
 
-    width: 55px;
-    height: 55px;
-
-    border: 1px solid rgba(66, 216, 155, 0.2);
+    width: 35px;
+    height: 35px;
 
     border-radius: 50%;
-
-    animation: pulse 2s infinite;
 }
-
 
 .map-label {
     position: absolute;
 
-    right: 8px;
-    bottom: 7px;
+    right: 10px;
+    bottom: 8px;
 
-    color: #6f8b80;
-
-    font-size: 7px;
-
-    letter-spacing: 1px;
-}
-
-
-@keyframes pulse {
-
-    0% {
-        transform: scale(0.75);
-        opacity: 0.8;
-    }
-
-    70% {
-        transform: scale(1.1);
-        opacity: 0;
-    }
-
-    100% {
-        opacity: 0;
-    }
-
+    font-size: 8px;
+    font-weight: 600;
 }
 
 
@@ -1228,12 +783,24 @@ body {
    BOTTOM GRID
    ========================================================= */
 
+/*
+    ┌──────────────────────────────┬──────────────────────────┐
+    │                              │                          │
+    │        ROVER STATUS          │    LATEST DETECTION      │
+    │                              │                          │
+    └──────────────────────────────┴──────────────────────────┘
+*/
+
 .bottom-grid {
     display: grid;
 
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns:
+        minmax(0, 1fr)
+        minmax(0, 1fr);
 
-    gap: 20px;
+    gap: 16px;
+
+    margin-bottom: 20px;
 }
 
 
@@ -1241,209 +808,125 @@ body {
    ROVER STATUS
    ========================================================= */
 
-.rover-status-card,
-.history-card {
-    min-height: 210px;
+.rover-status-card {
+    min-height: 190px;
 }
-
-
-.online-badge {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-
-    padding: 5px 9px;
-
-    border-radius: 7px;
-
-    background: rgba(66, 216, 155, 0.08);
-
-    color: #55dda4;
-
-    font-size: 9px;
-}
-
-
-.online-badge span {
-    width: 6px;
-    height: 6px;
-
-    border-radius: 50%;
-
-    background: #42d89b;
-
-    box-shadow: 0 0 8px rgba(66, 216, 155, 0.8);
-}
-
-
-/* =========================================================
-   STATUS GRID
-   ========================================================= */
 
 .status-grid {
     display: grid;
 
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns:
+        repeat(3, 1fr);
 
     gap: 12px;
 
-    margin-top: 25px;
+    padding: 10px 18px 18px;
 }
-
 
 .status-item {
     display: flex;
     align-items: center;
+
     gap: 10px;
 
-    padding: 13px;
+    padding: 14px;
 
-    border-radius: 11px;
-
-    background: rgba(255, 255, 255, 0.035);
-
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
 }
 
-
 .status-item-icon {
-    width: 35px;
-    height: 35px;
+    width: 36px;
+    height: 36px;
+
+    border-radius: 9px;
 
     display: flex;
     align-items: center;
     justify-content: center;
-
-    border-radius: 9px;
-
-    font-size: 13px;
 }
-
-
-.battery-icon {
-    background: rgba(66, 216, 155, 0.1);
-
-    color: #55dda4;
-}
-
-
-.temperature-icon {
-    background: rgba(255, 150, 100, 0.1);
-
-    color: #ff9870;
-}
-
-
-.connection-icon {
-    background: rgba(80, 170, 255, 0.1);
-
-    color: #64b5ff;
-}
-
 
 .status-item-info span {
     display: block;
-
-    color: #71857c;
-
-    font-size: 8px;
-}
-
-
-.status-item-info strong {
-    display: block;
-
-    margin-top: 2px;
-
-    font-size: 13px;
-}
-
-
-.online-text {
-    color: #55dda4;
-}
-
-
-/* =========================================================
-   HISTORY TABLE
-   ========================================================= */
-
-.table-wrapper {
-    overflow-x: auto;
-}
-
-
-table {
-    width: 100%;
-
-    border-collapse: collapse;
-}
-
-
-th {
-    padding: 10px 12px;
-
-    text-align: left;
-
-    color: #63776f;
-
-    font-size: 8px;
-
-    letter-spacing: 1px;
-
-    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
-}
-
-
-td {
-    padding: 13px 12px;
-
-    color: #b3c2bd;
-
-    font-size: 10px;
-
-    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-}
-
-
-.pest-count-badge {
-    display: inline-block;
-
-    min-width: 28px;
-
-    padding: 3px 7px;
-
-    text-align: center;
-
-    border-radius: 6px;
-
-    background: rgba(255, 166, 75, 0.1);
-
-    color: #ffb15f;
-
     font-size: 9px;
 }
 
+.status-item-info strong {
+    display: block;
+    font-size: 14px;
+    margin-top: 2px;
+}
 
-/* =========================================================
-   HISTORY FOOTER
-   ========================================================= */
-
-.history-footer {
+.online-badge {
     display: flex;
     align-items: center;
+
     gap: 6px;
 
-    margin-top: 13px;
+    font-size: 9px;
 
-    color: #63766e;
+    padding: 6px 9px;
 
-    font-size: 8px;
+    border-radius: 20px;
 }
 
 
-.history-footer i {
-    color: #738e84;
+/* =========================================================
+   HISTORY
+   ========================================================= */
+
+.history-card {
+    min-height: 190px;
+}
+
+.table-wrapper {
+    padding: 0 18px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    text-align: left;
+
+    font-size: 8px;
+    font-weight: 600;
+
+    padding: 8px 6px;
+}
+
+td {
+    font-size: 10px;
+
+    padding: 12px 6px;
+}
+
+.pest-count-badge {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-width: 28px;
+    height: 22px;
+
+    padding: 0 8px;
+
+    border-radius: 20px;
+
+    font-size: 9px;
+    font-weight: 600;
+}
+
+.history-footer {
+    padding: 10px 18px;
+
+    font-size: 8px;
+
+    display: flex;
+    align-items: center;
+    gap: 6px;
 }
 
 
@@ -1454,22 +937,11 @@ td {
 .dashboard-footer {
     display: flex;
     justify-content: center;
-    flex-wrap: wrap;
-
-    gap: 4px;
-
-    margin-top: 28px;
-    padding: 15px 10px;
-
-    color: #53665f;
-
     text-align: center;
 
+    padding: 12px 20px;
+
     font-size: 8px;
-
-    line-height: 1.6;
-
-    border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 
@@ -1477,11 +949,12 @@ td {
    RESPONSIVE
    ========================================================= */
 
-@media (max-width: 1200px) {
+@media (max-width: 1100px) {
 
-    .main-content {
-        padding-right: 22px;
-        padding-left: 22px;
+    .monitoring-grid {
+        grid-template-columns:
+            minmax(0, 1.7fr)
+            minmax(240px, 1fr);
     }
 
     .status-grid {
@@ -1491,150 +964,103 @@ td {
 }
 
 
-@media (max-width: 950px) {
+@media (max-width: 850px) {
 
     .sidebar {
-        width: 205px;
+        width: 190px;
     }
 
     .main-content {
-        margin-left: 205px;
+        margin-left: 190px;
+        padding: 22px;
     }
 
     .monitoring-grid {
-        grid-template-columns: 1fr 1fr;
-
-        grid-template-rows: auto auto;
-    }
-
-    .camera-card {
-        grid-column: 1 / span 2;
-        grid-row: 1;
-
-        min-height: 430px;
-    }
-
-    .pest-card {
-        grid-column: 1;
-        grid-row: 2;
-    }
-
-    .location-card {
-        grid-column: 2;
-        grid-row: 2;
-    }
-
-    .bottom-grid {
         grid-template-columns: 1fr;
-    }
-
-    .system-status {
-        display: none;
-    }
-
-}
-
-
-@media (max-width: 700px) {
-
-    .topbar {
-        padding: 0 15px;
-    }
-
-    .sidebar {
-        display: none;
-    }
-
-    .main-content {
-        margin-left: 0;
-
-        padding: 95px 15px 25px;
-    }
-
-    .user-info {
-        display: none;
-    }
-
-    .user-display {
-        padding-right: 0;
-
-        border-right: none;
-    }
-
-    .logout-btn span {
-        display: none;
-    }
-
-    .logout-btn {
-        width: 38px;
-        height: 38px;
-
-        justify-content: center;
-
-        padding: 0;
-    }
-
-    .page-header {
-        align-items: flex-start;
-
-        flex-direction: column;
-    }
-
-    .monitoring-badge {
-        width: 100%;
-    }
-
-    .monitoring-grid {
-        display: flex;
-
-        flex-direction: column;
+        grid-template-rows: auto;
     }
 
     .camera-card,
     .pest-card,
     .location-card {
-        min-height: auto;
-
-        width: 100%;
+        grid-column: 1;
+        grid-row: auto;
     }
 
-    .camera-feed {
-        height: 300px;
+    .camera-card {
+        min-height: 380px;
+    }
 
-        min-height: 300px;
+    .pest-card,
+    .location-card {
+        min-height: 180px;
     }
 
     .bottom-grid {
-        display: flex;
-
-        flex-direction: column;
-    }
-
-    .status-grid {
         grid-template-columns: 1fr;
     }
 
 }
 
 
-@media (max-width: 450px) {
+@media (max-width: 650px) {
 
-    .brand-name {
-        font-size: 18px;
+    .topbar {
+        padding: 0 15px;
     }
 
-    .page-header h1 {
-        font-size: 25px;
+    .system-status,
+    .user-info {
+        display: none;
     }
 
-    .card {
-        padding: 15px;
+    .sidebar {
+        position: static;
+
+        width: 100%;
+        height: auto;
+
+        padding: 10px;
     }
 
-    .camera-feed {
-        height: 240px;
+    .sidebar-brand,
+    .sidebar-info,
+    .sidebar-footer,
+    .sidebar-divider {
+        display: none;
+    }
 
-        min-height: 240px;
+    .menu-title {
+        display: none;
+    }
+
+    .menu-btn {
+        display: inline-flex;
+        width: auto;
+        margin-right: 5px;
+    }
+
+    .main-content {
+        margin-left: 0;
+        padding: 16px;
+    }
+
+    .page-header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .monitoring-grid {
+        gap: 12px;
+    }
+
+    .bottom-grid {
+        gap: 12px;
+    }
+
+    .status-grid {
+        grid-template-columns: 1fr;
     }
 
 }
