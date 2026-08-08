@@ -33,16 +33,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
     onAuthStateChanged(auth, (user) => {
 
-        if (!user) {
+    if (!user) {
 
-            window.location.replace("index.html");
-            return;
+        window.location.replace("index.html");
+        return;
 
-        }
+    }
 
-        console.log("Logged in as:", user.email);
+    console.log("Logged in as:", user.email);
 
-    });
+    // ==========================
+    // DISPLAY USERNAME
+    // ==========================
+
+    const usernameElement = document.getElementById("username");
+
+    if (usernameElement) {
+
+        usernameElement.textContent =
+            user.displayName || "User";
+
+    }
+
+});
 
     /* ================= LOGOUT ================= */
 

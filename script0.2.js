@@ -2,7 +2,8 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/fireba
 import { 
     getAuth, 
     createUserWithEmailAndPassword, 
-    signInWithEmailAndPassword 
+    signInWithEmailAndPassword,
+    updateProfile
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
 // ===== FIREBASE CONFIG =====
@@ -48,19 +49,40 @@ showLogin.addEventListener('click', (e) => {
 registerForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    const email = document.getElementById('registerEmail').value;
+    const username = document.getElementById('registerUsername').value.trim();
+    const email = document.getElementById('registerEmail').value.trim();
     const password = document.getElementById('registerPassword').value;
 
     try {
-        await createUserWithEmailAndPassword(auth, email, password);
+
+        // Create Firebase account
+        const userCredential = await createUserWithEmailAndPassword(
+            auth,
+            email,
+            password
+        );
+
+        // Get the newly created user
+        const user = userCredential.user;
+
+        // Save username to Firebase Authentication profile
+        await updateProfile(user, {
+            displayName: username
+        });
+
         alert("Registration successful! Please login.");
 
+        // Reset form
         registerForm.reset();
+
+        // Switch back to login
         registerBox.classList.remove('active');
         loginBox.classList.add('active');
 
     } catch (error) {
+
         alert(error.message);
+
     }
 });
 
