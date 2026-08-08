@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
        AUTHENTICATION
        ================================================= */
 
-    onAuthStateChanged(auth, (user) => {
+    onAuthStateChanged(auth, async (user) => {
 
         console.log("Firebase auth state:", user);
 
@@ -73,40 +73,79 @@ document.addEventListener("DOMContentLoaded", () => {
 
             console.log("No logged-in user.");
 
-            window.location.replace("index.html");
+            window.location.replace("login.html");
 
             return;
         }
 
 
         /* ---------------------------------------------
-           USER IS LOGGED IN
+           REFRESH USER INFORMATION
            --------------------------------------------- */
 
-        console.log("Logged in:", user.email);
-        console.log("Display name:", user.displayName);
+        try {
+
+            await user.reload();
+
+        } catch (error) {
+
+            console.error(
+                "Error refreshing user information:",
+                error
+            );
+
+        }
+
+
+        /* Get the newest user information */
+
+        const currentUser = auth.currentUser;
+
+
+        console.log(
+            "Logged in:",
+            currentUser?.email
+        );
+
+        console.log(
+            "Username:",
+            currentUser?.displayName
+        );
 
 
         /* =================================================
-           USERNAME
+           DISPLAY USERNAME
            ================================================= */
 
         if (usernameElement) {
 
             if (
-                user.displayName &&
-                user.displayName.trim() !== ""
+                currentUser &&
+                currentUser.displayName &&
+                currentUser.displayName.trim() !== ""
             ) {
 
+                /*
+                 * Username saved during registration
+                 */
+
                 usernameElement.textContent =
-                    user.displayName;
+                    currentUser.displayName;
 
             }
 
-            else if (user.email) {
+            else if (
+                currentUser &&
+                currentUser.email
+            ) {
+
+                /*
+                 * Backup:
+                 * Use the part of the email before @
+                 */
 
                 usernameElement.textContent =
-                    user.email.split("@")[0];
+                    currentUser.email.split("@")[0];
 
             }
 
@@ -120,28 +159,42 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
         /* =================================================
-           DEMO DATA
+           DEMO ROBOT DATA
            ================================================= */
 
         if (pestCountElement) {
+
             pestCountElement.textContent = "12";
+
         }
+
 
         if (robotLocationElement) {
+
             robotLocationElement.textContent =
                 "Field Zone A3";
+
         }
+
 
         if (batteryElement) {
+
             batteryElement.textContent = "95%";
+
         }
+
 
         if (temperatureElement) {
+
             temperatureElement.textContent = "32°C";
+
         }
 
+
         if (connectionElement) {
+
             connectionElement.textContent = "Online";
+
         }
 
     });
@@ -153,28 +206,33 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (logoutBtn) {
 
-        logoutBtn.addEventListener("click", async () => {
+        logoutBtn.addEventListener(
+            "click",
+            async () => {
 
-            try {
+                try {
 
-                await signOut(auth);
+                    await signOut(auth);
 
-                window.location.replace("index.html");
+                    window.location.replace(
+                        "login.html"
+                    );
+
+                }
+
+                catch (error) {
+
+                    console.error(
+                        "Logout error:",
+                        error
+                    );
+
+                    alert(error.message);
+
+                }
 
             }
-
-            catch (error) {
-
-                console.error(
-                    "Logout error:",
-                    error
-                );
-
-                alert(error.message);
-
-            }
-
-        });
+        );
 
     }
 
