@@ -1,9 +1,14 @@
+/* =========================================================
+   AR-RICE DASHBOARD
+   NIGHT FARM / SMART AGRICULTURE THEME
+   ========================================================= */
+
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 
-/* =====================================================
-   GLOBAL
-===================================================== */
+/* =========================================================
+   RESET
+   ========================================================= */
 
 * {
     margin: 0;
@@ -12,41 +17,94 @@
     font-family: 'Poppins', sans-serif;
 }
 
-html {
-    scroll-behavior: smooth;
+
+/* =========================================================
+   COLOR VARIABLES
+   ========================================================= */
+
+:root {
+
+    --night-sky: #07111f;
+    --deep-navy: #0b1b2a;
+
+    --sidebar: rgba(6, 20, 29, 0.94);
+    --navbar: rgba(5, 16, 26, 0.92);
+
+    --glass: rgba(17, 39, 48, 0.72);
+    --glass-light: rgba(255, 255, 255, 0.07);
+
+    --border: rgba(255, 255, 255, 0.10);
+
+    --rice-green: #8faf45;
+    --soft-green: #72b85a;
+
+    --rice-gold: #d6b85a;
+
+    --tech-blue: #4fa3d1;
+
+    --white: #f4f7f2;
+    --muted: #aab7b0;
+
+    --danger: #d96b62;
+
+    --shadow: rgba(0, 0, 0, 0.35);
 }
 
+
+/* =========================================================
+   BODY
+   ========================================================= */
+
 body {
+
     min-height: 100vh;
 
-    background: url("facka.jpeg") center center / cover no-repeat;
-    background-attachment: fixed;
+    background:
+        linear-gradient(
+            rgba(4, 12, 19, 0.58),
+            rgba(4, 12, 19, 0.72)
+        ),
+        url("facka.jpeg")
+        center center / cover
+        no-repeat fixed;
 
-    color: #fff;
+    color: var(--white);
 
     overflow-x: hidden;
 }
 
 
-/* Dark background overlay */
+/* =========================================================
+   SUBTLE BACKGROUND GLOW
+   ========================================================= */
 
 body::before {
+
     content: "";
 
     position: fixed;
-    inset: 0;
 
-    background: rgba(0, 0, 0, 0.45);
+    width: 500px;
+    height: 500px;
 
-    backdrop-filter: blur(3px);
+    top: -200px;
+    right: -150px;
+
+    background: rgba(143, 175, 69, 0.08);
+
+    border-radius: 50%;
+
+    filter: blur(100px);
+
+    pointer-events: none;
 
     z-index: -1;
 }
 
 
-/* =====================================================
-   TOP NAVBAR
-===================================================== */
+/* =========================================================
+   NAVBAR
+   ========================================================= */
 
 .topbar {
 
@@ -56,26 +114,29 @@ body::before {
     left: 0;
 
     width: 100%;
-    height: 75px;
-
-    background: rgba(15, 25, 20, 0.94);
+    height: 74px;
 
     display: flex;
 
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
 
-    padding: 0 35px;
+    padding: 0 32px;
 
-    z-index: 9999;
+    background: var(--navbar);
 
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid var(--border);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    z-index: 1000;
 }
 
 
-/* =====================================================
+/* =========================================================
    LOGO
-===================================================== */
+   ========================================================= */
 
 .logo {
 
@@ -83,170 +144,181 @@ body::before {
 
     align-items: center;
 
-    gap: 10px;
+    gap: 11px;
 
-    font-size: 28px;
+    color: var(--white);
+
+    font-size: 25px;
 
     font-weight: 700;
 
-    color: #fff;
+    letter-spacing: 0.5px;
 }
 
 .logo i {
 
-    color: #0066ff;
+    color: var(--rice-green);
 
-    font-size: 30px;
+    font-size: 24px;
+
+    filter: drop-shadow(
+        0 0 8px rgba(143, 175, 69, 0.35)
+    );
 }
 
 
-/* =====================================================
-   LOGOUT BUTTON
-===================================================== */
-
-.navbar-right {
-    display: flex;
-    align-items: center;
-}
-
+/* =========================================================
+   LOGOUT
+   ========================================================= */
 
 #logoutBtn {
 
-    border: none;
-    outline: none;
-
-    background: #0066ff;
-
-    color: white;
-
-    padding: 11px 24px;
-
-    border-radius: 10px;
-
-    cursor: pointer;
-
-    font-size: 15px;
-
-    font-weight: 500;
-
     display: flex;
 
     align-items: center;
 
-    gap: 8px;
+    gap: 9px;
 
-    transition: 0.3s ease;
+    padding: 9px 17px;
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
+
+    border-radius: 10px;
+
+    background: rgba(255, 255, 255, 0.06);
+
+    color: var(--white);
+
+    font-size: 14px;
+
+    cursor: pointer;
+
+    transition:
+        background 0.25s ease,
+        border-color 0.25s ease,
+        transform 0.25s ease;
 }
 
 
 #logoutBtn:hover {
 
-    background: #0052cc;
+    background: rgba(217, 107, 98, 0.15);
+
+    border-color: rgba(217, 107, 98, 0.4);
 
     transform: translateY(-2px);
-
-    box-shadow: 0 5px 15px rgba(0, 102, 255, 0.35);
 }
 
 
-#logoutBtn:active {
+#logoutBtn i {
 
-    transform: translateY(0);
+    font-size: 14px;
 }
 
 
-/* =====================================================
+/* =========================================================
    SIDEBAR
-===================================================== */
+   ========================================================= */
 
 .sidebar {
 
     position: fixed;
 
-    top: 75px;
+    top: 74px;
     left: 0;
 
-    width: 230px;
+    width: 235px;
 
-    height: calc(100vh - 75px);
+    height: calc(100vh - 74px);
 
-    background: rgba(20, 30, 25, 0.94);
+    padding: 28px 17px;
 
-    padding: 25px 18px;
+    background: var(--sidebar);
 
-    z-index: 1000;
+    border-right: 1px solid var(--border);
 
-    border-right: 1px solid rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    z-index: 900;
 }
 
 
-/* =====================================================
+/* =========================================================
    MENU TITLE
-===================================================== */
+   ========================================================= */
 
 .menu-title {
 
-    color: #0066ff;
+    margin: 3px 13px 18px;
 
-    font-size: 13px;
+    color: var(--rice-gold);
 
-    letter-spacing: 2px;
+    font-size: 11px;
 
-    margin-bottom: 25px;
+    font-weight: 600;
 
-    padding-left: 2px;
+    letter-spacing: 2.5px;
 }
 
 
-/* =====================================================
-   SIDEBAR BUTTONS
-===================================================== */
+/* =========================================================
+   MENU BUTTONS
+   ========================================================= */
 
 .menu-btn {
 
     width: 100%;
 
-    border: none;
-
-    background: transparent;
-
-    color: white;
-
-    text-align: left;
-
-    padding: 15px;
-
-    border-radius: 12px;
-
-    cursor: pointer;
-
-    margin-bottom: 10px;
-
-    font-size: 15px;
-
     display: flex;
 
     align-items: center;
 
-    gap: 15px;
+    gap: 13px;
 
-    transition: 0.3s ease;
+    margin-bottom: 7px;
+
+    padding: 13px 15px;
+
+    border: 1px solid transparent;
+
+    border-radius: 11px;
+
+    background: transparent;
+
+    color: var(--muted);
+
+    text-align: left;
+
+    font-size: 14px;
+
+    cursor: pointer;
+
+    transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        border-color 0.25s ease,
+        transform 0.25s ease;
 }
 
 
 .menu-btn i {
 
-    width: 25px;
-
-    font-size: 17px;
+    width: 20px;
 
     text-align: center;
+
+    font-size: 15px;
 }
 
 
 .menu-btn:hover {
 
-    background: rgba(0, 102, 255, 0.25);
+    background: rgba(143, 175, 69, 0.09);
+
+    color: var(--white);
+
+    border-color: rgba(143, 175, 69, 0.12);
 
     transform: translateX(3px);
 }
@@ -254,121 +326,160 @@ body::before {
 
 .menu-btn.active {
 
-    background: #0066ff;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(143, 175, 69, 0.22),
+            rgba(114, 184, 90, 0.10)
+        );
 
-    box-shadow: 0 6px 15px rgba(0, 102, 255, 0.25);
+    color: var(--white);
+
+    border-color: rgba(143, 175, 69, 0.25);
+
+    box-shadow:
+        inset 3px 0 0 var(--rice-green);
 }
 
 
-.menu-btn.active:hover {
+.menu-btn.active i {
 
-    background: #005be0;
-
-    transform: translateX(0);
+    color: var(--rice-green);
 }
 
 
-/* =====================================================
+/* =========================================================
    MAIN CONTENT
-===================================================== */
+   ========================================================= */
 
 .main-content {
 
-    margin-left: 230px;
+    margin-left: 235px;
 
-    padding: 30px;
-
-    padding-top: 105px;
+    padding: 104px 32px 40px;
 
     min-height: 100vh;
 
-    width: calc(100% - 230px);
+    max-width: 1600px;
 }
 
 
-/* =====================================================
+/* =========================================================
    WELCOME CARD
-===================================================== */
+   ========================================================= */
 
 .welcome-card {
 
-    width: 100%;
+    position: relative;
 
-    background: rgba(255, 255, 255, 0.12);
-
-    backdrop-filter: blur(18px);
-
-    -webkit-backdrop-filter: blur(18px);
-
-    padding: 28px 30px;
-
-    border-radius: 20px;
+    overflow: hidden;
 
     margin-bottom: 25px;
 
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 27px 30px;
 
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    border: 1px solid var(--border);
 
-    transition: 0.3s ease;
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            120deg,
+            rgba(143, 175, 69, 0.13),
+            rgba(17, 39, 48, 0.72)
+        );
+
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.20);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
 }
 
 
-.welcome-card:hover {
+/* Decorative glow */
 
-    transform: translateY(-2px);
+.welcome-card::after {
 
-    background: rgba(255, 255, 255, 0.14);
+    content: "";
+
+    position: absolute;
+
+    width: 220px;
+    height: 220px;
+
+    right: -80px;
+    top: -110px;
+
+    background: rgba(214, 184, 90, 0.08);
+
+    border-radius: 50%;
+
+    filter: blur(40px);
+
+    pointer-events: none;
 }
 
 
-.welcome-text h1 {
+.welcome-text {
 
-    font-size: 36px;
+    position: relative;
+
+    z-index: 1;
+}
+
+
+.welcome-card h1 {
+
+    font-size: 30px;
+
+    font-weight: 600;
+
+    letter-spacing: -0.5px;
+}
+
+
+#username {
+
+    color: var(--rice-gold);
 
     font-weight: 700;
-
-    color: #fff;
 }
 
 
-.welcome-text h1 span {
+.welcome-card p {
 
-    color: #0066ff;
+    margin-top: 7px;
+
+    max-width: 700px;
+
+    color: var(--muted);
+
+    font-size: 13px;
+
+    line-height: 1.7;
 }
 
 
-.welcome-text p {
-
-    margin-top: 10px;
-
-    color: #ddd;
-
-    font-size: 16px;
-
-    line-height: 1.6;
-}
-
-
-/* =====================================================
-   MAIN CARD GRID
-===================================================== */
+/* =========================================================
+   CARD GRID
+   ========================================================= */
 
 .cards {
 
     display: grid;
 
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: minmax(0, 2fr) minmax(260px, 1fr);
 
-    gap: 25px;
+    gap: 22px;
 
-    margin-bottom: 25px;
+    margin-bottom: 22px;
 }
 
 
-/* =====================================================
+/* =========================================================
    RIGHT COLUMN
-===================================================== */
+   ========================================================= */
 
 .right-column {
 
@@ -376,49 +487,64 @@ body::before {
 
     flex-direction: column;
 
-    gap: 25px;
+    gap: 22px;
 }
 
 
-/* =====================================================
+/* =========================================================
    GENERAL CARD
-===================================================== */
+   ========================================================= */
 
 .card {
 
-    background: rgba(255, 255, 255, 0.12);
+    position: relative;
+
+    overflow: hidden;
+
+    padding: 21px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 17px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(20, 43, 52, 0.78),
+            rgba(8, 24, 34, 0.82)
+        );
+
+    box-shadow:
+        0 12px 35px var(--shadow);
 
     backdrop-filter: blur(20px);
-
     -webkit-backdrop-filter: blur(20px);
 
-    border-radius: 18px;
-
-    padding: 20px;
-
-    border: 1px solid rgba(255, 255, 255, 0.05);
-
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-
-    transition: 0.25s ease;
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
 }
 
 
 .card:hover {
 
-    transform: translateY(-4px);
+    transform: translateY(-3px);
 
-    background: rgba(255, 255, 255, 0.14);
+    border-color: rgba(143, 175, 69, 0.20);
+
+    box-shadow:
+        0 17px 40px rgba(0, 0, 0, 0.38);
 }
 
 
-/* =====================================================
+/* =========================================================
    CARD HEADER
-===================================================== */
+   ========================================================= */
 
 .card-header {
 
-    margin-bottom: 18px;
+    margin-bottom: 16px;
 }
 
 
@@ -430,56 +556,96 @@ body::before {
 
     gap: 10px;
 
-    font-size: 22px;
+    font-size: 16px;
 
-    font-weight: 600;
+    font-weight: 500;
 
-    color: #fff;
+    color: var(--white);
 }
 
 
 .card-header h3 i {
 
-    color: #fff;
+    color: var(--rice-green);
 
-    font-size: 20px;
+    font-size: 15px;
 }
 
 
-/* =====================================================
-   CAMERA CARD
-===================================================== */
+/* =========================================================
+   LARGE CAMERA CARD
+   ========================================================= */
 
 .large-card {
 
-    min-height: 420px;
+    min-height: 430px;
 }
 
 
+/* =========================================================
+   CAMERA FEED
+   ========================================================= */
+
 .camera-feed {
 
-    height: 320px;
+    position: relative;
 
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-
-    background: rgba(255, 255, 255, 0.08);
-
-    border-radius: 15px;
+    height: 350px;
 
     overflow: hidden;
 
-    position: relative;
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    border-radius: 13px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(4, 15, 23, 0.9),
+            rgba(12, 32, 39, 0.8)
+        );
+}
+
+
+/* Camera corner indicator */
+
+.camera-feed::before {
+
+    content: "LIVE";
+
+    position: absolute;
+
+    top: 13px;
+    left: 13px;
+
+    padding: 4px 9px;
+
+    border-radius: 6px;
+
+    background: rgba(114, 184, 90, 0.15);
+
+    border: 1px solid rgba(114, 184, 90, 0.25);
+
+    color: var(--soft-green);
+
+    font-size: 10px;
+
+    font-weight: 600;
+
+    letter-spacing: 1px;
+
+    z-index: 2;
 }
 
 
 .camera-feed img {
 
     width: 100%;
-
     height: 100%;
 
     object-fit: cover;
@@ -488,155 +654,79 @@ body::before {
 }
 
 
-/* =====================================================
+/* =========================================================
    SMALL CARDS
-===================================================== */
+   ========================================================= */
 
 .small-card {
 
-    min-height: 195px;
-}
-
-
-/* =====================================================
-   PEST COUNT
-===================================================== */
-
-.big-number {
-
-    font-size: 60px;
-
-    font-weight: 700;
-
-    color: #0066ff;
-
-    text-align: center;
-
-    margin-top: 25px;
-}
-
-
-/* =====================================================
-   ROBOT LOCATION
-===================================================== */
-
-.location-text {
-
-    margin-top: 35px;
-
-    font-size: 28px;
-
-    text-align: center;
-
-    font-weight: 600;
-
-    color: #fff;
-}
-
-
-/* =====================================================
-   ROBOT STATUS
-===================================================== */
-
-.status {
+    min-height: 204px;
 
     display: flex;
 
-    justify-content: space-around;
+    flex-direction: column;
 
-    align-items: center;
+    justify-content: space-between;
+}
 
-    margin-top: 30px;
+
+/* =========================================================
+   PEST COUNT
+   ========================================================= */
+
+.big-number {
+
+    padding: 4px 0 8px;
+
+    color: var(--rice-gold);
 
     text-align: center;
 
-    gap: 20px;
+    font-size: 64px;
+
+    line-height: 1;
+
+    font-weight: 700;
+
+    text-shadow:
+        0 0 20px rgba(214, 184, 90, 0.12);
 }
 
 
-.status > div {
+/* =========================================================
+   LOCATION
+   ========================================================= */
 
-    flex: 1;
+.location-text {
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-height: 90px;
+
+    padding: 15px;
+
+    border-radius: 12px;
+
+    background: rgba(143, 175, 69, 0.07);
+
+    border: 1px solid rgba(143, 175, 69, 0.10);
+
+    color: var(--white);
+
+    text-align: center;
+
+    font-size: 20px;
+
+    font-weight: 500;
 }
 
 
-.status span {
-
-    display: block;
-
-    color: #ddd;
-
-    margin-bottom: 8px;
-
-    font-size: 14px;
-}
-
-
-.status strong {
-
-    font-size: 24px;
-
-    color: #fff;
-}
-
-
-.online {
-
-    color: #00d97e !important;
-}
-
-
-/* =====================================================
-   TABLE
-===================================================== */
-
-table {
-
-    width: 100%;
-
-    border-collapse: collapse;
-
-    margin-top: 20px;
-}
-
-
-th {
-
-    text-align: left;
-
-    padding: 12px;
-
-    color: #0066ff;
-
-    font-weight: 600;
-}
-
-
-td {
-
-    padding: 12px;
-
-    border-top: 1px solid rgba(255, 255, 255, 0.12);
-
-    color: #eee;
-}
-
-
-tbody tr {
-
-    transition: 0.2s ease;
-}
-
-
-tbody tr:hover {
-
-    background: rgba(255, 255, 255, 0.05);
-}
-
-
-/* =====================================================
+/* =========================================================
    SECOND ROW
-===================================================== */
+   ========================================================= */
 
 .second-row {
 
@@ -644,25 +734,155 @@ tbody tr:hover {
 }
 
 
-/* =====================================================
+/* =========================================================
+   ROBOT STATUS
+   ========================================================= */
+
+.status {
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 15px;
+
+    margin-top: 10px;
+}
+
+
+.status > div {
+
+    padding: 15px 10px;
+
+    border-radius: 12px;
+
+    background: rgba(255, 255, 255, 0.035);
+
+    border: 1px solid rgba(255, 255, 255, 0.06);
+
+    text-align: center;
+}
+
+
+.status span {
+
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: var(--muted);
+
+    font-size: 11px;
+
+    letter-spacing: 0.3px;
+}
+
+
+.status strong {
+
+    font-size: 20px;
+
+    font-weight: 600;
+
+    color: var(--white);
+}
+
+
+.online {
+
+    color: var(--soft-green) !important;
+}
+
+
+.online::before {
+
+    content: "●";
+
+    margin-right: 6px;
+
+    font-size: 9px;
+}
+
+
+/* =========================================================
+   TABLE
+   ========================================================= */
+
+table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+    margin-top: 8px;
+}
+
+
+thead {
+
+    background: rgba(255, 255, 255, 0.035);
+}
+
+
+th {
+
+    padding: 11px 12px;
+
+    color: var(--rice-gold);
+
+    text-align: left;
+
+    font-size: 11px;
+
+    font-weight: 500;
+
+    letter-spacing: 0.5px;
+}
+
+
+td {
+
+    padding: 12px;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+
+    color: var(--muted);
+
+    font-size: 12px;
+}
+
+
+tbody tr {
+
+    transition: background 0.2s ease;
+}
+
+
+tbody tr:hover {
+
+    background: rgba(143, 175, 69, 0.05);
+}
+
+
+/* =========================================================
    SCROLLBAR
-===================================================== */
+   ========================================================= */
 
 ::-webkit-scrollbar {
 
-    width: 8px;
+    width: 7px;
 }
 
 
 ::-webkit-scrollbar-track {
 
-    background: rgba(0, 0, 0, 0.2);
+    background: var(--night-sky);
 }
 
 
 ::-webkit-scrollbar-thumb {
 
-    background: rgba(0, 102, 255, 0.7);
+    background: rgba(143, 175, 69, 0.45);
 
     border-radius: 10px;
 }
@@ -670,13 +890,13 @@ tbody tr:hover {
 
 ::-webkit-scrollbar-thumb:hover {
 
-    background: #0066ff;
+    background: rgba(143, 175, 69, 0.7);
 }
 
 
-/* =====================================================
-   RESPONSIVE - TABLET
-===================================================== */
+/* =========================================================
+   RESPONSIVE — TABLET
+   ========================================================= */
 
 @media (max-width: 1100px) {
 
@@ -696,25 +916,27 @@ tbody tr:hover {
 
     .right-column {
 
-        flex-direction: row;
+        display: grid;
+
+        grid-template-columns: 1fr 1fr;
 
     }
 
 
-    .small-card {
+    .large-card {
 
-        flex: 1;
+        min-height: auto;
 
     }
 
 }
 
 
-/* =====================================================
-   RESPONSIVE - MOBILE
-===================================================== */
+/* =========================================================
+   RESPONSIVE — SMALL TABLET
+   ========================================================= */
 
-@media (max-width: 900px) {
+@media (max-width: 850px) {
 
     .sidebar {
 
@@ -727,9 +949,7 @@ tbody tr:hover {
 
     .menu-title {
 
-        text-align: center;
-
-        font-size: 10px;
+        display: none;
 
     }
 
@@ -738,7 +958,7 @@ tbody tr:hover {
 
         justify-content: center;
 
-        padding: 15px 5px;
+        padding: 14px 8px;
 
     }
 
@@ -754,6 +974,8 @@ tbody tr:hover {
 
         width: auto;
 
+        font-size: 17px;
+
     }
 
 
@@ -761,20 +983,14 @@ tbody tr:hover {
 
         margin-left: 75px;
 
-        width: calc(100% - 75px);
-
-        padding-left: 20px;
-
-        padding-right: 20px;
-
     }
 
 }
 
 
-/* =====================================================
-   SMALL MOBILE
-===================================================== */
+/* =========================================================
+   RESPONSIVE — MOBILE
+   ========================================================= */
 
 @media (max-width: 600px) {
 
@@ -782,30 +998,35 @@ tbody tr:hover {
 
         height: 65px;
 
-        padding: 0 18px;
+        padding: 0 17px;
 
     }
 
 
     .logo {
 
-        font-size: 22px;
+        font-size: 21px;
 
     }
 
 
     .logo i {
 
-        font-size: 24px;
+        font-size: 20px;
 
     }
 
 
     #logoutBtn {
 
-        padding: 9px 14px;
+        padding: 8px 11px;
 
-        font-size: 13px;
+    }
+
+
+    #logoutBtn span {
+
+        display: none;
 
     }
 
@@ -814,63 +1035,117 @@ tbody tr:hover {
 
         top: 65px;
 
+        width: 62px;
+
         height: calc(100vh - 65px);
+
+        padding: 20px 7px;
 
     }
 
 
     .main-content {
 
-        padding-top: 90px;
+        margin-left: 62px;
+
+        padding: 88px 14px 25px;
 
     }
 
 
-    .welcome-text h1 {
+    .welcome-card {
 
-        font-size: 28px;
+        padding: 21px;
 
     }
 
 
-    .welcome-text p {
+    .welcome-card h1 {
 
-        font-size: 14px;
+        font-size: 24px;
+
+    }
+
+
+    .welcome-card p {
+
+        font-size: 12px;
 
     }
 
 
     .right-column {
 
-        flex-direction: column;
+        grid-template-columns: 1fr;
+
+        display: grid;
+
+    }
+
+
+    .camera-feed {
+
+        height: 250px;
 
     }
 
 
     .status {
 
-        flex-direction: column;
-
-    }
-
-
-    .status > div {
-
-        width: 100%;
-
-    }
-
-
-    .location-text {
-
-        font-size: 23px;
+        grid-template-columns: 1fr;
 
     }
 
 
     .big-number {
 
-        font-size: 50px;
+        font-size: 54px;
+
+    }
+
+
+    .location-text {
+
+        font-size: 18px;
+
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL SCREENS
+   ========================================================= */
+
+@media (max-width: 420px) {
+
+    .main-content {
+
+        margin-left: 0;
+
+        padding-left: 12px;
+        padding-right: 12px;
+
+    }
+
+
+    .sidebar {
+
+        display: none;
+
+    }
+
+
+    .welcome-card h1 {
+
+        font-size: 21px;
+
+    }
+
+
+    .camera-feed {
+
+        height: 210px;
 
     }
 

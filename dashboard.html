@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>AR-RICE Dashboard</title>
+    <title>AR-RICE | Smart Rice Field Monitoring</title>
 
     <!-- Google Font -->
     <link
@@ -29,32 +29,95 @@
 <body>
 
 
-<!-- ================================================= -->
-<!-- TOP NAVBAR -->
-<!-- ================================================= -->
+<!-- =========================================================
+     TOP NAVIGATION BAR
+     ========================================================= -->
 
 <header class="topbar">
 
-    <!-- LOGO -->
+    <!-- BRAND -->
 
-    <div class="logo">
+    <div class="brand">
 
-        <i class="fa-solid fa-seedling"></i>
+        <div class="brand-icon">
 
-        <span>AR-RICE</span>
+            <i class="fa-solid fa-seedling"></i>
+
+        </div>
+
+        <div class="brand-text">
+
+            <span class="brand-name">
+                AR-RICE
+            </span>
+
+            <span class="brand-subtitle">
+                SMART FARM MONITORING
+            </span>
+
+        </div>
 
     </div>
 
 
-    <!-- LOGOUT -->
+    <!-- RIGHT SIDE -->
 
-    <div class="navbar-right">
+    <div class="topbar-right">
 
-        <button id="logoutBtn">
+        <!-- SYSTEM STATUS -->
+
+        <div class="system-status">
+
+            <span class="status-dot"></span>
+
+            <span>
+                System Online
+            </span>
+
+        </div>
+
+
+        <!-- USER -->
+
+        <div class="user-display">
+
+            <div class="user-icon">
+
+                <i class="fa-solid fa-user"></i>
+
+            </div>
+
+            <div class="user-info">
+
+                <span class="user-label">
+                    Logged in as
+                </span>
+
+                <span
+                    class="user-name"
+                    id="topbarUsername"
+                >
+                    ...
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- LOGOUT -->
+
+        <button
+            id="logoutBtn"
+            class="logout-btn"
+            title="Logout"
+        >
 
             <i class="fa-solid fa-right-from-bracket"></i>
 
-            <span>Logout</span>
+            <span>
+                Logout
+            </span>
 
         </button>
 
@@ -64,87 +127,209 @@
 
 
 
-<!-- ================================================= -->
-<!-- SIDEBAR -->
-<!-- ================================================= -->
+<!-- =========================================================
+     SIDEBAR
+     ========================================================= -->
 
 <aside class="sidebar">
 
+
+    <!-- SIDEBAR BRAND -->
+
+    <div class="sidebar-brand">
+
+        <div class="sidebar-logo">
+
+            <i class="fa-solid fa-seedling"></i>
+
+        </div>
+
+        <div>
+
+            <strong>
+                AR-RICE
+            </strong>
+
+            <small>
+                Rice Field Rover
+            </small>
+
+        </div>
+
+    </div>
+
+
+    <!-- MENU TITLE -->
+
     <div class="menu-title">
-        MENU
+
+        <span>
+            MAIN MENU
+        </span>
+
     </div>
 
 
     <!-- DASHBOARD -->
 
-    <button class="menu-btn active">
+    <button
+        class="menu-btn active"
+        data-page="dashboard"
+    >
 
         <i class="fa-solid fa-chart-line"></i>
 
-        <span>Dashboard</span>
+        <span>
+            Dashboard
+        </span>
 
     </button>
 
 
     <!-- CAMERA -->
 
-    <button class="menu-btn">
+    <button
+        class="menu-btn"
+        data-page="camera"
+    >
 
         <i class="fa-solid fa-video"></i>
 
-        <span>Camera</span>
+        <span>
+            Live Camera
+        </span>
 
     </button>
 
 
     <!-- PEST DETECTION -->
 
-    <button class="menu-btn">
+    <button
+        class="menu-btn"
+        data-page="pest"
+    >
 
         <i class="fa-solid fa-bug"></i>
 
-        <span>Pest Detection</span>
+        <span>
+            Pest Detection
+        </span>
 
     </button>
 
 
-    <!-- ROBOT LOCATION -->
+    <!-- ROVER LOCATION -->
 
-    <button class="menu-btn">
+    <button
+        class="menu-btn"
+        data-page="location"
+    >
 
         <i class="fa-solid fa-location-dot"></i>
 
-        <span>Rover Location</span>
+        <span>
+            Rover Location
+        </span>
 
     </button>
+
+
+    <!-- SIDEBAR DIVIDER -->
+
+    <div class="sidebar-divider"></div>
+
+
+    <!-- SYSTEM INFORMATION -->
+
+    <div class="sidebar-info">
+
+        <div class="info-icon">
+
+            <i class="fa-solid fa-microchip"></i>
+
+        </div>
+
+        <div>
+
+            <strong>
+                AR-RICE SYSTEM
+            </strong>
+
+            <span>
+                Raspberry Pi Rover
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- SIDEBAR BOTTOM STATUS -->
+
+    <div class="sidebar-footer">
+
+        <span class="footer-dot"></span>
+
+        <span>
+            Monitoring Active
+        </span>
+
+    </div>
 
 </aside>
 
 
 
-<!-- ================================================= -->
-<!-- MAIN CONTENT -->
-<!-- ================================================= -->
+<!-- =========================================================
+     MAIN CONTENT
+     ========================================================= -->
 
 <main class="main-content">
 
 
-    <!-- ================================================= -->
-    <!-- WELCOME USER -->
-    <!-- ================================================= -->
+    <!-- =====================================================
+         PAGE HEADER
+         ===================================================== -->
 
-    <section class="welcome-card">
+    <section class="page-header">
 
-        <div class="welcome-text">
+        <div>
+
+            <span class="page-label">
+                <i class="fa-solid fa-satellite-dish"></i>
+                REAL-TIME MONITORING
+            </span>
 
             <h1>
-                Welcome, <span id="username">...</span>!
+                Welcome,
+                <span id="username">...</span>!
             </h1>
 
             <p>
-                AR-RICE monitors the rice field in real-time
-                using the Raspberry Pi robot.
+                Monitor your rice field and rover activity
+                in real-time.
             </p>
+
+        </div>
+
+
+        <!-- DATE / STATUS -->
+
+        <div class="monitoring-badge">
+
+            <span class="status-dot"></span>
+
+            <div>
+
+                <strong>
+                    Monitoring Active
+                </strong>
+
+                <small>
+                    AR-RICE Rover
+                </small>
+
+            </div>
 
         </div>
 
@@ -152,39 +337,109 @@
 
 
 
-    <!-- ================================================= -->
-    <!-- TOP CARDS -->
-    <!-- ================================================= -->
+    <!-- =====================================================
+         MAIN MONITORING GRID
+         ===================================================== -->
 
-    <section class="cards">
+    <section class="monitoring-grid">
 
 
-        <!-- ================================================= -->
-        <!-- LIVE CAMERA -->
-        <!-- ================================================= -->
+        <!-- =================================================
+             LIVE CAMERA
+             ================================================= -->
 
-        <div class="card large-card">
+        <div class="card camera-card">
+
+
+            <!-- CARD HEADER -->
 
             <div class="card-header">
 
-                <h3>
+                <div class="card-title">
 
-                    <i class="fa-solid fa-video"></i>
+                    <div class="title-icon blue">
 
-                    Live Camera
+                        <i class="fa-solid fa-video"></i>
 
-                </h3>
+                    </div>
+
+                    <div>
+
+                        <span class="card-label">
+                            RASPBERRY PI
+                        </span>
+
+                        <h2>
+                            Live Camera
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <!-- LIVE INDICATOR -->
+
+                <div class="live-indicator">
+
+                    <span></span>
+
+                    LIVE
+
+                </div>
 
             </div>
 
+
+            <!-- CAMERA -->
 
             <div class="camera-feed">
 
                 <img
                     id="cameraFeed"
                     src="images/camera-placeholder.png"
-                    alt="Camera Feed"
+                    alt="AR-RICE Raspberry Pi Camera Feed"
                 >
+
+
+                <!-- CAMERA OVERLAY -->
+
+                <div class="camera-overlay">
+
+                    <div class="camera-status">
+
+                        <i class="fa-solid fa-circle"></i>
+
+                        Camera Connected
+
+                    </div>
+
+                    <div class="camera-label">
+
+                        AR-RICE / FIELD CAMERA
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- CAMERA FOOTER -->
+
+            <div class="camera-footer">
+
+                <div>
+
+                    <i class="fa-solid fa-satellite-dish"></i>
+
+                    Raspberry Pi Camera
+
+                </div>
+
+                <span>
+                    Real-time feed
+                </span>
 
             </div>
 
@@ -192,71 +447,165 @@
 
 
 
-        <!-- ================================================= -->
-        <!-- RIGHT COLUMN -->
-        <!-- ================================================= -->
+        <!-- =================================================
+             PEST DETECTION
+             ================================================= -->
 
-        <div class="right-column">
+        <div class="card pest-card">
 
 
-            <!-- ================================================= -->
-            <!-- DETECTED PESTS -->
-            <!-- ================================================= -->
+            <div class="card-header">
 
-            <div class="card small-card">
+                <div class="card-title">
 
-                <div class="card-header">
-
-                    <h3>
+                    <div class="title-icon orange">
 
                         <i class="fa-solid fa-bug"></i>
 
-                        Detected Pests
+                    </div>
 
-                    </h3>
+                    <div>
 
-                </div>
+                        <span class="card-label">
+                            YOLO DETECTION
+                        </span>
 
+                        <h2>
+                            Detected Pests
+                        </h2>
 
-                <div
-                    class="big-number"
-                    id="pestCount"
-                >
-                    12
+                    </div>
+
                 </div>
 
             </div>
 
 
+            <!-- PEST NUMBER -->
 
-            <!-- ================================================= -->
-            <!-- ROBOT LOCATION -->
-            <!-- ================================================= -->
+            <div class="pest-display">
 
-            <div class="card small-card">
+                <div class="pest-number">
 
-                <div class="card-header">
+                    <span id="pestCount">
+                        12
+                    </span>
 
-                    <h3>
+                </div>
+
+                <span class="pest-label">
+                    Pests Detected
+                </span>
+
+            </div>
+
+
+            <!-- PEST STATUS -->
+
+            <div class="detection-status">
+
+                <div class="detection-icon">
+
+                    <i class="fa-solid fa-radar"></i>
+
+                </div>
+
+                <div>
+
+                    <strong>
+                        Detection Active
+                    </strong>
+
+                    <span>
+                        YOLOv11 monitoring
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             ROVER LOCATION
+             ================================================= -->
+
+        <div class="card location-card">
+
+
+            <div class="card-header">
+
+                <div class="card-title">
+
+                    <div class="title-icon cyan">
 
                         <i class="fa-solid fa-location-dot"></i>
 
-                        Rover Location
+                    </div>
 
-                    </h3>
+                    <div>
 
-                </div>
+                        <span class="card-label">
+                            ROVER POSITION
+                        </span>
 
+                        <h2>
+                            Rover Location
+                        </h2>
 
-                <div
-                    class="location-text"
-                    id="robotLocation"
-                >
-                    Field Zone A3
+                    </div>
+
                 </div>
 
             </div>
 
+
+            <!-- LOCATION -->
+
+            <div class="location-display">
+
+                <div class="location-icon">
+
+                    <i class="fa-solid fa-location-crosshairs"></i>
+
+                </div>
+
+                <div>
+
+                    <span>
+                        Current Position
+                    </span>
+
+                    <strong id="robotLocation">
+                        Field Zone A3
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- MAP PLACEHOLDER -->
+
+            <div class="mini-map">
+
+                <div class="map-grid"></div>
+
+                <div class="map-point">
+
+                    <span></span>
+
+                    <i class="fa-solid fa-robot"></i>
+
+                </div>
+
+                <span class="map-label">
+                    ROVER
+                </span>
+
+            </div>
 
         </div>
 
@@ -264,144 +613,266 @@
 
 
 
-    <!-- ================================================= -->
-    <!-- SECOND ROW -->
-    <!-- ================================================= -->
+    <!-- =====================================================
+         ROVER STATUS + LATEST DETECTION
+         ===================================================== -->
 
-    <section class="cards second-row">
+    <section class="bottom-grid">
 
 
-        <!-- ================================================= -->
-        <!-- ROBOT STATUS -->
-        <!-- ================================================= -->
+        <!-- =================================================
+             ROVER STATUS
+             ================================================= -->
 
-        <div class="card">
+        <div class="card rover-status-card">
+
 
             <div class="card-header">
 
-                <h3>
+                <div class="card-title">
 
-                    <i class="fa-solid fa-robot"></i>
+                    <div class="title-icon green">
 
-                    Rover Status
+                        <i class="fa-solid fa-robot"></i>
 
-                </h3>
+                    </div>
+
+                    <div>
+
+                        <span class="card-label">
+                            SYSTEM INFORMATION
+                        </span>
+
+                        <h2>
+                            Rover Status
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="online-badge">
+
+                    <span></span>
+
+                    Online
+
+                </div>
 
             </div>
 
 
-            <div class="status">
+            <!-- STATUS ITEMS -->
+
+            <div class="status-grid">
 
 
                 <!-- BATTERY -->
 
-                <div>
+                <div class="status-item">
 
-                    <span>Battery</span>
+                    <div class="status-item-icon battery-icon">
 
-                    <strong id="battery">
-                        67%
-                    </strong>
+                        <i class="fa-solid fa-battery-three-quarters"></i>
+
+                    </div>
+
+                    <div class="status-item-info">
+
+                        <span>
+                            Battery
+                        </span>
+
+                        <strong id="battery">
+                            67%
+                        </strong>
+
+                    </div>
 
                 </div>
 
 
                 <!-- TEMPERATURE -->
 
-                <div>
+                <div class="status-item">
 
-                    <span>Temperature</span>
+                    <div class="status-item-icon temperature-icon">
 
-                    <strong id="temperature">
-                        10000°C
-                    </strong>
+                        <i class="fa-solid fa-temperature-half"></i>
+
+                    </div>
+
+                    <div class="status-item-info">
+
+                        <span>
+                            Temperature
+                        </span>
+
+                        <strong id="temperature">
+                            32°C
+                        </strong>
+
+                    </div>
 
                 </div>
 
 
                 <!-- CONNECTION -->
 
-                <div>
+                <div class="status-item">
 
-                    <span>Connection</span>
+                    <div class="status-item-icon connection-icon">
 
-                    <strong
-                        class="online"
-                        id="connectionStatus"
-                    >
-                        Online
-                    </strong>
+                        <i class="fa-solid fa-wifi"></i>
+
+                    </div>
+
+                    <div class="status-item-info">
+
+                        <span>
+                            Connection
+                        </span>
+
+                        <strong
+                            id="connectionStatus"
+                            class="online-text"
+                        >
+                            Online
+                        </strong>
+
+                    </div>
 
                 </div>
 
-
             </div>
 
         </div>
 
 
 
-        <!-- ================================================= -->
-        <!-- LATEST DETECTION -->
-        <!-- ================================================= -->
+        <!-- =================================================
+             LATEST DETECTION
+             ================================================= -->
 
-        <div class="card">
+        <div class="card history-card">
+
 
             <div class="card-header">
 
-                <h3>
+                <div class="card-title">
 
-                    <i class="fa-solid fa-clock-rotate-left"></i>
+                    <div class="title-icon purple">
 
-                    Latest Detection
+                        <i class="fa-solid fa-clock-rotate-left"></i>
 
-                </h3>
+                    </div>
+
+                    <div>
+
+                        <span class="card-label">
+                            DETECTION LOG
+                        </span>
+
+                        <h2>
+                            Latest Detection
+                        </h2>
+
+                    </div>
+
+                </div>
 
             </div>
 
 
-            <table>
+            <!-- TABLE -->
 
-                <thead>
+            <div class="table-wrapper">
 
-                    <tr>
+                <table>
 
-                        <th>Time</th>
+                    <thead>
 
-                        <th>Pests</th>
+                        <tr>
 
-                    </tr>
+                            <th>
+                                TIME
+                            </th>
 
-                </thead>
+                            <th>
+                                PESTS DETECTED
+                            </th>
+
+                        </tr>
+
+                    </thead>
 
 
-                <tbody id="historyTable">
+                    <tbody id="historyTable">
 
-                    <tr>
+                        <tr>
 
-                        <td>00:00 AM</td>
+                            <td>
+                                00:00 AM
+                            </td>
 
-                        <td>6767676767676</td>
+                            <td>
 
-                    </tr>
+                                <span class="pest-count-badge">
+                                    0
+                                </span>
 
-                </tbody>
+                            </td>
 
-            </table>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+            <!-- HISTORY FOOTER -->
+
+            <div class="history-footer">
+
+                <i class="fa-solid fa-circle-info"></i>
+
+                Detection history will update automatically.
+
+            </div>
 
         </div>
 
-
     </section>
+
+
+
+    <!-- =====================================================
+         FOOTER
+         ===================================================== -->
+
+    <footer class="dashboard-footer">
+
+        <span>
+            © 2026 AR-RICE System
+        </span>
+
+        <span>
+            Arduino & Raspberry Pi-Based Rice Field Monitoring
+        </span>
+
+    </footer>
 
 
 </main>
 
 
 
-<!-- ================================================= -->
-<!-- DASHBOARD JAVASCRIPT -->
-<!-- ================================================= -->
+<!-- =========================================================
+     JAVASCRIPT
+     ========================================================= -->
 
 <script
     type="module"
