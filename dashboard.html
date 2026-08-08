@@ -40,9 +40,7 @@
     <div class="brand">
 
         <div class="brand-icon">
-
             <i class="fa-solid fa-seedling"></i>
-
         </div>
 
         <div class="brand-text">
@@ -50,14 +48,20 @@
             <span class="brand-name">
                 AR-RICE
             </span>
+
+            <span class="brand-subtitle">
+                Smart Rice Field Monitoring
+            </span>
+
         </div>
 
     </div>
 
 
-    <!-- RIGHT SIDE -->
+    <!-- TOPBAR RIGHT -->
 
     <div class="topbar-right">
+
 
         <!-- SYSTEM STATUS -->
 
@@ -139,7 +143,7 @@
 
         </div>
 
-        <div>
+        <div class="sidebar-brand-text">
 
             <strong>
                 AR-RICE
@@ -157,11 +161,7 @@
     <!-- MENU TITLE -->
 
     <div class="menu-title">
-
-        <span>
-            MAIN MENU
-        </span>
-
+        MAIN MENU
     </div>
 
 
@@ -181,7 +181,7 @@
     </button>
 
 
-    <!-- CAMERA -->
+    <!-- LIVE CAMERA -->
 
     <button
         class="menu-btn"
@@ -229,7 +229,7 @@
     </button>
 
 
-    <!-- SIDEBAR DIVIDER -->
+    <!-- DIVIDER -->
 
     <div class="sidebar-divider"></div>
 
@@ -259,7 +259,7 @@
     </div>
 
 
-    <!-- SIDEBAR BOTTOM STATUS -->
+    <!-- SIDEBAR FOOTER -->
 
     <div class="sidebar-footer">
 
@@ -288,17 +288,25 @@
 
     <section class="page-header">
 
-        <div>
+
+        <div class="page-heading">
 
             <span class="page-label">
+
                 <i class="fa-solid fa-satellite-dish"></i>
+
                 REAL-TIME MONITORING
+
             </span>
 
+
             <h1>
+
                 Welcome,
                 <span id="username">...</span>!
+
             </h1>
+
 
             <p>
                 Monitor your rice field and rover activity
@@ -308,7 +316,7 @@
         </div>
 
 
-        <!-- DATE / STATUS -->
+        <!-- MONITORING STATUS -->
 
         <div class="monitoring-badge">
 
@@ -333,20 +341,21 @@
 
 
     <!-- =====================================================
-         MAIN MONITORING GRID
+         DASHBOARD GRID
          ===================================================== -->
 
-    <section class="monitoring-grid">
+    <section class="dashboard-grid">
 
 
         <!-- =================================================
              LIVE CAMERA
+             LARGE CARD
              ================================================= -->
 
-        <div class="card camera-card">
+        <article class="card camera-card">
 
 
-            <!-- CARD HEADER -->
+            <!-- HEADER -->
 
             <div class="card-header">
 
@@ -373,8 +382,6 @@
                 </div>
 
 
-                <!-- LIVE INDICATOR -->
-
                 <div class="live-indicator">
 
                     <span></span>
@@ -396,8 +403,6 @@
                     alt="AR-RICE Raspberry Pi Camera Feed"
                 >
 
-
-                <!-- CAMERA OVERLAY -->
 
                 <div class="camera-overlay">
 
@@ -438,88 +443,261 @@
 
             </div>
 
-        </div>
+        </article>
 
 
 
         <!-- =================================================
-             PEST DETECTION
+             ROVER OVERVIEW
              ================================================= -->
 
-        <div class="card pest-card">
+        <article class="card rover-overview-card">
 
 
             <div class="card-header">
 
                 <div class="card-title">
 
-                    <div class="title-icon orange">
+                    <div class="title-icon green">
 
-                        <i class="fa-solid fa-bug"></i>
+                        <i class="fa-solid fa-robot"></i>
 
                     </div>
 
                     <div>
 
                         <span class="card-label">
-                            YOLO DETECTION
+                            AR-RICE SYSTEM
                         </span>
 
                         <h2>
-                            Detected Pests
+                            Rover Overview
                         </h2>
 
                     </div>
 
                 </div>
 
-            </div>
+                <span class="online-badge">
 
+                    <span></span>
 
-            <!-- PEST NUMBER -->
+                    Online
 
-            <div class="pest-display">
-
-                <div class="pest-number">
-
-                    <span id="pestCount">
-                        12
-                    </span>
-
-                </div>
-
-                <span class="pest-label">
-                    Pests Detected
                 </span>
 
             </div>
 
 
-            <!-- PEST STATUS -->
+            <!-- ROVER ICON -->
 
-            <div class="detection-status">
+            <div class="rover-visual">
 
-                <div class="detection-icon">
+                <div class="rover-circle">
 
-                    <i class="fa-solid fa-radar"></i>
+                    <i class="fa-solid fa-robot"></i>
+
+                </div>
+
+                <strong>
+                    Raspberry Pi Rover
+                </strong>
+
+                <span>
+                    Field monitoring active
+                </span>
+
+            </div>
+
+
+            <!-- ROVER QUICK INFORMATION -->
+
+            <div class="overview-info">
+
+                <div>
+
+                    <span>
+                        Location
+                    </span>
+
+                    <strong id="overviewLocation">
+                        Field Zone A3
+                    </strong>
 
                 </div>
 
                 <div>
 
-                    <strong>
-                        Detection Active
-                    </strong>
-
                     <span>
-                        YOLOv11 monitoring
+                        Connection
                     </span>
+
+                    <strong class="online-text">
+                        Online
+                    </strong>
 
                 </div>
 
             </div>
 
-        </div>
+        </article>
+
+
+
+        <!-- =================================================
+             DETECTED PESTS
+             SMALL STAT CARD
+             ================================================= -->
+
+        <article class="card stat-card pest-card">
+
+
+            <div class="stat-card-top">
+
+                <div class="title-icon orange">
+
+                    <i class="fa-solid fa-bug"></i>
+
+                </div>
+
+                <span class="card-label">
+                    YOLOv11
+                </span>
+
+            </div>
+
+
+            <span class="stat-title">
+                Detected Pests
+            </span>
+
+
+            <div class="stat-number">
+
+                <span id="pestCount">
+                    12
+                </span>
+
+            </div>
+
+
+            <div class="stat-footer">
+
+                <i class="fa-solid fa-radar"></i>
+
+                Detection Active
+
+            </div>
+
+        </article>
+
+
+
+        <!-- =================================================
+             BATTERY
+             SMALL STAT CARD
+             ================================================= -->
+
+        <article class="card stat-card battery-card">
+
+
+            <div class="stat-card-top">
+
+                <div class="title-icon green">
+
+                    <i class="fa-solid fa-battery-three-quarters"></i>
+
+                </div>
+
+                <span class="card-label">
+                    POWER
+                </span>
+
+            </div>
+
+
+            <span class="stat-title">
+                Rover Battery
+            </span>
+
+
+            <div class="stat-number">
+
+                <span id="battery">
+                    67%
+                </span>
+
+            </div>
+
+
+            <div class="progress-bar">
+
+                <div
+                    class="progress-fill"
+                    id="batteryProgress"
+                ></div>
+
+            </div>
+
+
+            <div class="stat-footer">
+
+                <span>
+                    Current battery level
+                </span>
+
+            </div>
+
+        </article>
+
+
+
+        <!-- =================================================
+             TEMPERATURE
+             SMALL STAT CARD
+             ================================================= -->
+
+        <article class="card stat-card temperature-card">
+
+
+            <div class="stat-card-top">
+
+                <div class="title-icon cyan">
+
+                    <i class="fa-solid fa-temperature-half"></i>
+
+                </div>
+
+                <span class="card-label">
+                    ENVIRONMENT
+                </span>
+
+            </div>
+
+
+            <span class="stat-title">
+                Temperature
+            </span>
+
+
+            <div class="stat-number">
+
+                <span id="temperature">
+                    32°C
+                </span>
+
+            </div>
+
+
+            <div class="stat-footer">
+
+                <i class="fa-solid fa-thermometer-half"></i>
+
+                Rover sensor reading
+
+            </div>
+
+        </article>
 
 
 
@@ -527,7 +705,7 @@
              ROVER LOCATION
              ================================================= -->
 
-        <div class="card location-card">
+        <article class="card location-card">
 
 
             <div class="card-header">
@@ -557,7 +735,7 @@
             </div>
 
 
-            <!-- LOCATION -->
+            <!-- LOCATION DISPLAY -->
 
             <div class="location-display">
 
@@ -582,7 +760,7 @@
             </div>
 
 
-            <!-- MAP PLACEHOLDER -->
+            <!-- MINI MAP -->
 
             <div class="mini-map">
 
@@ -602,33 +780,24 @@
 
             </div>
 
-        </div>
+        </article>
 
-    </section>
-
-
-
-    <!-- =====================================================
-         ROVER STATUS + LATEST DETECTION
-         ===================================================== -->
-
-    <section class="bottom-grid">
 
 
         <!-- =================================================
              ROVER STATUS
              ================================================= -->
 
-        <div class="card rover-status-card">
+        <article class="card rover-status-card">
 
 
             <div class="card-header">
 
                 <div class="card-title">
 
-                    <div class="title-icon green">
+                    <div class="title-icon purple">
 
-                        <i class="fa-solid fa-robot"></i>
+                        <i class="fa-solid fa-microchip"></i>
 
                     </div>
 
@@ -646,7 +815,6 @@
 
                 </div>
 
-
                 <div class="online-badge">
 
                     <span></span>
@@ -658,7 +826,7 @@
             </div>
 
 
-            <!-- STATUS ITEMS -->
+            <!-- STATUS GRID -->
 
             <div class="status-grid">
 
@@ -679,8 +847,10 @@
                             Battery
                         </span>
 
-                        <strong id="battery">
-                            67%
+                        <strong>
+                            <span id="batteryStatus">
+                                67%
+                            </span>
                         </strong>
 
                     </div>
@@ -704,8 +874,10 @@
                             Temperature
                         </span>
 
-                        <strong id="temperature">
-                            32°C
+                        <strong>
+                            <span id="temperatureStatus">
+                                32°C
+                            </span>
                         </strong>
 
                     </div>
@@ -742,7 +914,7 @@
 
             </div>
 
-        </div>
+        </article>
 
 
 
@@ -750,7 +922,7 @@
              LATEST DETECTION
              ================================================= -->
 
-        <div class="card history-card">
+        <article class="card history-card">
 
 
             <div class="card-header">
@@ -776,6 +948,10 @@
                     </div>
 
                 </div>
+
+                <span class="history-status">
+                    Recent
+                </span>
 
             </div>
 
@@ -838,7 +1014,80 @@
 
             </div>
 
-        </div>
+        </article>
+
+
+
+        <!-- =================================================
+             FIELD MONITORING
+             ================================================= -->
+
+        <article class="card field-status-card">
+
+
+            <div class="card-header">
+
+                <div class="card-title">
+
+                    <div class="title-icon green">
+
+                        <i class="fa-solid fa-seedling"></i>
+
+                    </div>
+
+                    <div>
+
+                        <span class="card-label">
+                            FIELD MONITORING
+                        </span>
+
+                        <h2>
+                            Monitoring Status
+                        </h2>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="field-status-content">
+
+
+                <div class="field-status-icon">
+
+                    <i class="fa-solid fa-wheat-awn"></i>
+
+                </div>
+
+
+                <div class="field-status-text">
+
+                    <strong>
+                        Rice Field Monitoring
+                    </strong>
+
+                    <span>
+                        Rover is currently monitoring
+                        the designated field area.
+                    </span>
+
+                </div>
+
+
+                <div class="field-status-active">
+
+                    <span class="status-dot"></span>
+
+                    Active
+
+                </div>
+
+            </div>
+
+        </article>
+
 
     </section>
 
@@ -851,11 +1100,17 @@
     <footer class="dashboard-footer">
 
         <span>
-            © 2026 AR-RICE |
+            © 2026 AR-RICE
+        </span>
+
+        <span class="footer-separator">
+            |
         </span>
 
         <span>
-             Arduino and Raspberry Pi-Based Rover for Real-Time Remote Detection of  Nocturnal Rice Black Bug (Scotinophara coarctata) Using YOLOv11
+            Arduino and Raspberry Pi-Based Rover for
+            Real-Time Remote Detection of Nocturnal Rice
+            Black Bug (<i>Scotinophara coarctata</i>) Using YOLOv11
         </span>
 
     </footer>
