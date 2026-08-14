@@ -2085,3 +2085,248 @@ tbody tr:hover {
         font-size: 7px;
     }
 }
+
+/* =========================================================
+   MAIN MENU
+   ========================================================= */
+
+.menu-title {
+    margin: 28px 12px 14px;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    letter-spacing: 1.8px;
+
+    color: rgba(255, 255, 255, 0.45);
+}
+
+
+/* =========================================================
+   MENU BUTTON
+   ========================================================= */
+
+.menu-btn {
+
+    position: relative;
+
+    width: 100%;
+    height: 54px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 13px;
+
+    margin-bottom: 8px;
+
+    padding: 0 14px;
+
+    border: none;
+    border-radius: 14px;
+
+    background: transparent;
+
+    color: rgba(255, 255, 255, 0.72);
+
+    cursor: pointer;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+
+    text-align: left;
+
+    transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   HOVER
+   ========================================================= */
+
+.menu-btn::before {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 50%;
+
+    width: 3px;
+    height: 0;
+
+    border-radius: 10px;
+
+    background: #7ed957;
+
+    transform: translateY(-50%);
+
+    transition: height 0.25s ease;
+}
+
+
+.menu-btn:hover {
+
+    background: rgba(255, 255, 255, 0.08);
+
+    color: #ffffff;
+
+    transform: translateX(4px);
+}
+
+
+.menu-btn:hover::before {
+
+    height: 28px;
+}
+
+
+/* =========================================================
+   ACTIVE MENU
+   ========================================================= */
+
+.menu-btn.active {
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(70, 150, 92, 0.32),
+            rgba(35, 85, 58, 0.20)
+        );
+
+    color: #ffffff;
+
+    box-shadow:
+        inset 0 0 0 1px rgba(126, 217, 87, 0.12),
+        0 6px 18px rgba(0, 0, 0, 0.12);
+}
+
+
+.menu-btn.active::before {
+
+    height: 32px;
+}
+
+
+/* =========================================================
+   MENU ICON
+   ========================================================= */
+
+.menu-icon {
+
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 10px;
+
+    background: rgba(255, 255, 255, 0.07);
+
+    color: rgba(255, 255, 255, 0.65);
+
+    transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        transform 0.25s ease;
+}
+
+
+.menu-btn:hover .menu-icon {
+
+    background: rgba(126, 217, 87, 0.14);
+
+    color: #9be477;
+
+    transform: scale(1.08);
+}
+
+
+.menu-btn.active .menu-icon {
+
+    background: rgba(126, 217, 87, 0.18);
+
+    color: #9be477;
+}
+
+
+/* =========================================================
+   MENU TEXT
+   ========================================================= */
+
+.menu-text {
+
+    flex: 1;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   ARROW
+   ========================================================= */
+
+.menu-arrow {
+
+    opacity: 0;
+
+    font-size: 10px;
+
+    color: rgba(255, 255, 255, 0.45);
+
+    transform: translateX(-5px);
+
+    transition:
+        opacity 0.25s ease,
+        transform 0.25s ease;
+}
+
+
+.menu-btn:hover .menu-arrow {
+
+    opacity: 1;
+
+    transform: translateX(0);
+}
+
+
+.menu-btn.active .menu-arrow {
+
+    opacity: 1;
+
+    color: #9be477;
+
+    transform: translateX(0);
+}
+
+
+/* =========================================================
+   SIDEBAR DIVIDER
+   ========================================================= */
+
+.sidebar-divider {
+
+    height: 1px;
+
+    margin: 24px 8px;
+
+    background:
+        linear-gradient(
+            to right,
+            transparent,
+            rgba(255,255,255,0.12),
+            transparent
+        );
+}
