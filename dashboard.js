@@ -12,24 +12,30 @@ import {
    ===================================================== */
 
 const firebaseConfig = {
-    apiKey: "AIzaSyAFe7fGknE_4RLLSqIXX7RafMftdfnhf8A",
 
-    authDomain: "ar-rice-system.firebaseapp.com",
+    apiKey:
+        "AIzaSyAFe7fGknE_4RLLSqIXX7RafMftdfnhf8A",
+
+    authDomain:
+        "ar-rice-system.firebaseapp.com",
 
     databaseURL:
         "https://ar-rice-system-default-rtdb.firebaseio.com",
 
-    projectId: "ar-rice-system",
+    projectId:
+        "ar-rice-system",
 
     storageBucket:
         "ar-rice-system.firebasestorage.app",
 
-    messagingSenderId: "315656193287",
+    messagingSenderId:
+        "315656193287",
 
     appId:
         "1:315656193287:web:8719c39e19ac7a773731a2",
 
-    measurementId: "G-B87RFCV0N8"
+    measurementId:
+        "G-B87RFCV0N8"
 };
 
 
@@ -48,9 +54,10 @@ const auth = getAuth(app);
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    /* =====================================================
-       SIDEBAR TOGGLE
-       ===================================================== */
+
+    /* =================================================
+       ELEMENTS
+       ================================================= */
 
     const sidebar =
         document.querySelector(".sidebar");
@@ -58,6 +65,44 @@ document.addEventListener("DOMContentLoaded", () => {
     const sidebarToggle =
         document.getElementById("sidebarToggle");
 
+    const logoutBtn =
+        document.getElementById("logoutBtn");
+
+
+    /* =================================================
+       USERNAME ELEMENTS
+       ================================================= */
+
+    const usernameElement =
+        document.getElementById("username");
+
+    const topbarUsernameElement =
+        document.getElementById("topbarUsername");
+
+
+    /* =================================================
+       DASHBOARD DATA ELEMENTS
+       ================================================= */
+
+    const pestCountElement =
+        document.getElementById("pestCount");
+
+    const robotLocationElement =
+        document.getElementById("robotLocation");
+
+    const batteryElement =
+        document.getElementById("battery");
+
+    const temperatureElement =
+        document.getElementById("temperature");
+
+    const connectionElement =
+        document.getElementById("connectionStatus");
+
+
+    /* =====================================================
+       SIDEBAR COLLAPSE / EXPAND
+       ===================================================== */
 
     if (sidebar && sidebarToggle) {
 
@@ -76,83 +121,44 @@ document.addEventListener("DOMContentLoaded", () => {
                     sidebar.classList.contains("collapsed");
 
 
-                if (isCollapsed) {
+                /* -----------------------------------------
+                   ACCESSIBILITY
+                   ----------------------------------------- */
 
-                    sidebarToggle.title =
-                        "Expand Sidebar";
+                sidebarToggle.setAttribute(
+                    "aria-expanded",
+                    String(!isCollapsed)
+                );
 
-                    sidebarToggle.setAttribute(
-                        "aria-label",
-                        "Expand Sidebar"
-                    );
 
-                }
+                /* -----------------------------------------
+                   TOOLTIP
+                   ----------------------------------------- */
 
-                else {
+                sidebarToggle.title =
+                    isCollapsed
+                        ? "Expand Menu"
+                        : "Collapse Menu";
 
-                    sidebarToggle.title =
-                        "Collapse Sidebar";
 
-                    sidebarToggle.setAttribute(
-                        "aria-label",
-                        "Collapse Sidebar"
-                    );
+                sidebarToggle.setAttribute(
+                    "aria-label",
+                    isCollapsed
+                        ? "Expand Menu"
+                        : "Collapse Menu"
+                );
 
-                }
+
+                console.log(
+                    isCollapsed
+                        ? "Sidebar collapsed"
+                        : "Sidebar expanded"
+                );
 
             }
         );
 
     }
-
-
-    /* =================================================
-       ELEMENTS
-       ================================================= */
-
-    const logoutBtn =
-        document.getElementById("logoutBtn");
-
-    // ...the rest of your existing code...
-
-
-    /* =================================================
-       ELEMENTS
-       ================================================= */
-
-    const logoutBtn =
-        document.getElementById("logoutBtn");
-
-
-    /* ---------------------------------------------
-       USERNAME ELEMENTS
-       --------------------------------------------- */
-
-    const usernameElement =
-        document.getElementById("username");
-
-    const topbarUsernameElement =
-        document.getElementById("topbarUsername");
-
-
-    /* ---------------------------------------------
-       DASHBOARD DATA ELEMENTS
-       --------------------------------------------- */
-
-    const pestCountElement =
-        document.getElementById("pestCount");
-
-    const robotLocationElement =
-        document.getElementById("robotLocation");
-
-    const batteryElement =
-        document.getElementById("battery");
-
-    const temperatureElement =
-        document.getElementById("temperature");
-
-    const connectionElement =
-        document.getElementById("connectionStatus");
 
 
     /* =================================================
@@ -178,11 +184,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 console.log(
                     "No logged-in user."
                 );
-
-                /*
-                 * User is not logged in.
-                 * Send them back to the login page.
-                 */
 
                 window.location.replace(
                     "login.html"
@@ -222,11 +223,6 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
 
-            /*
-             * Get the newest version of the
-             * currently logged-in user.
-             */
-
             const currentUser =
                 auth.currentUser;
 
@@ -254,10 +250,9 @@ document.addEventListener("DOMContentLoaded", () => {
             let username = "User";
 
 
-            /*
-             * First choice:
-             * Firebase displayName
-             */
+            /* ---------------------------------------------
+               FIRST CHOICE — DISPLAY NAME
+               --------------------------------------------- */
 
             if (
                 currentUser &&
@@ -271,10 +266,9 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
 
-            /*
-             * Backup:
-             * Use the part before @
-             */
+            /* ---------------------------------------------
+               BACKUP — EMAIL
+               --------------------------------------------- */
 
             else if (
                 currentUser &&
@@ -298,13 +292,6 @@ document.addEventListener("DOMContentLoaded", () => {
                DISPLAY USERNAME
                ================================================= */
 
-
-            /*
-             * MAIN WELCOME MESSAGE
-             *
-             * Welcome, Username!
-             */
-
             if (usernameElement) {
 
                 usernameElement.textContent =
@@ -312,13 +299,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
             }
 
-
-            /*
-             * TOPBAR USERNAME
-             *
-             * Logged in as
-             * Username
-             */
 
             if (topbarUsernameElement) {
 
@@ -332,18 +312,6 @@ document.addEventListener("DOMContentLoaded", () => {
                DEMO ROVER DATA
                ================================================= */
 
-            /*
-             * These are temporary values.
-             *
-             * Later, we can replace these with
-             * real Raspberry Pi / Firebase data.
-             */
-
-
-            /* ---------------------------------------------
-               PEST COUNT
-               --------------------------------------------- */
-
             if (pestCountElement) {
 
                 pestCountElement.textContent =
@@ -351,10 +319,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
             }
 
-
-            /* ---------------------------------------------
-               ROVER LOCATION
-               --------------------------------------------- */
 
             if (robotLocationElement) {
 
@@ -364,10 +328,6 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
 
-            /* ---------------------------------------------
-               BATTERY
-               --------------------------------------------- */
-
             if (batteryElement) {
 
                 batteryElement.textContent =
@@ -375,10 +335,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
             }
 
-
-            /* ---------------------------------------------
-               TEMPERATURE
-               --------------------------------------------- */
 
             if (temperatureElement) {
 
@@ -388,14 +344,48 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
 
-            /* ---------------------------------------------
-               CONNECTION
-               --------------------------------------------- */
-
             if (connectionElement) {
 
                 connectionElement.textContent =
                     "Online";
+
+            }
+
+
+            /* ---------------------------------------------
+               OTHER BATTERY / TEMPERATURE ELEMENTS
+               --------------------------------------------- */
+
+            const batteryStatus =
+                document.getElementById("batteryStatus");
+
+            const temperatureStatus =
+                document.getElementById("temperatureStatus");
+
+            const batteryProgress =
+                document.getElementById("batteryProgress");
+
+
+            if (batteryStatus) {
+
+                batteryStatus.textContent =
+                    "67%";
+
+            }
+
+
+            if (temperatureStatus) {
+
+                temperatureStatus.textContent =
+                    "32°C";
+
+            }
+
+
+            if (batteryProgress) {
+
+                batteryProgress.style.width =
+                    "67%";
 
             }
 
@@ -420,10 +410,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     );
 
 
-                    /*
-                     * Sign out from Firebase.
-                     */
-
                     await signOut(auth);
 
 
@@ -431,10 +417,6 @@ document.addEventListener("DOMContentLoaded", () => {
                         "Logout successful."
                     );
 
-
-                    /*
-                     * Return to login page.
-                     */
 
                     window.location.replace(
                         "index.html"
@@ -477,6 +459,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 "click",
                 () => {
 
+
+                    /* -------------------------------------
+                       REMOVE ACTIVE FROM ALL BUTTONS
+                       ------------------------------------- */
+
                     menuButtons.forEach(
                         (btn) => {
 
@@ -488,56 +475,43 @@ document.addEventListener("DOMContentLoaded", () => {
                     );
 
 
+                    /* -------------------------------------
+                       ADD ACTIVE TO CLICKED BUTTON
+                       ------------------------------------- */
+
                     button.classList.add(
                         "active"
                     );
 
 
+                    /* -------------------------------------
+                       GET PAGE
+                       ------------------------------------- */
+
+                    const page =
+                        button.dataset.page;
+
+
                     console.log(
                         "Selected page:",
-                        button.dataset.page
+                        page
                     );
+
+
+                    /* -------------------------------------
+                       FUTURE PAGE NAVIGATION
+                       -------------------------------------
+
+                       We are NOT redirecting yet.
+
+                       This keeps the dashboard working
+                       while you build the other pages.
+                    */
 
                 }
             );
 
         }
     );
-
-
-    /* =====================================================
-       SIDEBAR COLLAPSE / EXPAND
-       ===================================================== */
-
-    const sidebarToggle =
-        document.getElementById("sidebarToggle");
-
-
-    if (sidebarToggle) {
-
-        sidebarToggle.addEventListener(
-            "click",
-            () => {
-
-                document.body.classList.toggle(
-                    "sidebar-collapsed"
-                );
-
-
-                const isCollapsed =
-                    document.body.classList.contains(
-                        "sidebar-collapsed"
-                    );
-
-
-                sidebarToggle.title =
-                    isCollapsed
-                        ? "Expand menu"
-                        : "Collapse menu";
-
-            }
-        );
-
-    }
 
 });
