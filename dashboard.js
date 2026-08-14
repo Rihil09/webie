@@ -410,11 +410,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 "click",
                 () => {
 
-                    /*
-                     * Remove active state
-                     * from every menu button.
-                     */
-
                     menuButtons.forEach(
                         (btn) => {
 
@@ -426,27 +421,10 @@ document.addEventListener("DOMContentLoaded", () => {
                     );
 
 
-                    /*
-                     * Add active state
-                     * to the clicked button.
-                     */
-
                     button.classList.add(
                         "active"
                     );
 
-
-                    /*
-                     * For now, we only change
-                     * the visual active state.
-                     *
-                     * Later we can connect:
-                     *
-                     * Dashboard
-                     * Live Camera
-                     * Pest Detection
-                     * Rover Location
-                     */
 
                     console.log(
                         "Selected page:",
@@ -458,5 +436,41 @@ document.addEventListener("DOMContentLoaded", () => {
 
         }
     );
+
+
+    /* =====================================================
+       SIDEBAR COLLAPSE / EXPAND
+       ===================================================== */
+
+    const sidebarToggle =
+        document.getElementById("sidebarToggle");
+
+
+    if (sidebarToggle) {
+
+        sidebarToggle.addEventListener(
+            "click",
+            () => {
+
+                document.body.classList.toggle(
+                    "sidebar-collapsed"
+                );
+
+
+                const isCollapsed =
+                    document.body.classList.contains(
+                        "sidebar-collapsed"
+                    );
+
+
+                sidebarToggle.title =
+                    isCollapsed
+                        ? "Expand menu"
+                        : "Collapse menu";
+
+            }
+        );
+
+    }
 
 });

@@ -2330,3 +2330,186 @@ tbody tr:hover {
             transparent
         );
 }
+
+/* =========================================================
+   SIDEBAR COLLAPSE / EXPAND
+   🌱 SEEDLING BUTTON
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   MAKE THE SEEDLING ICON A REAL BUTTON
+   --------------------------------------------------------- */
+
+.sidebar-logo {
+
+    border: 1px solid rgba(143, 175, 69, 0.20);
+
+    cursor: pointer;
+
+    transition:
+        background 0.25s ease,
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+.sidebar-logo:hover {
+
+    background: rgba(143, 175, 69, 0.20);
+
+    transform: scale(1.05);
+
+    box-shadow:
+        0 0 18px rgba(143, 175, 69, 0.15);
+}
+
+
+/* =========================================================
+   COLLAPSED SIDEBAR
+   ========================================================= */
+
+.sidebar.collapsed {
+
+    width: 75px;
+
+    padding-left: 9px;
+    padding-right: 9px;
+}
+
+
+/* ---------------------------------------------------------
+   SIDEBAR BRAND
+   --------------------------------------------------------- */
+
+.sidebar.collapsed .sidebar-brand {
+
+    justify-content: center;
+
+    padding-left: 0;
+    padding-right: 0;
+}
+
+
+/* Hide AR-RICE text */
+
+.sidebar.collapsed .sidebar-brand-text {
+
+    display: none;
+}
+
+
+/* ---------------------------------------------------------
+   MENU TITLE
+   --------------------------------------------------------- */
+
+.sidebar.collapsed .menu-title {
+
+    display: none;
+}
+
+
+/* ---------------------------------------------------------
+   MENU BUTTONS
+   --------------------------------------------------------- */
+
+.sidebar.collapsed .menu-btn {
+
+    justify-content: center;
+
+    padding-left: 8px;
+    padding-right: 8px;
+
+    gap: 0;
+}
+
+
+/* ---------------------------------------------------------
+   HIDE MENU TEXT
+   --------------------------------------------------------- */
+
+.sidebar.collapsed .menu-text {
+
+    display: none;
+}
+
+
+/* ---------------------------------------------------------
+   HIDE ARROWS
+   --------------------------------------------------------- */
+
+.sidebar.collapsed .menu-arrow {
+
+    display: none;
+}
+
+
+/* ---------------------------------------------------------
+   MENU ICON
+   --------------------------------------------------------- */
+
+.sidebar.collapsed .menu-icon {
+
+    width: 38px;
+    height: 38px;
+}
+
+
+/* ---------------------------------------------------------
+   SIDEBAR INFORMATION
+   --------------------------------------------------------- */
+
+.sidebar.collapsed .sidebar-info {
+
+    display: none;
+}
+
+
+/* ---------------------------------------------------------
+   SIDEBAR FOOTER
+   --------------------------------------------------------- */
+
+.sidebar.collapsed .sidebar-footer {
+
+    display: none;
+}
+
+
+/* ---------------------------------------------------------
+   MAIN CONTENT MOVES WITH SIDEBAR
+   --------------------------------------------------------- */
+
+.main-content {
+
+    transition:
+        margin-left 0.3s ease;
+}
+
+
+.sidebar {
+
+    transition:
+        width 0.3s ease;
+}
+
+
+/* When collapsed */
+
+body.sidebar-collapsed .main-content {
+
+    margin-left: 75px;
+}
+
+
+/* =========================================================
+   SMALL SCREEN OVERRIDE
+   ========================================================= */
+
+@media (max-width: 850px) {
+
+    body.sidebar-collapsed .main-content {
+
+        margin-left: 75px;
+    }
+
+}
