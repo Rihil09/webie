@@ -48,6 +48,73 @@ const auth = getAuth(app);
 
 document.addEventListener("DOMContentLoaded", () => {
 
+    /* =====================================================
+       SIDEBAR TOGGLE
+       ===================================================== */
+
+    const sidebar =
+        document.querySelector(".sidebar");
+
+    const sidebarToggle =
+        document.getElementById("sidebarToggle");
+
+
+    if (sidebar && sidebarToggle) {
+
+        sidebarToggle.addEventListener(
+            "click",
+            () => {
+
+                sidebar.classList.toggle("collapsed");
+
+                document.body.classList.toggle(
+                    "sidebar-collapsed"
+                );
+
+
+                const isCollapsed =
+                    sidebar.classList.contains("collapsed");
+
+
+                if (isCollapsed) {
+
+                    sidebarToggle.title =
+                        "Expand Sidebar";
+
+                    sidebarToggle.setAttribute(
+                        "aria-label",
+                        "Expand Sidebar"
+                    );
+
+                }
+
+                else {
+
+                    sidebarToggle.title =
+                        "Collapse Sidebar";
+
+                    sidebarToggle.setAttribute(
+                        "aria-label",
+                        "Collapse Sidebar"
+                    );
+
+                }
+
+            }
+        );
+
+    }
+
+
+    /* =================================================
+       ELEMENTS
+       ================================================= */
+
+    const logoutBtn =
+        document.getElementById("logoutBtn");
+
+    // ...the rest of your existing code...
+
 
     /* =================================================
        ELEMENTS
