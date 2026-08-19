@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -22,20 +21,15 @@
 
     <!-- Dashboard CSS -->
     <link rel="stylesheet" href="dashboard.css">
-
 </head>
-
 
 <body>
 
-
 <!-- =========================================================
-     TOP NAVIGATION BAR
-     ========================================================= -->
+     TOPBAR
+========================================================= -->
 
 <header class="topbar">
-
-    <!-- BRAND -->
 
     <div class="brand">
 
@@ -58,12 +52,7 @@
     </div>
 
 
-    <!-- TOPBAR RIGHT -->
-
     <div class="topbar-right">
-
-
-        <!-- SYSTEM STATUS -->
 
         <div class="system-status">
 
@@ -76,14 +65,10 @@
         </div>
 
 
-        <!-- USER -->
-
         <div class="user-display">
 
             <div class="user-icon">
-
                 <i class="fa-solid fa-user"></i>
-
             </div>
 
             <div class="user-info">
@@ -104,8 +89,6 @@
         </div>
 
 
-        <!-- LOGOUT -->
-
         <button
             id="logoutBtn"
             class="logout-btn"
@@ -125,56 +108,43 @@
 </header>
 
 
-
 <!-- =========================================================
      SIDEBAR
-     ========================================================= -->
-
-<!-- =========================================================
-     SIDEBAR / MAIN MENU
-     ========================================================= -->
+========================================================= -->
 
 <aside class="sidebar">
 
-<!-- SIDEBAR BRAND -->
+    <div class="sidebar-brand">
 
-<div class="sidebar-brand">
+        <button
+            class="sidebar-toggle"
+            id="sidebarToggle"
+            type="button"
+            title="Collapse sidebar"
+            aria-label="Collapse sidebar"
+        >
+            <i class="fa-solid fa-seedling"></i>
+        </button>
 
-    <button
-        class="sidebar-toggle"
-        id="sidebarToggle"
-        type="button"
-        title="Collapse sidebar"
-        aria-label="Collapse sidebar"
-    >
-        <i class="fa-solid fa-seedling"></i>
-    </button>
+        <div class="sidebar-brand-text">
 
-    <div class="sidebar-brand-text">
+            <strong>
+                AR-RICE
+            </strong>
 
-        <strong>
-            AR-RICE
-        </strong>
+            <small>
+                Rice Field Rover
+            </small>
 
-        <small>
-            Rice Field Rover
-        </small>
+        </div>
 
     </div>
 
-</div>
-
-
-    <!-- MENU TITLE -->
 
     <div class="menu-title">
         <span>MAIN MENU</span>
     </div>
 
-
-    <!-- =================================================
-         DASHBOARD
-         ================================================= -->
 
     <button
         class="menu-btn active"
@@ -196,10 +166,6 @@
     </button>
 
 
-    <!-- =================================================
-         LIVE CAMERA
-         ================================================= -->
-
     <button
         class="menu-btn"
         data-page="camera"
@@ -219,10 +185,6 @@
 
     </button>
 
-
-    <!-- =================================================
-         PEST DETECTION
-         ================================================= -->
 
     <button
         class="menu-btn"
@@ -244,10 +206,6 @@
     </button>
 
 
-    <!-- =================================================
-         ROVER LOCATION
-         ================================================= -->
-
     <button
         class="menu-btn"
         data-page="location"
@@ -267,10 +225,6 @@
 
     </button>
 
-
-    <!-- =================================================
-         ABOUT US
-         ================================================= -->
 
     <button
         class="menu-btn"
@@ -292,21 +246,13 @@
     </button>
 
 
-    <!-- DIVIDER -->
-
     <div class="sidebar-divider"></div>
 
-
-    <!-- =================================================
-         SYSTEM INFORMATION
-         ================================================= -->
 
     <div class="sidebar-info">
 
         <div class="info-icon">
-
             <i class="fa-solid fa-microchip"></i>
-
         </div>
 
         <div>
@@ -324,10 +270,6 @@
     </div>
 
 
-    <!-- =================================================
-         SIDEBAR STATUS
-         ================================================= -->
-
     <div class="sidebar-footer">
 
         <span class="footer-dot"></span>
@@ -340,19 +282,17 @@
 
 </aside>
 
+
 <!-- =========================================================
      MAIN CONTENT
-     ========================================================= -->
+========================================================= -->
 
 <main class="main-content">
 
 
-    <!-- =====================================================
-         PAGE HEADER
-         ===================================================== -->
+    <!-- PAGE HEADER -->
 
     <section class="page-header">
-
 
         <div class="page-heading">
 
@@ -366,10 +306,8 @@
 
 
             <h1>
-
                 Welcome,
                 <span id="username">...</span>!
-
             </h1>
 
 
@@ -380,8 +318,6 @@
 
         </div>
 
-
-        <!-- MONITORING STATUS -->
 
         <div class="monitoring-badge">
 
@@ -404,32 +340,25 @@
     </section>
 
 
-
     <!-- =====================================================
-         DASHBOARD GRID
-         ===================================================== -->
+         DASHBOARD
+    ===================================================== -->
 
     <section class="dashboard-grid">
 
 
         <!-- =================================================
              LIVE CAMERA
-             LARGE CARD
-             ================================================= -->
+        ================================================= -->
 
         <article class="card camera-card">
-
-
-            <!-- HEADER -->
 
             <div class="card-header">
 
                 <div class="card-title">
 
                     <div class="title-icon blue">
-
                         <i class="fa-solid fa-video"></i>
-
                     </div>
 
                     <div>
@@ -458,8 +387,6 @@
             </div>
 
 
-            <!-- CAMERA -->
-
             <div class="camera-feed">
 
                 <img
@@ -480,9 +407,7 @@
                     </div>
 
                     <div class="camera-label">
-
                         AR-RICE / FIELD CAMERA
-
                     </div>
 
                 </div>
@@ -490,16 +415,11 @@
             </div>
 
 
-            <!-- CAMERA FOOTER -->
-
             <div class="camera-footer">
 
                 <div>
-
                     <i class="fa-solid fa-satellite-dish"></i>
-
                     Raspberry Pi Camera
-
                 </div>
 
                 <span>
@@ -511,22 +431,18 @@
         </article>
 
 
-
         <!-- =================================================
              ROVER OVERVIEW
-             ================================================= -->
+        ================================================= -->
 
         <article class="card rover-overview-card">
-
 
             <div class="card-header">
 
                 <div class="card-title">
 
                     <div class="title-icon green">
-
                         <i class="fa-solid fa-robot"></i>
-
                     </div>
 
                     <div>
@@ -543,6 +459,7 @@
 
                 </div>
 
+
                 <span class="online-badge">
 
                     <span></span>
@@ -554,14 +471,10 @@
             </div>
 
 
-            <!-- ROVER ICON -->
-
             <div class="rover-visual">
 
                 <div class="rover-circle">
-
                     <i class="fa-solid fa-robot"></i>
-
                 </div>
 
                 <strong>
@@ -574,8 +487,6 @@
 
             </div>
 
-
-            <!-- ROVER QUICK INFORMATION -->
 
             <div class="overview-info">
 
@@ -608,21 +519,16 @@
         </article>
 
 
-
         <!-- =================================================
-             DETECTED PESTS
-             SMALL STAT CARD
-             ================================================= -->
+             PEST COUNT
+        ================================================= -->
 
         <article class="card stat-card pest-card">
-
 
             <div class="stat-card-top">
 
                 <div class="title-icon orange">
-
                     <i class="fa-solid fa-bug"></i>
-
                 </div>
 
                 <span class="card-label">
@@ -631,47 +537,32 @@
 
             </div>
 
-
             <span class="stat-title">
                 Detected Pests
             </span>
 
-
             <div class="stat-number">
-
-                <span id="pestCount">
-                    12
-                </span>
-
+                <span id="pestCount">12</span>
             </div>
 
-
             <div class="stat-footer">
-
                 <i class="fa-solid fa-radar"></i>
-
                 Detection Active
-
             </div>
 
         </article>
 
 
-
         <!-- =================================================
              BATTERY
-             SMALL STAT CARD
-             ================================================= -->
+        ================================================= -->
 
         <article class="card stat-card battery-card">
-
 
             <div class="stat-card-top">
 
                 <div class="title-icon green">
-
                     <i class="fa-solid fa-battery-three-quarters"></i>
-
                 </div>
 
                 <span class="card-label">
@@ -680,11 +571,9 @@
 
             </div>
 
-
             <span class="stat-title">
                 Rover Battery
             </span>
-
 
             <div class="stat-number">
 
@@ -693,7 +582,6 @@
                 </span>
 
             </div>
-
 
             <div class="progress-bar">
 
@@ -704,33 +592,23 @@
 
             </div>
 
-
             <div class="stat-footer">
-
-                <span>
-                    Current battery level
-                </span>
-
+                Current battery level
             </div>
 
         </article>
 
 
-
         <!-- =================================================
              TEMPERATURE
-             SMALL STAT CARD
-             ================================================= -->
+        ================================================= -->
 
         <article class="card stat-card temperature-card">
-
 
             <div class="stat-card-top">
 
                 <div class="title-icon cyan">
-
                     <i class="fa-solid fa-temperature-half"></i>
-
                 </div>
 
                 <span class="card-label">
@@ -739,11 +617,9 @@
 
             </div>
 
-
             <span class="stat-title">
                 Temperature
             </span>
-
 
             <div class="stat-number">
 
@@ -752,7 +628,6 @@
                 </span>
 
             </div>
-
 
             <div class="stat-footer">
 
@@ -765,22 +640,18 @@
         </article>
 
 
-
         <!-- =================================================
              ROVER LOCATION
-             ================================================= -->
+        ================================================= -->
 
         <article class="card location-card">
-
 
             <div class="card-header">
 
                 <div class="card-title">
 
                     <div class="title-icon cyan">
-
                         <i class="fa-solid fa-location-dot"></i>
-
                     </div>
 
                     <div>
@@ -800,14 +671,10 @@
             </div>
 
 
-            <!-- LOCATION DISPLAY -->
-
             <div class="location-display">
 
                 <div class="location-icon">
-
                     <i class="fa-solid fa-location-crosshairs"></i>
-
                 </div>
 
                 <div>
@@ -824,8 +691,6 @@
 
             </div>
 
-
-            <!-- MINI MAP -->
 
             <div class="mini-map">
 
@@ -848,22 +713,18 @@
         </article>
 
 
-
         <!-- =================================================
              ROVER STATUS
-             ================================================= -->
+        ================================================= -->
 
         <article class="card rover-status-card">
-
 
             <div class="card-header">
 
                 <div class="card-title">
 
                     <div class="title-icon purple">
-
                         <i class="fa-solid fa-microchip"></i>
-
                     </div>
 
                     <div>
@@ -880,6 +741,7 @@
 
                 </div>
 
+
                 <div class="online-badge">
 
                     <span></span>
@@ -891,19 +753,13 @@
             </div>
 
 
-            <!-- STATUS GRID -->
-
             <div class="status-grid">
 
-
-                <!-- BATTERY -->
 
                 <div class="status-item">
 
                     <div class="status-item-icon battery-icon">
-
                         <i class="fa-solid fa-battery-three-quarters"></i>
-
                     </div>
 
                     <div class="status-item-info">
@@ -923,14 +779,10 @@
                 </div>
 
 
-                <!-- TEMPERATURE -->
-
                 <div class="status-item">
 
                     <div class="status-item-icon temperature-icon">
-
                         <i class="fa-solid fa-temperature-half"></i>
-
                     </div>
 
                     <div class="status-item-info">
@@ -950,14 +802,10 @@
                 </div>
 
 
-                <!-- CONNECTION -->
-
                 <div class="status-item">
 
                     <div class="status-item-icon connection-icon">
-
                         <i class="fa-solid fa-wifi"></i>
-
                     </div>
 
                     <div class="status-item-info">
@@ -982,22 +830,18 @@
         </article>
 
 
-
         <!-- =================================================
              LATEST DETECTION
-             ================================================= -->
+        ================================================= -->
 
         <article class="card history-card">
-
 
             <div class="card-header">
 
                 <div class="card-title">
 
                     <div class="title-icon purple">
-
                         <i class="fa-solid fa-clock-rotate-left"></i>
-
                     </div>
 
                     <div>
@@ -1021,8 +865,6 @@
             </div>
 
 
-            <!-- TABLE -->
-
             <div class="table-wrapper">
 
                 <table>
@@ -1042,7 +884,6 @@
                         </tr>
 
                     </thead>
-
 
                     <tbody id="historyTable">
 
@@ -1069,8 +910,6 @@
             </div>
 
 
-            <!-- HISTORY FOOTER -->
-
             <div class="history-footer">
 
                 <i class="fa-solid fa-circle-info"></i>
@@ -1082,22 +921,18 @@
         </article>
 
 
-
         <!-- =================================================
              FIELD MONITORING
-             ================================================= -->
+        ================================================= -->
 
         <article class="card field-status-card">
-
 
             <div class="card-header">
 
                 <div class="card-title">
 
                     <div class="title-icon green">
-
                         <i class="fa-solid fa-seedling"></i>
-
                     </div>
 
                     <div>
@@ -1119,13 +954,9 @@
 
             <div class="field-status-content">
 
-
                 <div class="field-status-icon">
-
                     <i class="fa-solid fa-wheat-awn"></i>
-
                 </div>
-
 
                 <div class="field-status-text">
 
@@ -1140,7 +971,6 @@
 
                 </div>
 
-
                 <div class="field-status-active">
 
                     <span class="status-dot"></span>
@@ -1153,14 +983,12 @@
 
         </article>
 
-
     </section>
-
 
 
     <!-- =====================================================
          FOOTER
-         ===================================================== -->
+    ===================================================== -->
 
     <footer class="dashboard-footer">
 
@@ -1175,26 +1003,24 @@
         <span>
             Arduino and Raspberry Pi-Based Rover for
             Real-Time Remote Detection of Nocturnal Rice
-            Black Bug (<i>Scotinophara coarctata</i>) Using YOLOv11
+            Black Bug
+            (<i>Scotinophara coarctata</i>)
+            Using YOLOv11
         </span>
 
     </footer>
 
-
 </main>
-
 
 
 <!-- =========================================================
      JAVASCRIPT
-     ========================================================= -->
+========================================================= -->
 
 <script
     type="module"
     src="dashboard.js"
 ></script>
 
-
 </body>
-
 </html>
