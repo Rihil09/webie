@@ -6,6 +6,12 @@ import {
     signOut
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
+import {
+    getDatabase,
+    ref,
+    onValue
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+
 
 /* =====================================================
    FIREBASE CONFIG
@@ -46,6 +52,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 const auth = getAuth(app);
+
+const database = getDatabase(app);
 
 
 /* =====================================================
@@ -880,90 +888,116 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
 
-            /* =================================================
-               DEMO ROVER DATA
-               ================================================= */
-
-            if (pestCountElement) {
-
-                pestCountElement.textContent =
-                    "12";
-
-            }
-
-
-            if (robotLocationElement) {
-
-                robotLocationElement.textContent =
-                    "Field Zone A3";
-
-            }
-
-
-            if (batteryElement) {
-
-                batteryElement.textContent =
-                    "67%";
-
-            }
-
-
-            if (temperatureElement) {
-
-                temperatureElement.textContent =
-                    "32°C";
-
-            }
-
-
-            if (connectionElement) {
-
-                connectionElement.textContent =
-                    "Online";
-
-            }
-
-
             /* ---------------------------------------------
-               OTHER BATTERY / TEMPERATURE ELEMENTS
+               RASPBERRY PI / FIREBASE ROVER DATA
                --------------------------------------------- */
 
-            const batteryStatus =
-                document.getElementById("batteryStatus");
+            const robotRef = ref(database, "robot");
 
-            const temperatureStatus =
-                document.getElementById("temperatureStatus");
+            onValue(
+                robotRef,
+                (snapshot) => {
 
-            const batteryProgress =
-                document.getElementById("batteryProgress");
+                    const data = snapshot.val();
+
+                    console.log("Raspberry Pi data:", data);
+
+                    // No data has been sent yet
+                    if (!data) {
+                        console.log("No rover data available yet.");
+                        return;
+                    }
+
+                    /* -----------------------------------------
+                    TEMPERATURE
+                    ----------------------------------------- */
+
+                    if (temperatureElement && data.temperature !== undefined) {
+                        temperatureElement.textContent =
+                            data.temperature + "°C";
+                    }
+
+                    const temperatureStatus =
+                        document.getElementById("temperatureStatus");
+
+                    if (
+                        temperatureStatus &&
+                        data.temperature !== undefined
+                    ) {
+                        temperatureStatus.textContent =
+                            data.temperature + "°C";
+                    }
 
 
-            if (batteryStatus) {
+                    /* -----------------------------------------
+                    PESTS DETECTED
+                    ----------------------------------------- */
 
-                batteryStatus.textContent =
-                    "67%";
-
-            }
-
-
-            if (temperatureStatus) {
-
-                temperatureStatus.textContent =
-                    "32°C";
-
-            }
+                    if (pestCountElement && data.pestsDetected !== undefined) {
+                        pestCountElement.textContent =
+                            data.pestsDetected;
+                    }
 
 
-            if (batteryProgress) {
+                    /* -----------------------------------------
+                    BATTERY
+                    ----------------------------------------- */
 
-                batteryProgress.style.width =
-                    "67%";
+                    if (batteryElement && data.battery !== undefined) {
+                        batteryElement.textContent =
+                            data.battery + "%";
+                    }
 
-            }
+                    const batteryStatus =
+                        document.getElementById("batteryStatus");
 
+                    if (
+                        batteryStatus &&
+                        data.battery !== undefined
+                    ) {
+                        batteryStatus.textContent =
+                            data.battery + "%";
+                    }
+
+                    const batteryProgress =
+                        document.getElementById("batteryProgress");
+
+                    if (
+                        batteryProgress &&
+                        data.battery !== undefined
+                    ) {
+                        batteryProgress.style.width =
+                            data.battery + "%";
+                    }
+
+
+                    /* -----------------------------------------
+                    CONNECTION STATUS
+                    ----------------------------------------- */
+
+                    if (connectionElement) {
+                        connectionElement.textContent =
+                            "Online";
+                    }
+
+                },
+
+                (error) => {
+
+                    console.error(
+                        "Firebase rover data error:",
+                        error
+                    );
+
+                    if (connectionElement) {
+                        connectionElement.textContent =
+                            "Offline";
+                    }
+
+                }
+            );
         }
     );
-
 
     /* =====================================================
        LOGOUT
