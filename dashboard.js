@@ -583,587 +583,546 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 
-/* =====================================================
-   FIREBASE CONFIG
-   ===================================================== */
-
-const firebaseConfig = {
-
-    apiKey:
-        "AIzaSyAFe7fGknE_4RLLSqIXX7RafMftdfnhf8A",
-
-    authDomain:
-        "ar-rice-system.firebaseapp.com",
-
-    databaseURL:
-        "https://ar-rice-system-default-rtdb.firebaseio.com",
-
-    projectId:
-        "ar-rice-system",
-
-    storageBucket:
-        "ar-rice-system.firebasestorage.app",
-
-    messagingSenderId:
-        "315656193287",
-
-    appId:
-        "1:315656193287:web:8719c39e19ac7a773731a2",
-
-    measurementId:
-        "G-B87RFCV0N8"
-};
-
-/* =====================================================
-   PAGE LOAD
-   ===================================================== */
-
-document.addEventListener("DOMContentLoaded", () => {
-
-    /* =================================================
-       ELEMENTS
-       ================================================= */
-
-    const sidebar =
-        document.querySelector(".sidebar");
-
-    const sidebarToggle =
-        document.getElementById("sidebarToggle");
-
-    const logoutBtn =
-        document.getElementById("logoutBtn");
-
-
-    /* =================================================
-       USERNAME ELEMENTS
-       ================================================= */
-
-    const usernameElement =
-        document.getElementById("username");
-
-    const topbarUsernameElement =
-        document.getElementById("topbarUsername");
-
-
-    /* =================================================
-       DASHBOARD DATA ELEMENTS
-       ================================================= */
-
-    const pestCountElement =
-        document.getElementById("pestCount");
-
-    const robotLocationElement =
-        document.getElementById("robotLocation");
-
-    const batteryElement =
-        document.getElementById("battery");
-
-    const temperatureElement =
-        document.getElementById("temperature");
-
-    const connectionElement =
-        document.getElementById("connectionStatus");
-
-
     /* =====================================================
-       SIDEBAR COLLAPSE / EXPAND
+       FIREBASE CONFIG
        ===================================================== */
 
-    if (sidebar && sidebarToggle) {
+    const firebaseConfig = {
 
-        sidebarToggle.addEventListener(
-            "click",
-            () => {
+        apiKey:
+            "AIzaSyAFe7fGknE_4RLLSqIXX7RafMftdfnhf8A",
 
-                sidebar.classList.toggle("collapsed");
+        authDomain:
+            "ar-rice-system.firebaseapp.com",
 
-                document.body.classList.toggle(
-                    "sidebar-collapsed"
-                );
+        databaseURL:
+            "https://ar-rice-system-default-rtdb.firebaseio.com",
 
-                const isCollapsed =
-                    sidebar.classList.contains("collapsed");
+        projectId:
+            "ar-rice-system",
 
+        storageBucket:
+            "ar-rice-system.firebasestorage.app",
 
-                /* -----------------------------------------
-                   ACCESSIBILITY
-                   ----------------------------------------- */
+        messagingSenderId:
+            "315656193287",
 
-                sidebarToggle.setAttribute(
-                    "aria-expanded",
-                    String(!isCollapsed)
-                );
+        appId:
+            "1:315656193287:web:8719c39e19ac7a773731a2",
 
+        measurementId:
+            "G-B87RFCV0N8"
+    };
 
-                /* -----------------------------------------
-                   TOOLTIP
-                   ----------------------------------------- */
+    /* =====================================================
+       PAGE LOAD
+       ===================================================== */
 
-                sidebarToggle.title =
-                    isCollapsed
-                        ? "Expand Menu"
-                        : "Collapse Menu";
+    document.addEventListener("DOMContentLoaded", () => {
 
-                sidebarToggle.setAttribute(
-                    "aria-label",
-                    isCollapsed
-                        ? "Expand Menu"
-                        : "Collapse Menu"
-                );
+        /* =================================================
+           ELEMENTS
+           ================================================= */
 
+        const sidebar =
+            document.querySelector(".sidebar");
 
-                console.log(
-                    isCollapsed
-                        ? "Sidebar collapsed"
-                        : "Sidebar expanded"
-                );
+        const sidebarToggle =
+            document.getElementById("sidebarToggle");
 
-            }
-        );
+        const logoutBtn =
+            document.getElementById("logoutBtn");
 
-    }
 
+        /* =================================================
+           USERNAME ELEMENTS
+           ================================================= */
 
-    /* =================================================
-       AUTHENTICATION
-       ================================================= */
+        const usernameElement =
+            document.getElementById("username");
 
-    onAuthStateChanged(
-        auth,
-        async (user) => {
+        const topbarUsernameElement =
+            document.getElementById("topbarUsername");
 
-            console.log(
-                "Firebase auth state:",
-                user
-            );
 
+        /* =================================================
+           DASHBOARD DATA ELEMENTS
+           ================================================= */
 
-            /* =========================================
-               NO USER
-               ========================================= */
+        const pestCountElement =
+            document.getElementById("pestCount");
 
-            if (!user) {
+        const robotLocationElement =
+            document.getElementById("robotLocation");
 
-                console.log(
-                    "No logged-in user."
-                );
+        const batteryElement =
+            document.getElementById("battery");
 
-                window.location.replace(
-                    "login.html"
-                );
+        const temperatureElement =
+            document.getElementById("temperature");
 
-                return;
-            }
+        const connectionElement =
+            document.getElementById("connectionStatus");
 
 
-            /* =========================================
-               USER IS LOGGED IN
-               ========================================= */
+        /* =====================================================
+           SIDEBAR COLLAPSE / EXPAND
+           ===================================================== */
 
-            console.log(
-                "Logged in:",
-                user.email
-            );
+        if (sidebar && sidebarToggle) {
 
+            sidebarToggle.addEventListener(
+                "click",
+                () => {
 
-            /* =========================================
-               REFRESH USER INFORMATION
-               ========================================= */
+                    sidebar.classList.toggle("collapsed");
 
-            try {
-
-                await user.reload();
-
-            }
-
-            catch (error) {
-
-                console.error(
-                    "Could not reload user:",
-                    error
-                );
-
-            }
-
-
-            const currentUser =
-                auth.currentUser;
-
-
-            console.log(
-                "Current user:",
-                currentUser
-            );
-
-            console.log(
-                "Display name:",
-                currentUser?.displayName
-            );
-
-            console.log(
-                "Email:",
-                currentUser?.email
-            );
-
-
-            /* =================================================
-               DETERMINE USERNAME
-               ================================================= */
-
-            let username = "User";
-
-
-            /* ---------------------------------------------
-               FIRST CHOICE — DISPLAY NAME
-               --------------------------------------------- */
-
-            if (
-                currentUser &&
-                currentUser.displayName &&
-                currentUser.displayName.trim() !== ""
-            ) {
-
-                username =
-                    currentUser.displayName.trim();
-
-            }
-
-
-            /* ---------------------------------------------
-               BACKUP — EMAIL
-               --------------------------------------------- */
-
-            else if (
-                currentUser &&
-                currentUser.email
-            ) {
-
-                username =
-                    currentUser.email.split("@")[0];
-
-            }
-
-
-            console.log(
-                "Username to display:",
-                username
-            );
-
-
-            /* =================================================
-               DISPLAY USERNAME
-               ================================================= */
-
-            if (usernameElement) {
-
-                usernameElement.textContent =
-                    username;
-
-            }
-
-
-            if (topbarUsernameElement) {
-
-                topbarUsernameElement.textContent =
-                    username;
-
-            }
-
-
-            /* ---------------------------------------------
-               RASPBERRY PI / FIREBASE ROVER DATA
-               --------------------------------------------- */
-
-            const robotRef = ref(database, "robot");
-
-            onValue(
-                robotRef,
-                (snapshot) => {
-
-                    const data = snapshot.val();
-
-                    console.log("Raspberry Pi data:", data);
-
-                    // No data has been sent yet
-                    if (!data) {
-                        console.log("No rover data available yet.");
-                        return;
-                    }
-
-                    /* -----------------------------------------
-                    TEMPERATURE
-                    ----------------------------------------- */
-
-                    if (temperatureElement && data.temperature !== undefined) {
-                        temperatureElement.textContent =
-                            data.temperature + "°C";
-                    }
-
-                    const temperatureStatus =
-                        document.getElementById("temperatureStatus");
-
-                    if (
-                        temperatureStatus &&
-                        data.temperature !== undefined
-                    ) {
-                        temperatureStatus.textContent =
-                            data.temperature + "°C";
-                    }
-
-
-                    /* -----------------------------------------
-                    PESTS DETECTED
-                    ----------------------------------------- */
-
-                    if (pestCountElement && data.pestsDetected !== undefined) {
-                        pestCountElement.textContent =
-                            data.pestsDetected;
-                    }
-
-
-                    /* -----------------------------------------
-                    BATTERY
-                    ----------------------------------------- */
-
-                    if (batteryElement && data.battery !== undefined) {
-                        batteryElement.textContent =
-                            data.battery + "%";
-                    }
-
-                    const batteryStatus =
-                        document.getElementById("batteryStatus");
-
-                    if (
-                        batteryStatus &&
-                        data.battery !== undefined
-                    ) {
-                        batteryStatus.textContent =
-                            data.battery + "%";
-                    }
-
-                    const batteryProgress =
-                        document.getElementById("batteryProgress");
-
-                    if (
-                        batteryProgress &&
-                        data.battery !== undefined
-                    ) {
-                        batteryProgress.style.width =
-                            data.battery + "%";
-                    }
-
-
-                    /* -----------------------------------------
-                    CONNECTION STATUS
-                    ----------------------------------------- */
-
-                    if (connectionElement) {
-                        connectionElement.textContent =
-                            "Online";
-                    }
-
-                },
-
-                (error) => {
-
-                    console.error(
-                        "Firebase rover data error:",
-                        error
+                    document.body.classList.toggle(
+                        "sidebar-collapsed"
                     );
 
-                    if (connectionElement) {
-                        connectionElement.textContent =
-                            "Offline";
-                    }
+                    const isCollapsed =
+                        sidebar.classList.contains("collapsed");
+
+
+                    /* -----------------------------------------
+                       ACCESSIBILITY
+                       ----------------------------------------- */
+
+                    sidebarToggle.setAttribute(
+                        "aria-expanded",
+                        String(!isCollapsed)
+                    );
+
+
+                    /* -----------------------------------------
+                       TOOLTIP
+                       ----------------------------------------- */
+
+                    sidebarToggle.title =
+                        isCollapsed
+                            ? "Expand Menu"
+                            : "Collapse Menu";
+
+                    sidebarToggle.setAttribute(
+                        "aria-label",
+                        isCollapsed
+                            ? "Expand Menu"
+                            : "Collapse Menu"
+                    );
+
+
+                    console.log(
+                        isCollapsed
+                            ? "Sidebar collapsed"
+                            : "Sidebar expanded"
+                    );
 
                 }
             );
+
         }
-    );
 
-    /* =====================================================
-       LOGOUT
-       ===================================================== */
 
-    if (logoutBtn) {
+        /* =================================================
+           AUTHENTICATION
+           ================================================= */
 
-        logoutBtn.addEventListener(
-            "click",
-            async () => {
+        onAuthStateChanged(
+            auth,
+            async (user) => {
+
+                console.log(
+                    "Firebase auth state:",
+                    user
+                );
+
+
+                /* =========================================
+                   NO USER
+                   ========================================= */
+
+                if (!user) {
+
+                    console.log(
+                        "No logged-in user."
+                    );
+
+                    window.location.replace(
+                        "login.html"
+                    );
+
+                    return;
+                }
+
+
+                /* =========================================
+                   USER IS LOGGED IN
+                   ========================================= */
+
+                console.log(
+                    "Logged in:",
+                    user.email
+                );
+
+
+                /* =========================================
+                   REFRESH USER INFORMATION
+                   ========================================= */
 
                 try {
 
-                    console.log(
-                        "Logging out..."
-                    );
-
-
-                    await signOut(auth);
-
-
-                    console.log(
-                        "Logout successful."
-                    );
-
-
-                    window.location.replace(
-                        "index.html"
-                    );
+                    await user.reload();
 
                 }
 
                 catch (error) {
 
                     console.error(
-                        "Logout error:",
+                        "Could not reload user:",
                         error
-                    );
-
-                    alert(
-                        "Logout failed: " +
-                        error.message
                     );
 
                 }
 
+
+                const currentUser =
+                    auth.currentUser;
+
+
+                console.log(
+                    "Current user:",
+                    currentUser
+                );
+
+                console.log(
+                    "Display name:",
+                    currentUser?.displayName
+                );
+
+                console.log(
+                    "Email:",
+                    currentUser?.email
+                );
+
+
+                /* =================================================
+                   DETERMINE USERNAME
+                   ================================================= */
+
+                let username = "User";
+
+
+                /* ---------------------------------------------
+                   FIRST CHOICE — DISPLAY NAME
+                   --------------------------------------------- */
+
+                if (
+                    currentUser &&
+                    currentUser.displayName &&
+                    currentUser.displayName.trim() !== ""
+                ) {
+
+                    username =
+                        currentUser.displayName.trim();
+
+                }
+
+
+                /* ---------------------------------------------
+                   BACKUP — EMAIL
+                   --------------------------------------------- */
+
+                else if (
+                    currentUser &&
+                    currentUser.email
+                ) {
+
+                    username =
+                        currentUser.email.split("@")[0];
+
+                }
+
+
+                console.log(
+                    "Username to display:",
+                    username
+                );
+
+
+                /* =================================================
+                   DISPLAY USERNAME
+                   ================================================= */
+
+                if (usernameElement) {
+
+                    usernameElement.textContent =
+                        username;
+
+                }
+
+
+                if (topbarUsernameElement) {
+
+                    topbarUsernameElement.textContent =
+                        username;
+
+                }
+
+
+                /* ---------------------------------------------
+                   RASPBERRY PI / FIREBASE ROVER DATA
+                   --------------------------------------------- */
+
+                const robotRef = ref(database, "robot");
+
+                onValue(
+                    robotRef,
+                    (snapshot) => {
+
+                        const data = snapshot.val();
+
+                        console.log("Raspberry Pi data:", data);
+
+                        // No data has been sent yet
+                        if (!data) {
+                            console.log("No rover data available yet.");
+                            return;
+                        }
+
+                        /* -----------------------------------------
+                        TEMPERATURE
+                        ----------------------------------------- */
+
+                        if (temperatureElement && data.temperature !== undefined) {
+                            temperatureElement.textContent =
+                                data.temperature + "°C";
+                        }
+
+                        const temperatureStatus =
+                            document.getElementById("temperatureStatus");
+
+                        if (
+                            temperatureStatus &&
+                            data.temperature !== undefined
+                        ) {
+                            temperatureStatus.textContent =
+                                data.temperature + "°C";
+                        }
+
+
+                        /* -----------------------------------------
+                        PESTS DETECTED
+                        ----------------------------------------- */
+
+                        if (pestCountElement && data.pestsDetected !== undefined) {
+                            pestCountElement.textContent =
+                                data.pestsDetected;
+                        }
+
+
+                        /* -----------------------------------------
+                        BATTERY
+                        ----------------------------------------- */
+
+                        if (batteryElement && data.battery !== undefined) {
+                            batteryElement.textContent =
+                                data.battery + "%";
+                        }
+
+                        const batteryStatus =
+                            document.getElementById("batteryStatus");
+
+                        if (
+                            batteryStatus &&
+                            data.battery !== undefined
+                        ) {
+                            batteryStatus.textContent =
+                                data.battery + "%";
+                        }
+
+                        const batteryProgress =
+                            document.getElementById("batteryProgress");
+
+                        if (
+                            batteryProgress &&
+                            data.battery !== undefined
+                        ) {
+                            batteryProgress.style.width =
+                                data.battery + "%";
+                        }
+
+
+                        /* -----------------------------------------
+                        CONNECTION STATUS
+                        ----------------------------------------- */
+
+                        if (connectionElement) {
+                            connectionElement.textContent =
+                                "Online";
+                        }
+
+                    },
+
+                    (error) => {
+
+                        console.error(
+                            "Firebase rover data error:",
+                            error
+                        );
+
+                        if (connectionElement) {
+                            connectionElement.textContent =
+                                "Offline";
+                        }
+
+                    }
+                );
             }
         );
 
-    }
+        /* =====================================================
+           LOGOUT
+           ===================================================== */
+
+        if (logoutBtn) {
+
+            logoutBtn.addEventListener(
+                "click",
+                async () => {
+
+                    try {
+
+                        console.log(
+                            "Logging out..."
+                        );
 
 
-    /* =====================================================
-       SIDEBAR MENU / PAGE NAVIGATION
-       ===================================================== */
-
-    const menuButtons =
-        document.querySelectorAll(".menu-btn");
-
-    const dashboardGrid =
-        document.querySelector(".dashboard-grid");
-
-    const pageHeader =
-        document.querySelector(".page-header");
-
-    const aboutSection =
-        document.getElementById("aboutSection");
-
-    const dashboardFooter =
-        document.querySelector(".dashboard-footer");
+                        await signOut(auth);
 
 
-    /* =====================================================
-       PAGE SWITCHING
-       ===================================================== */
-
-    function showPage(page) {
-
-        /* -----------------------------------------
-           DASHBOARD
-           ----------------------------------------- */
-
-        if (page === "dashboard") {
-
-            if (pageHeader) {
-                pageHeader.style.display = "flex";
-            }
-
-            if (dashboardGrid) {
-                dashboardGrid.style.display = "grid";
-            }
-
-            if (aboutSection) {
-                aboutSection.classList.remove("active");
-            }
-
-            if (dashboardFooter) {
-                dashboardFooter.style.display = "block";
-            }
-
-        }
+                        console.log(
+                            "Logout successful."
+                        );
 
 
-        /* -----------------------------------------
-           ABOUT US
-           ----------------------------------------- */
+                        window.location.replace(
+                            "index.html"
+                        );
 
-        else if (page === "about") {
+                    }
 
-            if (pageHeader) {
-                pageHeader.style.display = "none";
-            }
+                    catch (error) {
 
-            if (dashboardGrid) {
-                dashboardGrid.style.display = "none";
-            }
+                        console.error(
+                            "Logout error:",
+                            error
+                        );
 
-            if (aboutSection) {
-                aboutSection.classList.add("active");
-            }
+                        alert(
+                            "Logout failed: " +
+                            error.message
+                        );
 
-            if (dashboardFooter) {
-                dashboardFooter.style.display = "block";
-            }
+                    }
 
-        }
-
-
-        /* -----------------------------------------
-           OTHER PAGES
-           ----------------------------------------- */
-
-        else {
-
-            console.log(
-                "Page not implemented yet:",
-                page
+                }
             );
 
         }
 
-    }
+
+        /* =====================================================
+           SIDEBAR MENU / PAGE NAVIGATION
+           ===================================================== */
+
+        const menuButtons =
+            document.querySelectorAll(".menu-btn");
+
+        const dashboardGrid =
+            document.querySelector(".dashboard-grid");
+
+        const pageHeader =
+            document.querySelector(".page-header");
+
+        const aboutSection =
+            document.getElementById("aboutSection");
+
+        const dashboardFooter =
+            document.querySelector(".dashboard-footer");
 
 
-    /* =====================================================
-       MENU BUTTON EVENTS
-       ===================================================== */
+        /* =====================================================
+           PAGE SWITCHING
+           ===================================================== */
 
-    menuButtons.forEach((button) => {
+        function showPage(page) {
 
-        button.addEventListener("click", () => {
+            /* -----------------------------------------
+               DASHBOARD
+               ----------------------------------------- */
 
-            /* Remove active state */
+            if (page === "dashboard") {
 
-            menuButtons.forEach((btn) => {
+                if (pageHeader) {
+                    pageHeader.style.display = "flex";
+                }
 
-                btn.classList.remove("active");
+                if (dashboardGrid) {
+                    dashboardGrid.style.display = "grid";
+                }
 
-            });
+                if (aboutSection) {
+                    aboutSection.classList.remove("active");
+                }
 
+                if (dashboardFooter) {
+                    dashboardFooter.style.display = "block";
+                }
 
-            /* Add active state */
-
-            button.classList.add("active");
-
-
-            /* Get selected page */
-
-            const page =
-                button.dataset.page;
-
-
-            console.log(
-                "Selected page:",
-                page
-            );
+            }
 
 
-            /* Show selected page */
+            /* -----------------------------------------
+               ABOUT US
+               ----------------------------------------- */
 
-            showPage(page);
+            else if (page === "about") {
 
-        });
+                if (pageHeader) {
+                    pageHeader.style.display = "none";
+                }
 
-    });
+                if (dashboardGrid) {
+                    dashboardGrid.style.display = "none";
+                }
 
-});
+                if (aboutSection) {
+                    aboutSection.classList.add("active");
+                }
+
+                if (dashboardFooter) {
+                    dashboardFooter.style.display = "block";
+                }
+
+            }
+
+
+            /* -----------------------------------------
+               OTHER PAGES
+               ----------------------------------------- */
+
+            else {
+
+                console.log(
+                    "Page not implemented yet:",
+                    page
+                );
+
+            }
+
+        }
+
+
+        
+        
