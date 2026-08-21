@@ -582,14 +582,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     });
 
-});import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-
-import {
-    getAuth,
-    onAuthStateChanged,
-    signOut
-} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-
 
 /* =====================================================
    FIREBASE CONFIG
@@ -621,16 +613,6 @@ const firebaseConfig = {
     measurementId:
         "G-B87RFCV0N8"
 };
-
-
-/* =====================================================
-   INITIALIZE FIREBASE
-   ===================================================== */
-
-const app = initializeApp(firebaseConfig);
-
-const auth = getAuth(app);
-
 
 /* =====================================================
    PAGE LOAD
