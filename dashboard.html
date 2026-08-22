@@ -93,6 +93,7 @@
             id="logoutBtn"
             class="logout-btn"
             title="Logout"
+            type="button"
         >
 
             <i class="fa-solid fa-right-from-bracket"></i>
@@ -122,6 +123,7 @@
             type="button"
             title="Collapse sidebar"
             aria-label="Collapse sidebar"
+            aria-expanded="true"
         >
             <i class="fa-solid fa-seedling"></i>
         </button>
@@ -146,9 +148,12 @@
     </div>
 
 
+    <!-- DASHBOARD -->
+
     <button
         class="menu-btn active"
         data-page="dashboard"
+        type="button"
     >
 
         <span class="menu-icon">
@@ -166,9 +171,12 @@
     </button>
 
 
+    <!-- LIVE CAMERA -->
+
     <button
         class="menu-btn"
         data-page="camera"
+        type="button"
     >
 
         <span class="menu-icon">
@@ -186,9 +194,12 @@
     </button>
 
 
+    <!-- PEST DETECTION -->
+
     <button
         class="menu-btn"
         data-page="pest"
+        type="button"
     >
 
         <span class="menu-icon">
@@ -206,9 +217,12 @@
     </button>
 
 
+    <!-- ROVER LOCATION -->
+
     <button
         class="menu-btn"
         data-page="location"
+        type="button"
     >
 
         <span class="menu-icon">
@@ -226,9 +240,12 @@
     </button>
 
 
+    <!-- ABOUT US -->
+
     <button
         class="menu-btn"
         data-page="about"
+        type="button"
     >
 
         <span class="menu-icon">
@@ -290,7 +307,9 @@
 <main class="main-content">
 
 
-    <!-- PAGE HEADER -->
+    <!-- =====================================================
+         PAGE HEADER
+    ===================================================== -->
 
     <section class="page-header">
 
@@ -341,270 +360,13 @@
 
 
     <!-- =====================================================
-         DASHBOARD
+         DASHBOARD GRID
+         
+         IMPORTANT:
+         ABOUT US IS NOT INSIDE THIS SECTION.
     ===================================================== -->
 
     <section class="dashboard-grid">
-
-        <!-- =====================================================
-     ABOUT US SECTION
-     ===================================================== -->
-
-<section id="aboutSection" class="about-section">
-
-    <!-- LEFT / MAIN ABOUT CONTENT -->
-    <div class="about-main">
-
-        <div class="about-label">
-            <i class="fas fa-seedling"></i>
-            ABOUT AR-RICE
-        </div>
-
-        <h1>
-            Smarter Farming,
-            <span>Better Rice.</span>
-        </h1>
-
-        <p class="about-intro">
-            AR-RICE is an Arduino and Raspberry Pi-based
-            modular robotic system designed to remotely
-            detect rice pests in real time using
-            YOLOv11 computer vision technology.
-        </p>
-
-
-        <!-- PROJECT DESCRIPTION -->
-
-        <div class="about-description">
-
-            <div class="about-icon">
-                <i class="fas fa-robot"></i>
-            </div>
-
-            <div>
-
-                <span>OUR PROJECT</span>
-
-                <h2>
-                    Arduino & Raspberry Pi-Based
-                    Pest Detection
-                </h2>
-
-                <p>
-                    AR-RICE combines robotics, remote sensing,
-                    and artificial intelligence to help monitor
-                    rice fields and detect pest infestations
-                    more efficiently.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <!-- FEATURES -->
-
-        <div class="about-features">
-
-            <div class="about-feature">
-
-                <div class="feature-icon green">
-                    <i class="fas fa-microchip"></i>
-                </div>
-
-                <div>
-                    <strong>Smart Technology</strong>
-                    <span>Arduino + Raspberry Pi</span>
-                </div>
-
-            </div>
-
-
-            <div class="about-feature">
-
-                <div class="feature-icon blue">
-                    <i class="fas fa-eye"></i>
-                </div>
-
-                <div>
-                    <strong>Real-Time Detection</strong>
-                    <span>YOLOv11 Computer Vision</span>
-                </div>
-
-            </div>
-
-
-            <div class="about-feature">
-
-                <div class="feature-icon gold">
-                    <i class="fas fa-wheat-awn"></i>
-                </div>
-
-                <div>
-                    <strong>Rice Protection</strong>
-                    <span>Pest Monitoring</span>
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- RIGHT PROFILE CARD -->
-
-    <aside class="about-profile">
-
-        <div class="profile-image">
-
-            <i class="fas fa-seedling"></i>
-
-        </div>
-
-
-        <div class="profile-info">
-
-            <span class="profile-label">
-                PROJECT SYSTEM
-            </span>
-
-            <h2>AR-RICE</h2>
-
-            <p>
-                Smart Agriculture
-                Monitoring System
-            </p>
-
-        </div>
-
-
-        <div class="profile-divider"></div>
-
-
-        <div class="profile-details">
-
-            <div>
-
-                <i class="fas fa-bullseye"></i>
-
-                <section>
-                    <span>MISSION</span>
-                    <strong>
-                        Smarter pest monitoring
-                    </strong>
-                </section>
-
-            </div>
-
-
-            <div>
-
-                <i class="fas fa-cogs"></i>
-
-                <section>
-                    <span>TECHNOLOGY</span>
-                    <strong>
-                        Arduino • Raspberry Pi
-                    </strong>
-                </section>
-
-            </div>
-
-
-            <div>
-
-                <i class="fas fa-brain"></i>
-
-                <section>
-                    <span>AI MODEL</span>
-                    <strong>
-                        YOLOv11
-                    </strong>
-                </section>
-
-            </div>
-
-        </div>
-
-    </aside>
-
-
-    <!-- TEAM / PROJECT STRIP -->
-
-    <div class="about-team">
-
-        <div class="team-heading">
-
-            <span>
-                <i class="fas fa-users"></i>
-                THE PROJECT
-            </span>
-
-            <h2>
-                Built for smarter agriculture.
-            </h2>
-
-        </div>
-
-
-        <div class="team-cards">
-
-            <div class="team-card">
-
-                <div class="team-card-icon">
-                    <i class="fas fa-robot"></i>
-                </div>
-
-                <strong>
-                    Modular Rover
-                </strong>
-
-                <span>
-                    Remote field monitoring
-                </span>
-
-            </div>
-
-
-            <div class="team-card">
-
-                <div class="team-card-icon">
-                    <i class="fas fa-camera"></i>
-                </div>
-
-                <strong>
-                    Pest Detection
-                </strong>
-
-                <span>
-                    Real-time visual analysis
-                </span>
-
-            </div>
-
-
-            <div class="team-card">
-
-                <div class="team-card-icon">
-                    <i class="fas fa-leaf"></i>
-                </div>
-
-                <strong>
-                    Sustainable Farming
-                </strong>
-
-                <span>
-                    Supporting rice farmers
-                </span>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
 
 
         <!-- =================================================
@@ -654,7 +416,6 @@
                     src="images/camera-placeholder.png"
                     alt="AR-RICE Raspberry Pi Camera Feed"
                 >
-
 
                 <div class="camera-overlay">
 
@@ -848,6 +609,7 @@
                 <div
                     class="progress-fill"
                     id="batteryProgress"
+                    style="width: 67%;"
                 ></div>
 
             </div>
@@ -1016,6 +778,8 @@
             <div class="status-grid">
 
 
+                <!-- BATTERY STATUS -->
+
                 <div class="status-item">
 
                     <div class="status-item-icon battery-icon">
@@ -1029,15 +793,19 @@
                         </span>
 
                         <strong>
+
                             <span id="batteryStatus">
                                 67%
                             </span>
+
                         </strong>
 
                     </div>
 
                 </div>
 
+
+                <!-- TEMPERATURE STATUS -->
 
                 <div class="status-item">
 
@@ -1052,15 +820,19 @@
                         </span>
 
                         <strong>
+
                             <span id="temperatureStatus">
                                 32°C
                             </span>
+
                         </strong>
 
                     </div>
 
                 </div>
 
+
+                <!-- CONNECTION STATUS -->
 
                 <div class="status-item">
 
@@ -1243,6 +1015,395 @@
 
         </article>
 
+
+    </section>
+
+
+    <!-- =====================================================
+         ABOUT US SECTION
+
+         IMPORTANT:
+         This is OUTSIDE dashboard-grid.
+    ===================================================== -->
+
+    <section
+        id="aboutSection"
+        class="about-section"
+    >
+
+
+        <!-- =================================================
+             LEFT / MAIN ABOUT CONTENT
+        ================================================= -->
+
+        <div class="about-main">
+
+
+            <div class="about-label">
+
+                <i class="fas fa-seedling"></i>
+
+                ABOUT AR-RICE
+
+            </div>
+
+
+            <h1>
+
+                Smarter Farming,
+
+                <span>
+                    Better Rice.
+                </span>
+
+            </h1>
+
+
+            <p class="about-intro">
+
+                AR-RICE is an Arduino and Raspberry Pi-based
+                modular robotic system designed to remotely
+                detect rice pests in real time using
+                YOLOv11 computer vision technology.
+
+            </p>
+
+
+            <!-- PROJECT DESCRIPTION -->
+
+            <div class="about-description">
+
+
+                <div class="about-icon">
+
+                    <i class="fas fa-robot"></i>
+
+                </div>
+
+
+                <div>
+
+                    <span>
+                        OUR PROJECT
+                    </span>
+
+                    <h2>
+
+                        Arduino & Raspberry Pi-Based
+                        Pest Detection
+
+                    </h2>
+
+
+                    <p>
+
+                        AR-RICE combines robotics, remote sensing,
+                        and artificial intelligence to help monitor
+                        rice fields and detect pest infestations
+                        more efficiently.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- FEATURES -->
+
+            <div class="about-features">
+
+
+                <!-- SMART TECHNOLOGY -->
+
+                <div class="about-feature">
+
+                    <div class="feature-icon green">
+
+                        <i class="fas fa-microchip"></i>
+
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Smart Technology
+                        </strong>
+
+                        <span>
+                            Arduino + Raspberry Pi
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- REAL-TIME DETECTION -->
+
+                <div class="about-feature">
+
+                    <div class="feature-icon blue">
+
+                        <i class="fas fa-eye"></i>
+
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Real-Time Detection
+                        </strong>
+
+                        <span>
+                            YOLOv11 Computer Vision
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- RICE PROTECTION -->
+
+                <div class="about-feature">
+
+                    <div class="feature-icon gold">
+
+                        <i class="fas fa-wheat-awn"></i>
+
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Rice Protection
+                        </strong>
+
+                        <span>
+                            Pest Monitoring
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             RIGHT PROFILE CARD
+        ================================================= -->
+
+        <aside class="about-profile">
+
+
+            <div class="profile-image">
+
+                <i class="fas fa-seedling"></i>
+
+            </div>
+
+
+            <div class="profile-info">
+
+                <span class="profile-label">
+                    PROJECT SYSTEM
+                </span>
+
+
+                <h2>
+                    AR-RICE
+                </h2>
+
+
+                <p>
+                    Smart Agriculture
+                    Monitoring System
+                </p>
+
+            </div>
+
+
+            <div class="profile-divider"></div>
+
+
+            <div class="profile-details">
+
+
+                <!-- MISSION -->
+
+                <div>
+
+                    <i class="fas fa-bullseye"></i>
+
+                    <section>
+
+                        <span>
+                            MISSION
+                        </span>
+
+                        <strong>
+                            Smarter pest monitoring
+                        </strong>
+
+                    </section>
+
+                </div>
+
+
+                <!-- TECHNOLOGY -->
+
+                <div>
+
+                    <i class="fas fa-cogs"></i>
+
+                    <section>
+
+                        <span>
+                            TECHNOLOGY
+                        </span>
+
+                        <strong>
+                            Arduino • Raspberry Pi
+                        </strong>
+
+                    </section>
+
+                </div>
+
+
+                <!-- AI MODEL -->
+
+                <div>
+
+                    <i class="fas fa-brain"></i>
+
+                    <section>
+
+                        <span>
+                            AI MODEL
+                        </span>
+
+                        <strong>
+                            YOLOv11
+                        </strong>
+
+                    </section>
+
+                </div>
+
+
+            </div>
+
+        </aside>
+
+
+        <!-- =================================================
+             PROJECT STRIP
+        ================================================= -->
+
+        <div class="about-team">
+
+
+            <div class="team-heading">
+
+                <span>
+
+                    <i class="fas fa-users"></i>
+
+                    THE PROJECT
+
+                </span>
+
+
+                <h2>
+                    Built for smarter agriculture.
+                </h2>
+
+            </div>
+
+
+            <div class="team-cards">
+
+
+                <!-- MODULAR ROVER -->
+
+                <div class="team-card">
+
+                    <div class="team-card-icon">
+
+                        <i class="fas fa-robot"></i>
+
+                    </div>
+
+
+                    <strong>
+                        Modular Rover
+                    </strong>
+
+
+                    <span>
+                        Remote field monitoring
+                    </span>
+
+                </div>
+
+
+                <!-- PEST DETECTION -->
+
+                <div class="team-card">
+
+                    <div class="team-card-icon">
+
+                        <i class="fas fa-camera"></i>
+
+                    </div>
+
+
+                    <strong>
+                        Pest Detection
+                    </strong>
+
+
+                    <span>
+                        Real-time visual analysis
+                    </span>
+
+                </div>
+
+
+                <!-- SUSTAINABLE FARMING -->
+
+                <div class="team-card">
+
+                    <div class="team-card-icon">
+
+                        <i class="fas fa-leaf"></i>
+
+                    </div>
+
+
+                    <strong>
+                        Sustainable Farming
+                    </strong>
+
+
+                    <span>
+                        Supporting rice farmers
+                    </span>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
     </section>
 
 
@@ -1261,14 +1422,17 @@
         </span>
 
         <span>
+
             Arduino and Raspberry Pi-Based Rover for
             Real-Time Remote Detection of Nocturnal Rice
             Black Bug
             (<i>Scotinophara coarctata</i>)
             Using YOLOv11
+
         </span>
 
     </footer>
+
 
 </main>
 
