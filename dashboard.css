@@ -2951,3 +2951,53 @@ body.sidebar-collapsed .main-content {
         height: 300px;
     }
 }
+
+/* =========================================================
+   KEEP CREDIT FOOTER AT THE VERY BOTTOM OF EVERY TAB
+   ========================================================= */
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.dashboard-footer {
+    margin-top: auto;
+    padding-top: 25px;
+    padding-bottom: 18px;
+    width: 100%;
+}
+
+
+/* Make each tab section occupy the available space */
+.page-section,
+.about-section {
+    width: 100%;
+}
+
+
+/* =========================================================
+   DASHBOARD FOOTER SPACING
+   ========================================================= */
+
+.dashboard-grid + .dashboard-footer {
+    margin-top: 28px;
+}
+
+.page-section + .dashboard-footer,
+.about-section + .dashboard-footer {
+    margin-top: auto;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .dashboard-footer {
+        padding-top: 22px;
+        padding-bottom: 15px;
+    }
+}
