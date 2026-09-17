@@ -13,9 +13,10 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 
 
+
 /* =====================================================
    FIREBASE CONFIG
-   ===================================================== */
+===================================================== */
 
 const firebaseConfig = {
 
@@ -45,9 +46,10 @@ const firebaseConfig = {
 };
 
 
+
 /* =====================================================
    INITIALIZE FIREBASE
-   ===================================================== */
+===================================================== */
 
 const app = initializeApp(firebaseConfig);
 
@@ -56,16 +58,17 @@ const auth = getAuth(app);
 const database = getDatabase(app);
 
 
+
 /* =====================================================
    PAGE LOAD
-   ===================================================== */
+===================================================== */
 
 document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =================================================
        ELEMENTS
-       ================================================= */
+    ================================================= */
 
     const sidebar =
         document.querySelector(".sidebar");
@@ -79,7 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /* =================================================
        USERNAME ELEMENTS
-       ================================================= */
+    ================================================= */
 
     const usernameElement =
         document.getElementById("username");
@@ -90,13 +93,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /* =================================================
        DASHBOARD DATA ELEMENTS
-       ================================================= */
+    ================================================= */
 
     const pestCountElement =
         document.getElementById("pestCount");
 
+    const pestPageCountElement =
+        document.getElementById("pestPageCount");
+
     const robotLocationElement =
         document.getElementById("robotLocation");
+
+    const overviewLocationElement =
+        document.getElementById("overviewLocation");
+
+    const locationPageValue =
+        document.getElementById("locationPageValue");
 
     const batteryElement =
         document.getElementById("battery");
@@ -107,10 +119,46 @@ document.addEventListener("DOMContentLoaded", () => {
     const connectionElement =
         document.getElementById("connectionStatus");
 
+    const batteryStatus =
+        document.getElementById("batteryStatus");
+
+    const temperatureStatus =
+        document.getElementById("temperatureStatus");
+
+    const batteryProgress =
+        document.getElementById("batteryProgress");
+
+
+    /* =====================================================
+       PAGE SECTIONS
+    ===================================================== */
+
+    const pageHeader =
+        document.querySelector(".page-header");
+
+    const dashboardGrid =
+        document.querySelector(".dashboard-grid");
+
+    const aboutSection =
+        document.getElementById("aboutSection");
+
+    const cameraSection =
+        document.getElementById("cameraSection");
+
+    const pestSection =
+        document.getElementById("pestSection");
+
+    const locationSection =
+        document.getElementById("locationSection");
+
+    const dashboardFooter =
+        document.querySelector(".dashboard-footer");
+
+
 
     /* =====================================================
        SIDEBAR COLLAPSE / EXPAND
-       ===================================================== */
+    ===================================================== */
 
     if (sidebar && sidebarToggle) {
 
@@ -128,24 +176,17 @@ document.addEventListener("DOMContentLoaded", () => {
                     sidebar.classList.contains("collapsed");
 
 
-                /* -----------------------------------------
-                   ACCESSIBILITY
-                   ----------------------------------------- */
-
                 sidebarToggle.setAttribute(
                     "aria-expanded",
                     String(!isCollapsed)
                 );
 
 
-                /* -----------------------------------------
-                   TOOLTIP
-                   ----------------------------------------- */
-
                 sidebarToggle.title =
                     isCollapsed
                         ? "Expand Menu"
                         : "Collapse Menu";
+
 
                 sidebarToggle.setAttribute(
                     "aria-label",
@@ -167,9 +208,245 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    /* =================================================
+
+    /* =====================================================
+       PAGE SWITCHING
+    ===================================================== */
+
+    function showPage(page) {
+
+        console.log(
+            "Switching to page:",
+            page
+        );
+
+
+        /* =================================================
+           HIDE ALL PAGE CONTENT FIRST
+        ================================================= */
+
+        if (pageHeader) {
+            pageHeader.style.display = "none";
+        }
+
+        if (dashboardGrid) {
+            dashboardGrid.style.display = "none";
+        }
+
+        if (aboutSection) {
+            aboutSection.classList.remove("active");
+            aboutSection.style.display = "none";
+        }
+
+        if (cameraSection) {
+            cameraSection.classList.remove("active");
+            cameraSection.style.display = "none";
+        }
+
+        if (pestSection) {
+            pestSection.classList.remove("active");
+            pestSection.style.display = "none";
+        }
+
+        if (locationSection) {
+            locationSection.classList.remove("active");
+            locationSection.style.display = "none";
+        }
+
+
+        /* =================================================
+           DASHBOARD
+        ================================================= */
+
+        if (page === "dashboard") {
+
+            if (pageHeader) {
+                pageHeader.style.display = "flex";
+            }
+
+            if (dashboardGrid) {
+                dashboardGrid.style.display = "grid";
+            }
+
+            if (dashboardFooter) {
+                dashboardFooter.style.display = "block";
+            }
+
+        }
+
+
+        /* =================================================
+           ABOUT US
+        ================================================= */
+
+        else if (page === "about") {
+
+            if (aboutSection) {
+
+                aboutSection.style.display = "grid";
+
+                aboutSection.classList.add("active");
+
+            }
+
+            if (dashboardFooter) {
+                dashboardFooter.style.display = "block";
+            }
+
+        }
+
+
+        /* =================================================
+           LIVE CAMERA
+        ================================================= */
+
+        else if (page === "camera") {
+
+            if (cameraSection) {
+
+                cameraSection.style.display = "block";
+
+                cameraSection.classList.add("active");
+
+            }
+
+            if (dashboardFooter) {
+                dashboardFooter.style.display = "block";
+            }
+
+        }
+
+
+        /* =================================================
+           PEST DETECTION
+        ================================================= */
+
+        else if (page === "pest") {
+
+            if (pestSection) {
+
+                pestSection.style.display = "block";
+
+                pestSection.classList.add("active");
+
+            }
+
+            if (dashboardFooter) {
+                dashboardFooter.style.display = "block";
+            }
+
+        }
+
+
+        /* =================================================
+           ROVER LOCATION
+        ================================================= */
+
+        else if (page === "location") {
+
+            if (locationSection) {
+
+                locationSection.style.display = "block";
+
+                locationSection.classList.add("active");
+
+            }
+
+            if (dashboardFooter) {
+                dashboardFooter.style.display = "block";
+            }
+
+        }
+
+
+        /* =================================================
+           UNKNOWN PAGE
+        ================================================= */
+
+        else {
+
+            console.warn(
+                "Unknown page:",
+                page
+            );
+
+        }
+
+    }
+
+
+
+    /* =====================================================
+       SIDEBAR MENU
+    ===================================================== */
+
+    const menuButtons =
+        document.querySelectorAll(".menu-btn");
+
+
+    menuButtons.forEach(
+        (button) => {
+
+            button.addEventListener(
+                "click",
+                () => {
+
+
+                    /* =====================================
+                       REMOVE ACTIVE FROM ALL BUTTONS
+                    ===================================== */
+
+                    menuButtons.forEach(
+                        (btn) => {
+
+                            btn.classList.remove(
+                                "active"
+                            );
+
+                        }
+                    );
+
+
+                    /* =====================================
+                       ADD ACTIVE TO CLICKED BUTTON
+                    ===================================== */
+
+                    button.classList.add(
+                        "active"
+                    );
+
+
+                    /* =====================================
+                       GET PAGE
+                    ===================================== */
+
+                    const page =
+                        button.dataset.page;
+
+
+                    console.log(
+                        "Selected page:",
+                        page
+                    );
+
+
+                    /* =====================================
+                       SHOW PAGE
+                    ===================================== */
+
+                    showPage(page);
+
+                }
+            );
+
+        }
+    );
+
+
+
+    /* =====================================================
        AUTHENTICATION
-       ================================================= */
+    ===================================================== */
 
     onAuthStateChanged(
         auth,
@@ -181,9 +458,9 @@ document.addEventListener("DOMContentLoaded", () => {
             );
 
 
-            /* =========================================
+            /* =============================================
                NO USER
-               ========================================= */
+            ============================================= */
 
             if (!user) {
 
@@ -199,9 +476,9 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
 
-            /* =========================================
-               USER IS LOGGED IN
-               ========================================= */
+            /* =============================================
+               USER LOGGED IN
+            ============================================= */
 
             console.log(
                 "Logged in:",
@@ -209,9 +486,9 @@ document.addEventListener("DOMContentLoaded", () => {
             );
 
 
-            /* =========================================
-               REFRESH USER INFORMATION
-               ========================================= */
+            /* =============================================
+               REFRESH USER
+            ============================================= */
 
             try {
 
@@ -233,32 +510,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 auth.currentUser;
 
 
-            console.log(
-                "Current user:",
-                currentUser
-            );
-
-            console.log(
-                "Display name:",
-                currentUser?.displayName
-            );
-
-            console.log(
-                "Email:",
-                currentUser?.email
-            );
-
-
-            /* =================================================
+            /* =============================================
                DETERMINE USERNAME
-               ================================================= */
+            ============================================= */
 
             let username = "User";
 
-
-            /* ---------------------------------------------
-               FIRST CHOICE — DISPLAY NAME
-               --------------------------------------------- */
 
             if (
                 currentUser &&
@@ -270,11 +527,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     currentUser.displayName.trim();
 
             }
-
-
-            /* ---------------------------------------------
-               BACKUP — EMAIL
-               --------------------------------------------- */
 
             else if (
                 currentUser &&
@@ -288,14 +540,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
             console.log(
-                "Username to display:",
+                "Username:",
                 username
             );
 
 
-            /* =================================================
+            /* =============================================
                DISPLAY USERNAME
-               ================================================= */
+            ============================================= */
 
             if (usernameElement) {
 
@@ -313,9 +565,10 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
 
-            /* =====================================================
-               RASPBERRY PI / FIREBASE ROVER DATA
-               ===================================================== */
+
+            /* =================================================
+               FIREBASE ROVER DATA
+            ================================================= */
 
             const robotRef =
                 ref(database, "robot");
@@ -323,6 +576,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             onValue(
                 robotRef,
+
                 (snapshot) => {
 
                     const data =
@@ -337,137 +591,153 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     /* =========================================
                        NO DATA
-                       ========================================= */
+                    ========================================= */
 
                     if (!data) {
 
                         console.log(
-                            "No rover data available yet."
+                            "No rover data available."
                         );
 
                         if (connectionElement) {
+
                             connectionElement.textContent =
                                 "Waiting...";
+
                         }
 
                         return;
                     }
 
 
+
                     /* =========================================
                        TEMPERATURE
-                       ========================================= */
+                    ========================================= */
 
                     if (
-                        temperatureElement &&
                         data.temperature !== undefined
                     ) {
 
-                        temperatureElement.textContent =
-                            data.temperature + "°C";
+                        if (temperatureElement) {
+
+                            temperatureElement.textContent =
+                                data.temperature + "°C";
+
+                        }
+
+
+                        if (temperatureStatus) {
+
+                            temperatureStatus.textContent =
+                                data.temperature + "°C";
+
+                        }
 
                     }
 
-
-                    const temperatureStatus =
-                        document.getElementById(
-                            "temperatureStatus"
-                        );
-
-
-                    if (
-                        temperatureStatus &&
-                        data.temperature !== undefined
-                    ) {
-
-                        temperatureStatus.textContent =
-                            data.temperature + "°C";
-
-                    }
 
 
                     /* =========================================
-                       PESTS DETECTED
-                       ========================================= */
+                       PEST COUNT
+                    ========================================= */
 
                     if (
-                        pestCountElement &&
                         data.pestsDetected !== undefined
                     ) {
 
-                        pestCountElement.textContent =
-                            data.pestsDetected;
+                        if (pestCountElement) {
+
+                            pestCountElement.textContent =
+                                data.pestsDetected;
+
+                        }
+
+
+                        if (pestPageCountElement) {
+
+                            pestPageCountElement.textContent =
+                                data.pestsDetected;
+
+                        }
 
                     }
+
 
 
                     /* =========================================
                        BATTERY
-                       ========================================= */
+                    ========================================= */
 
                     if (
-                        batteryElement &&
                         data.battery !== undefined
                     ) {
 
-                        batteryElement.textContent =
-                            data.battery + "%";
+                        if (batteryElement) {
+
+                            batteryElement.textContent =
+                                data.battery + "%";
+
+                        }
+
+
+                        if (batteryStatus) {
+
+                            batteryStatus.textContent =
+                                data.battery + "%";
+
+                        }
+
+
+                        if (batteryProgress) {
+
+                            batteryProgress.style.width =
+                                data.battery + "%";
+
+                        }
 
                     }
 
-
-                    const batteryStatus =
-                        document.getElementById(
-                            "batteryStatus"
-                        );
-
-
-                    if (
-                        batteryStatus &&
-                        data.battery !== undefined
-                    ) {
-
-                        batteryStatus.textContent =
-                            data.battery + "%";
-
-                    }
-
-
-                    const batteryProgress =
-                        document.getElementById(
-                            "batteryProgress"
-                        );
-
-
-                    if (
-                        batteryProgress &&
-                        data.battery !== undefined
-                    ) {
-
-                        batteryProgress.style.width =
-                            data.battery + "%";
-
-                    }
 
 
                     /* =========================================
-                       ROBOT LOCATION
-                       ========================================= */
+                       LOCATION
+                    ========================================= */
 
                     if (
-                        robotLocationElement &&
                         data.location !== undefined
                     ) {
 
-                        robotLocationElement.textContent =
-                            data.location;
+                        if (robotLocationElement) {
+
+                            robotLocationElement.textContent =
+                                data.location;
+
+                        }
+
+
+                        if (overviewLocationElement) {
+
+                            overviewLocationElement.textContent =
+                                data.location;
+
+                        }
+
+
+                        if (locationPageValue) {
+
+                            locationPageValue.textContent =
+                                data.location;
+
+                        }
 
                     }
 
 
+
                     /* =========================================
-                       CONNECTION STATUS
-                       ========================================= */
+                       CONNECTION
+                    ========================================= */
 
                     if (connectionElement) {
 
@@ -480,8 +750,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
                 /* =============================================
-                   FIREBASE DATABASE ERROR
-                   ============================================= */
+                   DATABASE ERROR
+                ============================================= */
 
                 (error) => {
 
@@ -501,13 +771,21 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             );
 
+
+            /* =================================================
+               START ON DASHBOARD
+            ================================================= */
+
+            showPage("dashboard");
+
         }
     );
 
 
+
     /* =====================================================
        LOGOUT
-       ===================================================== */
+    ===================================================== */
 
     if (logoutBtn) {
 
@@ -543,6 +821,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         error
                     );
 
+
                     alert(
                         "Logout failed: " +
                         error.message
@@ -554,149 +833,5 @@ document.addEventListener("DOMContentLoaded", () => {
         );
 
     }
-
-
-    /* =====================================================
-       SIDEBAR MENU / PAGE NAVIGATION
-       ===================================================== */
-
-    const menuButtons =
-        document.querySelectorAll(".menu-btn");
-
-    const dashboardGrid =
-        document.querySelector(".dashboard-grid");
-
-    const pageHeader =
-        document.querySelector(".page-header");
-
-    const aboutSection =
-        document.getElementById("aboutSection");
-
-    const dashboardFooter =
-        document.querySelector(".dashboard-footer");
-
-
-    /* =====================================================
-       PAGE SWITCHING
-       ===================================================== */
-
-    function showPage(page) {
-
-
-        /* -----------------------------------------
-           DASHBOARD
-           ----------------------------------------- */
-
-        if (page === "dashboard") {
-
-            if (pageHeader) {
-                pageHeader.style.display = "flex";
-            }
-
-            if (dashboardGrid) {
-                dashboardGrid.style.display = "grid";
-            }
-
-            if (aboutSection) {
-                aboutSection.classList.remove("active");
-            }
-
-            if (dashboardFooter) {
-                dashboardFooter.style.display = "block";
-            }
-
-        }
-
-
-        /* -----------------------------------------
-           ABOUT US
-           ----------------------------------------- */
-
-        else if (page === "about") {
-
-            if (pageHeader) {
-                pageHeader.style.display = "none";
-            }
-
-            if (dashboardGrid) {
-                dashboardGrid.style.display = "none";
-            }
-
-            if (aboutSection) {
-                aboutSection.classList.add("active");
-            }
-
-            if (dashboardFooter) {
-                dashboardFooter.style.display = "block";
-            }
-
-        }
-
-
-        /* -----------------------------------------
-           OTHER PAGES
-           ----------------------------------------- */
-
-        else {
-
-            console.log(
-                "Page not implemented yet:",
-                page
-            );
-
-        }
-
-    }
-
-
-    /* =====================================================
-       MENU BUTTON EVENTS
-       ===================================================== */
-
-    menuButtons.forEach((button) => {
-
-        button.addEventListener(
-            "click",
-            () => {
-
-
-                /* Remove active state */
-
-                menuButtons.forEach((btn) => {
-
-                    btn.classList.remove(
-                        "active"
-                    );
-
-                });
-
-
-                /* Add active state */
-
-                button.classList.add(
-                    "active"
-                );
-
-
-                /* Get selected page */
-
-                const page =
-                    button.dataset.page;
-
-
-                console.log(
-                    "Selected page:",
-                    page
-                );
-
-
-                /* Show selected page */
-
-                showPage(page);
-
-            }
-        );
-
-    });
 
 });
