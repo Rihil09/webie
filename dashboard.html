@@ -1433,8 +1433,687 @@
 
     </footer>
 
+    <!-- =====================================================
+     LIVE CAMERA PAGE
+===================================================== -->
+
+<section id="cameraSection" class="page-section">
+
+    <div class="page-section-header">
+
+        <div>
+            <span class="page-label">
+                <i class="fa-solid fa-video"></i>
+                RASPBERRY PI CAMERA
+            </span>
+
+            <h1>Live Camera</h1>
+
+            <p>
+                View the real-time camera feed from the
+                AR-RICE rover.
+            </p>
+        </div>
+
+        <div class="monitoring-badge">
+            <span class="status-dot"></span>
+
+            <div>
+                <strong>Camera Online</strong>
+                <small>Raspberry Pi</small>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="camera-page-grid">
+
+        <!-- CAMERA FEED -->
+
+        <article class="camera-large-card">
+
+            <div class="card-header">
+
+                <div class="card-title">
+
+                    <div class="title-icon blue">
+                        <i class="fa-solid fa-video"></i>
+                    </div>
+
+                    <div>
+                        <span class="card-label">
+                            LIVE FEED
+                        </span>
+
+                        <h2>
+                            Field Camera
+                        </h2>
+                    </div>
+
+                </div>
+
+                <div class="live-indicator">
+                    <span></span>
+                    LIVE
+                </div>
+
+            </div>
+
+
+            <div class="camera-large-feed">
+
+                <img
+                    id="cameraFeedLarge"
+                    src="images/camera-placeholder.png"
+                    alt="AR-RICE Live Camera Feed"
+                >
+
+                <div class="camera-overlay">
+
+                    <div class="camera-status">
+                        <i class="fa-solid fa-circle"></i>
+                        Camera Connected
+                    </div>
+
+                    <div class="camera-label">
+                        AR-RICE / FIELD CAMERA
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="camera-feed-info">
+
+                <div>
+                    <i class="fa-solid fa-satellite-dish"></i>
+                    Raspberry Pi Camera
+                </div>
+
+                <span>
+                    Real-time monitoring
+                </span>
+
+            </div>
+
+        </article>
+
+
+        <!-- CAMERA INFORMATION -->
+
+        <article class="camera-info-card">
+
+            <div class="card-header">
+
+                <div class="card-title">
+
+                    <div class="title-icon green">
+                        <i class="fa-solid fa-circle-info"></i>
+                    </div>
+
+                    <div>
+
+                        <span class="card-label">
+                            CAMERA INFORMATION
+                        </span>
+
+                        <h2>
+                            Camera Status
+                        </h2>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="camera-status-list">
+
+                <div class="camera-status-item">
+
+                    <div class="status-item-icon connection-icon">
+                        <i class="fa-solid fa-wifi"></i>
+                    </div>
+
+                    <div class="status-item-info">
+
+                        <span>
+                            Connection
+                        </span>
+
+                        <strong class="online-text">
+                            Online
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="camera-status-item">
+
+                    <div class="status-item-icon temperature-icon">
+                        <i class="fa-solid fa-camera"></i>
+                    </div>
+
+                    <div class="status-item-info">
+
+                        <span>
+                            Camera
+                        </span>
+
+                        <strong>
+                            Raspberry Pi
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="camera-status-item">
+
+                    <div class="status-item-icon battery-icon">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+
+                    <div class="status-item-info">
+
+                        <span>
+                            Feed Status
+                        </span>
+
+                        <strong class="online-text">
+                            Active
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     PEST DETECTION PAGE
+===================================================== -->
+
+<section id="pestSection" class="page-section">
+
+    <div class="page-section-header">
+
+        <div>
+
+            <span class="page-label">
+                <i class="fa-solid fa-bug"></i>
+                YOLOv11 COMPUTER VISION
+            </span>
+
+            <h1>Pest Detection</h1>
+
+            <p>
+                Monitor pest detections identified by the
+                AR-RICE vision system.
+            </p>
+
+        </div>
+
+        <div class="monitoring-badge">
+
+            <span class="status-dot"></span>
+
+            <div>
+                <strong>Detection Active</strong>
+                <small>YOLOv11</small>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- DETECTION STATISTICS -->
+
+    <div class="detection-stats">
+
+        <article class="detection-stat-card">
+
+            <div class="title-icon orange">
+                <i class="fa-solid fa-bug"></i>
+            </div>
+
+            <span>
+                DETECTED PESTS
+            </span>
+
+            <strong id="pestPageCount">
+                12
+            </strong>
+
+            <small>
+                Current detection count
+            </small>
+
+        </article>
+
+
+        <article class="detection-stat-card">
+
+            <div class="title-icon blue">
+                <i class="fa-solid fa-brain"></i>
+            </div>
+
+            <span>
+                AI MODEL
+            </span>
+
+            <strong>
+                YOLOv11
+            </strong>
+
+            <small>
+                Computer vision model
+            </small>
+
+        </article>
+
+
+        <article class="detection-stat-card">
+
+            <div class="title-icon green">
+                <i class="fa-solid fa-satellite-dish"></i>
+            </div>
+
+            <span>
+                DETECTION STATUS
+            </span>
+
+            <strong class="online-text">
+                Active
+            </strong>
+
+            <small>
+                Real-time monitoring
+            </small>
+
+        </article>
+
+    </div>
+
+
+    <!-- DETECTION AREA -->
+
+    <div class="detection-content">
+
+        <article class="detection-camera-card">
+
+            <div class="card-header">
+
+                <div class="card-title">
+
+                    <div class="title-icon orange">
+                        <i class="fa-solid fa-bug"></i>
+                    </div>
+
+                    <div>
+
+                        <span class="card-label">
+                            DETECTION VIEW
+                        </span>
+
+                        <h2>
+                            Pest Detection Feed
+                        </h2>
+
+                    </div>
+
+                </div>
+
+                <span class="online-badge">
+                    <span></span>
+                    Detecting
+                </span>
+
+            </div>
+
+
+            <div class="detection-feed">
+
+                <img
+                    src="images/camera-placeholder.png"
+                    alt="Pest Detection Camera Feed"
+                >
+
+                <div class="detection-overlay">
+
+                    <div class="detection-box">
+                        <span>
+                            Pest
+                        </span>
+                    </div>
+
+                </div>
+
+                <div class="detection-overlay-label">
+                    YOLOv11 Detection
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <article class="detection-log-card">
+
+            <div class="card-header">
+
+                <div class="card-title">
+
+                    <div class="title-icon purple">
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                    </div>
+
+                    <div>
+
+                        <span class="card-label">
+                            DETECTION LOG
+                        </span>
+
+                        <h2>
+                            Recent Results
+                        </h2>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="detection-result">
+
+                <div class="result-icon">
+                    <i class="fa-solid fa-bug"></i>
+                </div>
+
+                <div>
+
+                    <strong>
+                        Pest Detection Active
+                    </strong>
+
+                    <span>
+                        The system is currently monitoring
+                        the rice field for pests.
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="detection-result">
+
+                <div class="result-icon">
+                    <i class="fa-solid fa-chart-simple"></i>
+                </div>
+
+                <div>
+
+                    <strong>
+                        12 Pests Detected
+                    </strong>
+
+                    <span>
+                        Current recorded detection count.
+                    </span>
+
+                </div>
+
+            </div>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     ROVER LOCATION PAGE
+===================================================== -->
+
+<section id="locationSection" class="page-section">
+
+    <div class="page-section-header">
+
+        <div>
+
+            <span class="page-label">
+                <i class="fa-solid fa-location-dot"></i>
+                ROVER POSITION
+            </span>
+
+            <h1>Rover Location</h1>
+
+            <p>
+                Monitor the current position of the
+                AR-RICE rover in the rice field.
+            </p>
+
+        </div>
+
+        <div class="monitoring-badge">
+
+            <span class="status-dot"></span>
+
+            <div>
+                <strong>Location Active</strong>
+                <small>AR-RICE Rover</small>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="location-page-grid">
+
+        <!-- MAP -->
+
+        <article class="location-map-card">
+
+            <div class="card-header">
+
+                <div class="card-title">
+
+                    <div class="title-icon cyan">
+                        <i class="fa-solid fa-location-dot"></i>
+                    </div>
+
+                    <div>
+
+                        <span class="card-label">
+                            FIELD POSITION
+                        </span>
+
+                        <h2>
+                            Rover Map
+                        </h2>
+
+                    </div>
+
+                </div>
+
+                <span class="online-badge">
+
+                    <span></span>
+                    Online
+
+                </span>
+
+            </div>
+
+
+            <div class="large-map">
+
+                <div class="map-grid"></div>
+
+                <div class="map-point large-map-point">
+
+                    <span></span>
+
+                    <i class="fa-solid fa-robot"></i>
+
+                </div>
+
+                <span class="large-map-label">
+                    AR-RICE ROVER
+                </span>
+
+            </div>
+
+        </article>
+
+
+        <!-- LOCATION DETAILS -->
+
+        <article class="location-details-card">
+
+            <div class="card-header">
+
+                <div class="card-title">
+
+                    <div class="title-icon green">
+                        <i class="fa-solid fa-compass"></i>
+                    </div>
+
+                    <div>
+
+                        <span class="card-label">
+                            CURRENT LOCATION
+                        </span>
+
+                        <h2>
+                            Rover Position
+                        </h2>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="current-location">
+
+                <div class="location-big-icon">
+                    <i class="fa-solid fa-location-crosshairs"></i>
+                </div>
+
+                <span>
+                    Current Position
+                </span>
+
+                <strong id="locationPageValue">
+                    Field Zone A3
+                </strong>
+
+            </div>
+
+
+            <div class="location-detail-list">
+
+                <div>
+
+                    <span>
+                        Rover Status
+                    </span>
+
+                    <strong class="online-text">
+                        Online
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <span>
+                        Monitoring
+                    </span>
+
+                    <strong>
+                        Active
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <span>
+                        Field Zone
+                    </span>
+
+                    <strong>
+                        A3
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </article>
+
+    </div>
+
+</section>
 
 </main>
+
+
+<!-- =====================================================
+     PEST DETECTION PAGE
+===================================================== -->
+
+<section id="pestSection" class="page-section">
+
+    <div class="page-section-header">
+
+        <div>
+
+            <span class="page-label">
+                <i class="fa-solid fa-bug"></i>
+                YOLOv11 COMPUTER VISION
+            </span>
+
+            <h1>Pest Detection</h1>
+
+            <p>
+                Monitor pest detections identified by the
+                AR-RICE vision system.
+            </p>
+
+        </div>
+
+        <div class="monitoring-badge">
+
+            <span class="status-dot"></span>
+
+            <div>
+                <strong>Detection Active</strong>
+                <small>YOLOv11</small>
+            </div>
 
 
 <!-- =========================================================
